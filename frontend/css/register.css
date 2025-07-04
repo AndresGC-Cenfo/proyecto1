@@ -1,0 +1,100 @@
+/* //Andres Gonzalez Chavarria */
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  background-color: #EAF6FB;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.register-wrapper {
+  display: flex;
+  background-color: #FFFFFF;
+  border-radius: 1rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  overflow: hidden;
+  max-width: 900px;
+  width: 100%;
+}
+
+.register-container,
+.register-image {
+  flex: 1; /* 50% cada uno */
+  padding: 2.5rem;
+}
+
+.register-image {
+  background-color: #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+h2 {
+  font-family: 'Rubik', sans-serif;
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  color: #2C2C2C;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+label {
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: #2C2C2C;
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"],
+select {
+  padding: 0.8rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  background-color: #F9F9F9;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+input[type="file"] {
+  padding: 0.6rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+  background-color: #F9F9F9;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+
+button {
+  padding: 1rem;
+  border: none;
+  border-radius: 2rem;
+  background-color: #00A6E9;
+  color: #FFFFFF;
+  font-weight: 600;
+  font-family: 'Rubik', sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #007BB3;
+}
+
+.upload-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
