@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="tabla.css">
+</head>
+<body>
+    <div class="registroAnuncios">
+        <div class="botonesCrud">
+        <button id="btnAprobar" class="btnCrud">Aprobar Anuncio</button>
+        <button id="btnRechazar" class="btnCrud">Rechazar Anuncio</button>
+        <button id="btnRegistrar" class="btnCrud">Registrar Anuncio</button>
+        <button id="btnEditar" class="btnCrud">Editar Anuncio</button>
+        <button id="btnEliminar" class="btnCrud">Eliminar Anuncio</button>
+    </div>
+
+    <table id="tablaAnuncios" class="tabla">
+        <thead>
+            <tr>
+                <th>Usuario</th>
+                <th>Contenido</th>
+                <th>Estado</th>
+                <th>Fecha y Hora</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>CarlosD</td>
+                <td>Alimentos</td>
+                <td>Pendiente</td>
+                <td>2023-04-23 14:00</td>
+            </tr>
+        </tbody>
+</table>
+<div class="btnGuardar">
+    <button id="btnEnviarCambios" class="btnCrud">Enviar cambios</button>    
+</div>  
+    </div>
+</body>
+<script src="tabla.js"></script>
+</html>
+

@@ -1,0 +1,169 @@
+* {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Rubik', sans-serif; /*Formato predefinido en IAs*/
+      line-height: 1.6;
+      background-color: white;
+      color: #333
+    }
+
+    header {
+      background-color: #0e4d92;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header h1 { 
+  font-family: 'Rubik', sans-serif; 
+  font-size: 2.8rem; 
+  color: white;
+  }
+
+  header p { 
+  font-family: 'Roboto', sans-serif; 
+  font-size: 1rem; 
+  color: white;
+}
+
+  header {
+    background-color: #00A6E9;
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+
+nav {
+  background-color: #555555;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: #EAF6FB;
+  padding: 15px 20px;
+  text-decoration: none;
+  display: block;
+  font-family: 'Rubik', sans-serif; 
+  font-size: 1.1rem; 
+}
+
+nav a:hover {
+  background-color: #00A6E9
+  ;
+}
+    footer {
+  background-color: #00A6E9;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  width: 100%;
+  margin-top: auto;
+  font-family: 'Roboto', sans-serif; 
+  font-size: 0.9rem; 
+}
+
+    main{
+        padding: 20px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+
+
+    }
+
+
+
+/*CSS de seccion principal*/
+.SeccionPrincipal {
+  background-color: #00A6E9;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  width: 78%;        
+  margin: auto;
+  padding: 20px;
+}
+
+
+table {
+  margin: auto;
+  border: 1px solid;
+  border-collapse: collapse;
+  font-family: 'Rubik';
+  width: 100%;
+  max-width: 658px;
+  min-width: 400px;
+
+}
+
+
+table tr {
+    border: 1px solid;
+  
+}
+
+
+td, th{
+    padding: 5px;
+    border: 1px solid #EAF6Fb;
+    height: 40px;
+    width: 60px;
+    font-size: 0.87rem;
+}
+
+
+
+tbody tr:hover{
+    background-color: #FFD56B;
+}
+
+
+
+/*PARTE RESPONSIVE*/
+@media (max-width: 600px) {
+
+  nav {
+        flex-direction: column;
+      }
+
+
+  table {
+    width: 100%;
+    min-width: unset;
+    max-width: 100%;
+  }
+
+  td, th {
+    font-size: 0.75rem;
+    padding: 8px;
+    height: auto;
+    display: table-cell; 
+    justify-content: center; 
+  }
+
+  .imagen {
+    width: 100%;
+    max-width: 150px;
+    height: auto;
+  }
+}
+
+.imagen-suceso {
+  padding: 5px;
+  text-align: center;
+}
+
+.imagen {
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+  object-fit: cover;
+  display: block;
+  margin: auto;
+}

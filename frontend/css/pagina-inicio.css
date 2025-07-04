@@ -1,0 +1,137 @@
+* {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Rubik', sans-serif; /*Formato predefinido en IAs*/
+      line-height: 1.6;
+      background-color: white;
+      color: #333
+    }
+
+    header {
+      background-color: #0e4d92;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header h1 { 
+  font-family: 'Rubik', sans-serif; 
+  font-size: 2.8rem; 
+  color: white;
+  }
+
+  header p { 
+  font-family: 'Roboto', sans-serif; 
+  font-size: 1rem; 
+  color: white;
+}
+
+  header {
+    background-color: #00A6E9;
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+
+nav {
+  background-color: #555555;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: #EAF6FB;
+  padding: 15px 20px;
+  text-decoration: none;
+  display: block;
+  font-family: 'Rubik', sans-serif; 
+  font-size: 1.1rem; 
+}
+
+nav a:hover {
+  background-color: #00A6E9
+  ;
+}
+    footer {
+  background-color: #00A6E9;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  width: 100%;
+  margin-top: auto;
+  font-family: 'Roboto', sans-serif; 
+  font-size: 0.9rem; 
+}
+
+
+    main{
+        padding: 20px;
+        flex: 1;
+        display: block
+
+
+    }
+
+h1{
+    text-align: center;
+    margin-bottom: 2%;
+    color: #333;
+}
+
+/*PROPIEDADES PARA LA FUNCIONALIDAD DE CAROUSEL*/
+.carousel {
+  position: relative;
+  width: 90%;
+  max-width: 1000px;
+  margin: auto;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carrusel {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  width: 100%;
+}
+
+.carousel-image {
+  width: 40%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 8px;
+  display: none;
+}
+
+.carousel-image.active {
+  display: block;
+}
+
+#prevBtn,
+#nextBtn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.4);
+  color: #333;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 5px 10px;
+  z-index: 10;
+}
+
+#prevBtn {
+  left: 0;
+}
+
+#nextBtn {
+  right: 0;
+}

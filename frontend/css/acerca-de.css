@@ -1,0 +1,108 @@
+* {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Rubik', sans-serif; /*Formato predefinido en IAs*/
+      line-height: 1.6;
+      background-color: white;
+      color: #333
+    }
+
+    header {
+      background-color: #0e4d92;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header h1 { 
+  font-family: 'Rubik', sans-serif; 
+  font-size: 2.8rem; 
+  color: white;
+  }
+
+  header p { 
+  font-family: 'Roboto', sans-serif; 
+  font-size: 1rem; 
+  color: white;
+}
+
+  header {
+    background-color: #00A6E9;
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+
+nav {
+  background-color: #555555;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: #EAF6FB;
+  padding: 15px 20px;
+  text-decoration: none;
+  display: block;
+  font-family: 'Rubik', sans-serif; 
+  font-size: 1.1rem; 
+}
+
+nav a:hover {
+  background-color: #00A6E9
+  ;
+}
+    footer {
+  background-color: #00A6E9;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  width: 100%;
+  margin-top: auto;
+  font-family: 'Roboto', sans-serif; 
+  font-size: 0.9rem; 
+}
+
+
+    main{
+        padding: 20px;
+        flex: 1;
+        display: block
+
+
+    }
+
+    .Acerca-De {
+    display: grid;
+    justify-items: center;   
+    border: solid #333;
+    padding: 20px;           
+    }
+
+    .texto-Principal{
+        display: grid;
+        justify-items: center;   
+        padding: 20px; 
+    }
+
+    .texto-Principal h2,p {
+        font-weight: bold;
+        color: #333;
+    }
+
+    .encabezado-acerca {
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 10px;
+}
+
+.encabezado-acerca h2 {
+  color: #333;
+  font-size: 1.2rem;
+  font-weight: bold;
+}

@@ -1,0 +1,154 @@
+* {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Rubik', sans-serif; /*Formato predefinido en IAs*/
+      line-height: 1.6;
+      background-color: white;
+      color: #333
+    }
+
+    header {
+      background-color: #0e4d92;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header h1 { 
+  font-family: 'Rubik', sans-serif; 
+  font-size: 2.8rem; 
+  color: white;
+  }
+
+  main{
+    margin-bottom: 40px;
+  }
+
+  header p { 
+  font-family: 'Roboto', sans-serif; 
+  font-size: 1rem; 
+  color: white;
+}
+
+  header {
+    background-color: #00A6E9;
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+
+nav {
+  background-color: #555555;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: #EAF6FB;
+  padding: 15px 20px;
+  text-decoration: none;
+  display: block;
+  font-family: 'Rubik', sans-serif; 
+  font-size: 1.1rem; 
+}
+
+nav a:hover {
+  background-color: #00A6E9
+  ;
+}
+    footer {
+  background-color: #00A6E9;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  width: 100%;
+  margin-top: auto;
+  font-family: 'Roboto', sans-serif; 
+  font-size: 0.9rem; 
+}
+
+
+    /*PARTE RESPONSIVE*/
+@media (max-width: 600px) {
+  nav {
+        flex-direction: column;
+      }
+
+  .botonesCrud{
+        padding: 20px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+
+      }
+    
+    main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+      .encabezado {
+    margin-top: 20px;
+    padding: 0 10px;
+  }
+
+  .encabezado h1 {
+    font-size: 1.5rem;
+    padding: 10px 0;
+  }
+
+  }
+    /*PROPIEDADES DEL MAPA INTERACTIVO*/
+    .mapa-interactivo {
+    padding: 40px;
+    margin-top: 80px;
+    border: solid #333;
+    width: 100%;
+    max-width: 1200px;
+    margin-inline: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.labels-lugares {
+    display: grid;
+    flex: 1 1 300px; 
+    min-width: 250px;
+}
+
+.label-lugar {
+    color: #333;
+    font-weight: bold;
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+iframe {
+    flex: 1 1 300px;
+    width: 100%;
+    min-height: 300px;
+    border: none;
+}
+
+.encabezado {
+  width: 100%;
+  max-width: 1200px;
+  margin: 40px auto 20px auto;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.encabezado h1 {
+  color: #333;
+  font-weight: bold;
+  font-size: clamp(1.5rem, 5vw, 2.8rem);
+  line-height: 1.2;
+}

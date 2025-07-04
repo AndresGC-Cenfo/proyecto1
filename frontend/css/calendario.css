@@ -1,0 +1,159 @@
+* {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Rubik', sans-serif; /*Formato predefinido en IAs*/
+      line-height: 1.6;
+      background-color: white;
+      color: #333
+    }
+
+    header {
+      background-color: #0e4d92;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header h1 { 
+  font-family: 'Rubik', sans-serif; 
+  font-size: 2.8rem; 
+  color: white;
+  }
+
+  header p { 
+  font-family: 'Roboto', sans-serif; 
+  font-size: 1rem; 
+  color: white;
+}
+
+  header {
+    background-color: #00A6E9;
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+
+nav {
+  background-color: #555555;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: #EAF6FB;
+  padding: 15px 20px;
+  text-decoration: none;
+  display: block;
+  font-family: 'Rubik', sans-serif; 
+  font-size: 1.1rem; 
+}
+
+nav a:hover {
+  background-color: #00A6E9
+  ;
+}
+    footer {
+  background-color: #00A6E9;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  width: 100%;
+  margin-top: auto;
+  font-family: 'Roboto', sans-serif; 
+  font-size: 0.9rem; 
+}
+
+    main{
+        padding: 20px;
+        flex: 1;
+        display: block
+
+
+    }
+
+
+
+    /*PROPIEDADES DEL CALENDARIO INTERACTIVO*/
+    .titulo-calendario {
+  color: #333;
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+  .calendario-interactivo {
+  padding: 40px;
+  margin-top: 80px;
+  border: solid #333;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 40px; 
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.labels-eventos {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: flex-start;
+  min-width: 200px;
+}
+
+.label-evento {
+  color: #333;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+#calendar {
+  flex-grow: 1;         
+  min-width: 600px;     
+  max-width: 100%;      
+  color: #333;
+}
+
+/*PARTE RESPONSIVE*/
+@media (max-width: 768px) {
+  .calendario-interactivo {
+    flex-direction: column !important;
+    align-items: center;
+    padding: 20px;
+    margin-top: 40px;
+  }
+
+  .labels-eventos {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    text-align: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  #calendar {
+    width: 100% !important;
+    min-width: auto;
+  }
+
+  nav {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav a {
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+  }
+}
