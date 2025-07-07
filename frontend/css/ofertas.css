@@ -82,25 +82,33 @@ nav a:hover {
 
 /*CSS de seccion principal*/
 .SeccionPrincipal {
-  background-color: #00A6E9;
-  color: white;
+  display: flex;
   justify-content: center;
   align-items: center;
-  width: 78%;        
-  margin: auto;
   padding: 20px;
+  width: 100%;
 }
 
+
+.ofertas {
+  background-color: #00A6E9;
+  width: 100%;
+  max-width: 1000px;
+  padding: 40px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+}
 
 table {
   margin: auto;
   border: 1px solid;
   border-collapse: collapse;
   font-family: 'Rubik';
-  width: 100%;
-  max-width: 658px;
-  min-width: 400px;
-
+  width: 100%;            
+  max-width: 658px;        
+  min-width: 600px;
+  color: white;
 }
 
 
@@ -110,15 +118,16 @@ table tr {
 }
 
 
-td, th{
-    padding: 5px;
-    border: 1px solid #EAF6Fb;
-    height: 40px;
-    width: 60px;
-    font-size: 0.87rem;
+td, th {
+  padding-left: 10px;
+  border: 1px solid #ffffff;
+  height: 40px;
+  font-size: 0.87rem;
+  text-align: center;
+  white-space: normal;       
+  word-wrap: break-word;  
+  width: auto;           
 }
-
-
 
 tbody tr:hover{
     background-color: #FFD56B;
@@ -130,77 +139,25 @@ tbody tr:hover{
 /*PARTE RESPONSIVE*/
 @media (max-width: 600px) {
   nav {
-        flex-direction: column;
-      }
-  
-  .cartasKpis {
     flex-direction: column;
-    align-items: center;
   }
 
   table {
-  margin: auto;
-  border: 1px solid;
-  border-collapse: collapse;
-  font-family: 'Rubik';
-  width: 100%;
-  max-width: 200px;
-  min-width: 100px;
-
+    width: 100%;
+    min-width: unset;
+    max-width: unset;
   }
 
+  
 
-  table tr {
-      border: 1px solid;
-    
+  td, th {
+    font-size: 0.85rem;
+    padding: 8px;
+    height: 40px;
   }
 
-
-  td, th{
-      padding: 5px;
-      border: 1px solid #EAF6Fb;
-      height: 40px;
-      width: 60px;
-      font-size: 0.5rem;
+  img {
+    max-width: 100px;
+    height: auto;
   }
-
-
-  }
-
-
-/*CSS PARA CARTASS DE KPIS*/
-.cartasKpis {
-  display: flex;
-  flex-wrap: wrap;               
-  gap: 10px;                      
-  margin-bottom: 15px;
-  justify-content: center;
-
-}
-
-.cartaTotales {
-  flex: 1;                        
-  max-width: 160px;
-  max-height: 90px;
-  background: white;
-  border-radius: 12px;
-  padding: 5px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.cartaTotales h3 {
-  margin: 0;
-  font-size: .8rem;
-  color: #0e4d92;
-}
-
-.cartaTotales .valor {
-  margin-top: 2px;
-  font-size: 1rem;
-  font-weight: bold;
-  color: #FFD56B;
 }

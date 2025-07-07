@@ -4,11 +4,15 @@
       box-sizing: border-box;
     }
 
+    html, body {
+  height: 100%;
+}
+
     body {
       font-family: 'Rubik', sans-serif; /*Formato predefinido en IAs*/
       line-height: 1.6;
       background-color: white;
-      color: #333
+      color: #ffffff
     }
 
     header {
@@ -74,34 +78,36 @@ nav a:hover {
         display: flex;
         flex-direction: column;
 
-
     }
 
 
 
 /*CSS de seccion principal*/
 .SeccionPrincipal {
-  background-color: #00A6E9;
-  color: white;
+  display: flex;
   justify-content: center;
   align-items: center;
-  width: 78%;        
-  margin: auto;
   padding: 20px;
+  width: 100%;
 }
 
+.noticias {
+  background-color: #00A6E9;
+  width: 100%;
+  max-width: 1000px;
+  padding: 40px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+}
 
 table {
-  margin: auto;
+  width: 100%;
+  max-width: 1000px;
   border: 1px solid;
   border-collapse: collapse;
-  font-family: 'Rubik';
-  width: 100%;
-  max-width: 658px;
-  min-width: 400px;
-
+  font-family: 'Rubik', sans-serif;
 }
-
 
 table tr {
     border: 1px solid;
@@ -109,13 +115,18 @@ table tr {
 }
 
 
-td, th{
-    padding: 5px;
-    border: 1px solid #EAF6Fb;
-    height: 40px;
-    width: 60px;
-    font-size: 0.87rem;
+td, th {
+  padding: 10px;
+  border: 1px solid #EAF6Fb;
+  height: 40px;
+  font-size: 0.87rem;
+  text-align: center;
+  white-space: normal;       
+  word-wrap: break-word;  
+  width: auto;           
 }
+
+
 
 
 
@@ -132,19 +143,24 @@ tbody tr:hover{
         flex-direction: column;
       }
 
+  .SeccionPrincipal{
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+  }
+
 
   table {
-    width: 100%;
+    width: 10%;
     min-width: unset;
-    max-width: 100%;
+    max-width: unset;
+    padding: 0;
   }
 
   td, th {
-    font-size: 0.75rem;
-    padding: 8px;
-    height: auto;
-    display: table-cell; 
-    justify-content: center; 
+    font-size: 0.85rem;
+    padding: 0.5px;
+    height: 40px;
   }
 
   .imagen {
