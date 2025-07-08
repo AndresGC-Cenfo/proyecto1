@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Comunidad Conectada - Anuncios</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="panelCiudadanoAnuncios.css" />
+</head>
+<body>
+
+  <header>
+    <img src="/imagenes/Logo Comunidad Conectada.png" alt="logo header higuito" class="header-logo"> 
+  </header>
+
+  <nav>
+    <a href="#">A Cerca</a>
+    <a href="panelCiudadanoAnuncios.html">Anuncios</a>
+    <a href="panelCiudadanoReportesySugerencias.html">Reportes y Sugerencias</a>
+    <a href="#">Mapa</a>
+    <a href="#">Calendario</a>
+    <a href="#">Transporte</a>
+    <a href="#">Ofertas y Descuentos</a>
+    <a href="#">Cerrar Sesión</a>
+  </nav>
+
+  <main>
+    <div class="registroAnuncios">
+        <div class="botonesCrud">
+            <button id="btnRegistrar" class="btnCrud">Registrar Anuncio</button>
+            <button id="btnEditar" class="btnCrud">Editar Anuncio</button>
+            <button id="btnEliminar" class="btnCrud">Eliminar Anuncio</button>
+        </div>
+
+        <table id="tablaAnuncios" class="tabla">
+            <thead>
+                <tr>
+                    <th>Usuario</th>
+                    <th>Contenido</th>
+                    <th>Fecha y Hora</th>
+                    <th>Imagen</th> 
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+              <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="btnGuardar">
+            <button id="btnEnviarCambios" class="btnCrud">Guardar cambios</button>
+        </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Comunidad Conectada - Todos los derechos reservados</p>
+  </footer>
+
+  <div id="confirmModal" class="modal">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <h2>Eliminar anuncio</h2>
+      <p>¿Está seguro de que desea eliminar este anuncio?</p>
+      <div class="modal-buttons">
+        <button id="confirmYes" class="modal-btn">Sí</button>
+        <button id="confirmNo" class="modal-btn">No</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="panelCiudadanoAnuncios.js"></script>
+
+</body>
+</html>
