@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Panel Administrador - Gestión de Emprendimientos
+  </title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&amp;family=Rubik&amp;display=swap" rel="stylesheet"/>
+  <style>
+   * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: white;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header {
+            background-color: #00A6E9;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+        header h1 { font-family: 'Rubik', sans-serif; font-size: 2.5rem; }
+        header p { font-size: 1rem; }
+        nav {
+            background-color: #555;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        nav a {
+            color: #EAF6FB;
+            padding: 15px 20px;
+            text-decoration: none;
+            font-family: 'Rubik', sans-serif;
+        }
+        nav a:hover { background-color: #00A6E9; }
+        main { flex-grow: 1; padding: 20px; }
+        footer {
+            background-color: #00A6E9;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: auto;
+        }
+        .registroAnuncios {
+            background-color: #00A6E9;
+            margin: 20px auto;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 1000px;
+            color: white;
+        }
+        .botonesCrud, .btnGuardar {
+            text-align: right;
+            margin: 10px auto;
+            width: 95%;
+        }
+        .btnCrud {
+            background-color: #EAF6FB;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            margin: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-family: 'Rubik', sans-serif;
+        }
+        .btnCrud:hover { background-color: #dbeaf0; }
+        table {
+            width: 95%;
+            margin: 0 auto;
+            border-collapse: collapse;
+            background-color: #EAF6FB;
+            color: #333;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #00A6E9;
+            text-align: center;
+        }
+        th {
+            background-color: rgba(234, 246, 251, 0.4);
+            font-family: 'Rubik', sans-serif;
+        }
+        tr:hover {
+            background-color: #FFD56B;
+            color: #333;
+        }
+  </style>
+ </head>
+ <body>
+  <header>
+   <h1>
+    Comunidad Conectada
+   </h1>
+   <p>
+    Plataforma Digital de Higuito - Panel Administrador
+   </p>
+  </header>
+  <nav>
+   <a href="#">
+    Gestión de Anuncios
+   </a>
+   <a href="#">
+    Gestión de Transporte
+   </a>
+   <a href="#">
+    Gestión de Eventos
+   </a>
+   <a href="#">
+    Gestión de Emprendimientos
+   </a>
+   <a href="#">
+    Gestión de Ofertas
+   </a>
+   <a href="#">
+    Gestión de Reportes
+   </a>
+   <a href="#">
+    Cerrar Sesión
+   </a>
+  </nav>
+  <main>
+   <div class="registroAnuncios">
+    <div class="botonesCrud">
+     <button class="btnCrud" id="btnAgregarOferta">
+      Añadir Oferta
+     </button>
+     <button class="btnCrud" id="btnEditarOferta">
+      Editar Oferta
+     </button>
+     <button class="btnCrud" id="btnEliminarOferta">
+      Eliminar Oferta
+     </button>
+    </div>
+    <table id="tablaEmprendimientos">
+     <thead>
+      <tr>
+       <th style="color: #00A6E9;">
+        Publicado por
+       </th>
+       <th style="color: #00A6E9;">
+        Oferta
+       </th>
+       <th style="color: #00A6E9;">
+        Válido Hasta
+       </th>
+      </tr>
+     </thead>
+     <tbody>
+      <tr>
+       <td style="height: 45px;">
+       </td>
+       <td style="height: 45px;">
+       </td>
+       <td style="height: 45px;">
+       </td>
+      </tr>
+     </tbody>
+    </table>
+    <div class="btnGuardar">
+     <button class="btnCrud" id="btnEnviarCambios">
+      Guardar Cambios
+     </button>
+    </div>
+   </div>
+  </main>
+  <footer>
+   © 2025 Comunidad Conectada - Todos los derechos reservados
+  </footer>
+ 
+ </body>
+</html>
