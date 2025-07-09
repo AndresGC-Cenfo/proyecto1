@@ -5,8 +5,10 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Rubik', sans-serif;
   line-height: 1.6;
+  background-color: white;
+  color: #333
 }
 
 .header-logo {
