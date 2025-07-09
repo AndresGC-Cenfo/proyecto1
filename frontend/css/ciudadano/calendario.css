@@ -1,41 +1,29 @@
 * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Rubik', sans-serif; /*Formato predefinido en IAs*/
-      line-height: 1.6;
-      background-color: white;
-      color: #333
-    }
-
-    header {
-      background-color: #0e4d92;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
-
-    header h1 { 
-  font-family: 'Rubik', sans-serif; 
-  font-size: 2.8rem; 
-  color: white;
-  }
-
-  header p { 
-  font-family: 'Roboto', sans-serif; 
-  font-size: 1rem; 
-  color: white;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-  header {
-    background-color: #00A6E9;
-    color: white;
-    padding: 20px;
-    text-align: center;
-  }
+body {
+  font-family: 'Rubik', sans-serif;
+  /*Formato predefinido en IAs*/
+  line-height: 1.6;
+  background-color: white;
+  color: #333
+}
+
+.header-logo {
+  width: 200px;
+  height: 200px;
+  margin-bottom: 10px;
+}
+
+header {
+  background-color: #00A6E9;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
 
 nav {
   background-color: #555555;
@@ -49,37 +37,35 @@ nav a {
   padding: 15px 20px;
   text-decoration: none;
   display: block;
-  font-family: 'Rubik', sans-serif; 
-  font-size: 1.1rem; 
+  font-family: 'Rubik', sans-serif;
+  font-size: 1.1rem;
 }
 
 nav a:hover {
-  background-color: #00A6E9
-  ;
+  background-color: #00A6E9;
 }
-    footer {
+
+footer {
   background-color: #00A6E9;
   color: white;
   text-align: center;
   padding: 15px;
   width: 100%;
   margin-top: auto;
-  font-family: 'Roboto', sans-serif; 
-  font-size: 0.9rem; 
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.9rem;
 }
 
-    main{
-        padding: 20px;
-        flex: 1;
-        display: block
-
-
-    }
+main {
+  padding: 20px;
+  flex: 1;
+  display: block
+}
 
 
 
-    /*PROPIEDADES DEL CALENDARIO INTERACTIVO*/
-    .titulo-calendario {
+/*PROPIEDADES DEL CALENDARIO INTERACTIVO*/
+.titulo-calendario {
   color: #333;
   font-size: 1.8rem;
   font-weight: bold;
@@ -88,14 +74,14 @@ nav a:hover {
   margin-bottom: 20px;
 }
 
-  .calendario-interactivo {
+.calendario-interactivo {
   padding: 40px;
   margin-top: 80px;
   border: solid #333;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  gap: 40px; 
+  gap: 40px;
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
@@ -116,9 +102,9 @@ nav a:hover {
 }
 
 #calendar {
-  flex-grow: 1;         
-  min-width: 600px;     
-  max-width: 100%;      
+  flex-grow: 1;
+  min-width: 600px;
+  max-width: 100%;
   color: #333;
 }
 

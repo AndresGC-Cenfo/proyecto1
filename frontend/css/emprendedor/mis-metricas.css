@@ -1,41 +1,29 @@
 * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Rubik', sans-serif; /*Formato predefinido en IAs*/
-      line-height: 1.6;
-      background-color: white;
-      color: #333
-    }
-
-    header {
-      background-color: #0e4d92;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
-
-    header h1 { 
-  font-family: 'Rubik', sans-serif; 
-  font-size: 2.8rem; 
-  color: white;
-  }
-
-  header p { 
-  font-family: 'Roboto', sans-serif; 
-  font-size: 1rem; 
-  color: white;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-  header {
-    background-color: #00A6E9;
-    color: white;
-    padding: 20px;
-    text-align: center;
-  }
+body {
+  font-family: 'Rubik', sans-serif;
+  /*Formato predefinido en IAs*/
+  line-height: 1.6;
+  background-color: white;
+  color: #333
+}
+
+.header-logo {
+  width: 200px;
+  height: 200px;
+  margin-bottom: 10px;
+}
+
+header {
+  background-color: #00A6E9;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
 
 nav {
   background-color: #555555;
@@ -49,34 +37,34 @@ nav a {
   padding: 15px 20px;
   text-decoration: none;
   display: block;
-  font-family: 'Rubik', sans-serif; 
-  font-size: 1.1rem; 
+  font-family: 'Rubik', sans-serif;
+  font-size: 1.1rem;
 }
 
 nav a:hover {
-  background-color: #00A6E9
-  ;
+  background-color: #00A6E9;
 }
-    footer {
+
+footer {
   background-color: #00A6E9;
   color: white;
   text-align: center;
   padding: 15px;
   width: 100%;
   margin-top: auto;
-  font-family: 'Roboto', sans-serif; 
-  font-size: 0.9rem; 
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.9rem;
 }
 
 
-    main{
-        padding: 20px;
-        flex: 1;
-        display: flex;
-        flex-direction: column;
+main {
+  padding: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 
 
-    }
+}
 
 
 
@@ -86,11 +74,11 @@ nav a:hover {
   color: white;
   justify-content: center;
   align-items: center;
-  width: 78%;        
+  width: 78%;
   margin: auto;
 }
 
-.subseccion{
+.subseccion {
   background-color: #00A6E9;
   color: white;
   height: 100%;
@@ -114,24 +102,25 @@ table {
 
 
 table tr {
-    border: 1px solid;
-  
+  border: 1px solid;
+
 }
 
 
-td, th{
-    padding: 5px;
-    border: 1px solid #EAF6Fb;
-    height: 40px;
-    width: 60px;
-    font-size: 0.87rem;
+td,
+th {
+  padding: 5px;
+  border: 1px solid #EAF6Fb;
+  height: 40px;
+  width: 60px;
+  font-size: 0.87rem;
 }
 
 
 
-tbody tr:hover{
-    background-color: #FFD56B;
-    cursor: pointer;
+tbody tr:hover {
+  background-color: #FFD56B;
+  cursor: pointer;
 }
 
 
@@ -149,7 +138,7 @@ tbody tr:hover{
   }
 
   .subseccion {
-    overflow-x: auto; 
+    overflow-x: auto;
   }
 
   table {
@@ -158,10 +147,11 @@ tbody tr:hover{
     font-size: 0.8rem;
   }
 
-  td, th {
+  td,
+  th {
     padding: 6px;
     font-size: 0.75rem;
-    white-space: nowrap; 
+    white-space: nowrap;
     text-align: center;
   }
 }
@@ -169,21 +159,21 @@ tbody tr:hover{
 /*CSS PARA CARTASS DE KPIS*/
 .cartasKpis {
   display: flex;
-  flex-wrap: wrap;               
-  gap: 10px;                      
+  flex-wrap: wrap;
+  gap: 10px;
   margin-bottom: 15px;
   justify-content: center;
 
 }
 
 .cartaTotales {
-  flex: 1;                        
+  flex: 1;
   max-width: 160px;
   max-height: 90px;
   background: white;
   border-radius: 12px;
   padding: 5px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   justify-content: center;

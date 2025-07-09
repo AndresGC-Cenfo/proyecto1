@@ -1,41 +1,29 @@
 * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Rubik', sans-serif; /*Formato predefinido en IAs*/
-      line-height: 1.6;
-      background-color: white;
-      color: #333
-    }
-
-    header {
-      background-color: #0e4d92;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
-
-    header h1 { 
-  font-family: 'Rubik', sans-serif; 
-  font-size: 2.8rem; 
-  color: white;
-  }
-
-  header p { 
-  font-family: 'Roboto', sans-serif; 
-  font-size: 1rem; 
-  color: white;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-  header {
-    background-color: #00A6E9;
-    color: white;
-    padding: 20px;
-    text-align: center;
-  }
+body {
+  font-family: 'Rubik', sans-serif;
+  /*Formato predefinido en IAs*/
+  line-height: 1.6;
+  background-color: white;
+  color: #333
+}
+
+.header-logo {
+  width: 200px;
+  height: 200px;
+  margin-bottom: 10px;
+}
+
+header {
+  background-color: #00A6E9;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
 
 nav {
   background-color: #555555;
@@ -49,81 +37,81 @@ nav a {
   padding: 15px 20px;
   text-decoration: none;
   display: block;
-  font-family: 'Rubik', sans-serif; 
-  font-size: 1.1rem; 
+  font-family: 'Rubik', sans-serif;
+  font-size: 1.1rem;
 }
 
 nav a:hover {
-  background-color: #00A6E9
-  ;
+  background-color: #00A6E9;
 }
-    footer {
+
+footer {
   background-color: #00A6E9;
   color: white;
   text-align: center;
   padding: 15px;
   width: 100%;
   margin-top: auto;
-  font-family: 'Roboto', sans-serif; 
-  font-size: 0.9rem; 
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.9rem;
 }
 
-    main{
-        padding: 20px;
-        flex: 1;
-        display: flex;
-        flex-direction: column;
+main {
+  padding: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 
 
-    }
+}
 
 
 
 /*CSS de seccion principal*/
-.SeccionPrincipal{
-    background-color: white;
-    color: white;
-    display: flex;
-    justify-content: center;   
-    align-items: center;      
-    
+.SeccionPrincipal {
+  background-color: white;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
 }
 
 .registroEmprendimientos {
-    width: 100%;
-    max-width: 1000px;
-    padding: 20px;
-    background-color: #00A6E9;
-    color: white;
+  width: 100%;
+  max-width: 1000px;
+  padding: 20px;
+  background-color: #00A6E9;
+  color: white;
 }
 
 .botonesCrud {
-    text-align: right;
-    margin-right: 10%;
-    margin-bottom: 1%;
+  text-align: right;
+  margin-right: 10%;
+  margin-bottom: 1%;
 }
 
 
-.btnCrud{
-    margin-left: 10px;
-    background-color: #EAF6FB;
-    border-radius: 5px;
-    border: none;
-    height: 35px;
-    padding: 0 15px;
-    cursor: pointer;
-    color: #333;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-    font-family: 'Rubik', sans-serif; 
-    font-size: 1rem;
+.btnCrud {
+  margin-left: 10px;
+  background-color: #EAF6FB;
+  border-radius: 5px;
+  border: none;
+  height: 35px;
+  padding: 0 15px;
+  cursor: pointer;
+  color: #333;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  font-family: 'Rubik', sans-serif;
+  font-size: 1rem;
 }
 
 
-.btnGuardar{
-    text-align: right;
-    margin-right: 10%;
-    margin-top: 1%;
+.btnGuardar {
+  text-align: right;
+  margin-right: 10%;
+  margin-top: 1%;
 }
 
 
@@ -139,31 +127,32 @@ table {
 
 
 table tr {
-    border: 1px solid;
-    width: 100%;
-    height: 100%;
+  border: 1px solid;
+  width: 100%;
+  height: 100%;
 }
 
-td, th{
-    padding: 0;
-    border: 1px solid #EAF6Fb;
-    height: 40px;
-    width: 60px;
-    font-size: 0.87rem;
+td,
+th {
+  padding: 0;
+  border: 1px solid #EAF6Fb;
+  height: 40px;
+  width: 60px;
+  font-size: 0.87rem;
 }
 
 
 
-tbody tr:hover{
-    background-color: #FFD56B;
-    cursor: pointer;
+tbody tr:hover {
+  background-color: #FFD56B;
+  cursor: pointer;
 }
 
-.filaSeleccionada{
-    background-color: #FFD56B;
+.filaSeleccionada {
+  background-color: #FFD56B;
 }
 
-.imagenEmprendimiento{
+.imagenEmprendimiento {
   padding: 0;
   vertical-align: middle;
   text-align: center;
@@ -177,16 +166,16 @@ tbody tr:hover{
 }
 
 
-input{
-    height: 100%;
-    width: 100%;
-    box-sizing: border-box;
-    border: none;
-    padding: 4px;
-    font-size: 14px;
-    outline: none;
-    background-color: transparent;
-    color: white;
+input {
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  border: none;
+  padding: 4px;
+  font-size: 14px;
+  outline: none;
+  background-color: transparent;
+  color: white;
 }
 
 select {
@@ -199,12 +188,12 @@ select {
   font-size: 14px;
   outline: none;
   background-color: transparent;
-  color: rgb(255, 255, 255); 
+  color: rgb(255, 255, 255);
   outline: none;
 }
 
-option{
-  background-color: #0e4d92; 
+option {
+  background-color: #0e4d92;
   color: white
 }
 
@@ -240,10 +229,11 @@ option{
   table {
     width: 100%;
     font-size: 0.7rem;
-    table-layout: fixed; 
+    table-layout: fixed;
   }
 
-  th, td {
+  th,
+  td {
     padding: 4px;
     font-size: 0.7rem;
     word-wrap: break-word;
@@ -256,13 +246,13 @@ option{
 
 
 /* BANNERS*/
-#eliminarBanner{
+#eliminarBanner {
   display: none;
   position: fixed;
   top: 25%;
   left: 50%;
-  transform: translate(-50%, -50%);          
-  }
+  transform: translate(-50%, -50%);
+}
 
 .banner {
   display: flex;
@@ -275,7 +265,7 @@ option{
   font-weight: 600;
   font-size: 0.8rem;
   gap: 10px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .warning {
@@ -291,19 +281,19 @@ option{
   font-weight: bold;
 }
 
-#registroExitosoBanner{
+#registroExitosoBanner {
   display: none;
   position: fixed;
   top: 25%;
   left: 50%;
-  transform: translate(-50%, -50%);        
+  transform: translate(-50%, -50%);
 }
 
-.bannerSuccess{
-  background-color:white ;
-    color: #00A6E9;
+.bannerSuccess {
+  background-color: white;
+  color: #00A6E9;
   border: 1px solid white;
-  border-radius: 8px;  
+  border-radius: 8px;
   padding: 10px;
 }
 
@@ -319,10 +309,10 @@ option{
 }
 
 .bannerError {
-  display: flex;              
-  flex-direction: row;        
+  display: flex;
+  flex-direction: row;
   align-items: center;
-  background-color: white ;
+  background-color: white;
   color: #00A6E9;
   font-weight: bold;
   padding: 16px 20px;
@@ -334,7 +324,7 @@ option{
 .bannerError i {
   font-size: 20px;
   margin-right: 12px;
-  display: inline;         
+  display: inline;
 }
 
 .bannerError p {

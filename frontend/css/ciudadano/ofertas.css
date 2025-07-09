@@ -1,41 +1,28 @@
 * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Rubik', sans-serif;
-      line-height: 1.6;
-      background-color: white;
-      color: #333
-    }
-
-    header {
-      background-color: #0e4d92;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
-
-    header h1 { 
-  font-family: 'Rubik', sans-serif; 
-  font-size: 2.8rem; 
-  color: white;
-  }
-
-  header p { 
-  font-family: 'Roboto', sans-serif; 
-  font-size: 1rem; 
-  color: white;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-  header {
-    background-color: #00A6E9;
-    color: white;
-    padding: 20px;
-    text-align: center;
-  }
+body {
+  font-family: 'Rubik', sans-serif;
+  line-height: 1.6;
+  background-color: white;
+  color: #333
+}
+
+.header-logo {
+  width: 200px;
+  height: 200px;
+  margin-bottom: 10px;
+}
+
+header {
+  background-color: #00A6E9;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
 
 nav {
   background-color: #555555;
@@ -49,34 +36,34 @@ nav a {
   padding: 15px 20px;
   text-decoration: none;
   display: block;
-  font-family: 'Rubik', sans-serif; 
-  font-size: 1.1rem; 
+  font-family: 'Rubik', sans-serif;
+  font-size: 1.1rem;
 }
 
 nav a:hover {
-  background-color: #00A6E9
-  ;
+  background-color: #00A6E9;
 }
-    footer {
+
+footer {
   background-color: #00A6E9;
   color: white;
   text-align: center;
   padding: 15px;
   width: 100%;
   margin-top: auto;
-  font-family: 'Roboto', sans-serif; 
-  font-size: 0.9rem; 
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.9rem;
 }
 
 
-    main{
-        padding: 20px;
-        flex: 1;
-        display: flex;
-        flex-direction: column;
+main {
+  padding: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 
 
-    }
+}
 
 
 
@@ -105,33 +92,34 @@ table {
   border: 1px solid;
   border-collapse: collapse;
   font-family: 'Rubik';
-  width: 100%;            
-  max-width: 658px;        
+  width: 100%;
+  max-width: 658px;
   min-width: 600px;
   color: white;
 }
 
 
 table tr {
-    border: 1px solid;
-  
+  border: 1px solid;
+
 }
 
 
-td, th {
+td,
+th {
   padding-left: 10px;
   border: 1px solid #ffffff;
   height: 40px;
   font-size: 0.87rem;
   text-align: center;
-  white-space: normal;       
-  word-wrap: break-word;  
-  width: auto;           
+  white-space: normal;
+  word-wrap: break-word;
+  width: auto;
 }
 
-tbody tr:hover{
-    background-color: #FFD56B;
-    cursor: pointer;
+tbody tr:hover {
+  background-color: #FFD56B;
+  cursor: pointer;
 }
 
 
@@ -148,9 +136,10 @@ tbody tr:hover{
     max-width: unset;
   }
 
-  
 
-  td, th {
+
+  td,
+  th {
     font-size: 0.85rem;
     padding: 8px;
     height: 40px;

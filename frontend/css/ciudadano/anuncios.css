@@ -9,33 +9,10 @@ body {
   line-height: 1.6;
 }
 
-header {
-  background-color: #0e4d92;
-  color: white;
-  padding: 20px;
-  text-align: center;
-  display: flex;
-  flex-direction: column; 
-  align-items: center;
-  justify-content: center;
-}
-
 .header-logo {
-    width: 200px; 
-    height: 200px; 
-    margin-bottom: 10px;
-}
-
-header h1 {
-  font-family: 'Rubik', sans-serif; 
-  font-size: 2.8rem; 
-  color: white;
-}
-
-header p { 
-  font-family: 'Roboto', sans-serif; 
-  font-size: 1rem;
-  color: white;
+  width: 200px;
+  height: 200px;
+  margin-bottom: 10px;
 }
 
 header {
@@ -57,13 +34,12 @@ nav a {
   padding: 15px 20px;
   text-decoration: none;
   display: block;
-  font-family: 'Rubik', sans-serif; 
-  font-size: 1.1rem; 
+  font-family: 'Rubik', sans-serif;
+  font-size: 1.1rem;
 }
 
 nav a:hover {
-  background-color: #00A6E9
-  ;
+  background-color: #00A6E9;
 }
 
 main {
@@ -81,55 +57,55 @@ footer {
   padding: 15px;
   width: 100%;
   margin-top: auto;
-  font-family: 'Roboto', sans-serif; 
-  font-size: 0.9rem; 
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.9rem;
 }
 
 .registroAnuncios {
-    width: 100%;
-    max-width: 1000px;
-    padding: 30px; 
-    margin: 20px; 
-    background-color: #00A6E9;
-    color: white;
-    font-family: 'Roboto', sans-serif;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 1000px;
+  padding: 30px;
+  margin: 20px;
+  background-color: #00A6E9;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.botonesCrud{
-    width: 90%; 
-    margin: 0 auto 15px auto; 
-    text-align: right; 
-   
-    font-family: 'Rubik', sans-serif; 
-    font-size: 1.5rem; 
-  }
+.botonesCrud {
+  width: 90%;
+  margin: 0 auto 15px auto;
+  text-align: right;
 
-.btnCrud{
-    margin-left: 10px;
-    background-color: #EAF6FB;
-    border-radius: 5px;
-    border: none;
-    height: 35px;
-    padding: 0 15px;
-    cursor: pointer;
-    color: #333;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-    font-family: 'Rubik', sans-serif; 
-    font-size: 1rem;
+  font-family: 'Rubik', sans-serif;
+  font-size: 1.5rem;
+}
+
+.btnCrud {
+  margin-left: 10px;
+  background-color: #EAF6FB;
+  border-radius: 5px;
+  border: none;
+  height: 35px;
+  padding: 0 15px;
+  cursor: pointer;
+  color: #333;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  font-family: 'Rubik', sans-serif;
+  font-size: 1rem;
 }
 
 .btnCrud:hover {
-    background-color: #dbeaf0;
+  background-color: #dbeaf0;
 }
 
-.btnGuardar{
-    
-    width: 90%; 
-    margin: 20px auto 0 auto; 
-    text-align: right; 
+.btnGuardar {
+
+  width: 90%;
+  margin: 20px auto 0 auto;
+  text-align: right;
 }
 
 table {
@@ -137,111 +113,112 @@ table {
   border: 1px solid #EAF6FB;
   width: 90%;
   border-collapse: collapse;
-  font-family: 'Roboto', sans-serif; 
+  font-family: 'Roboto', sans-serif;
   background-color: #EAF6FB;
 }
 
 table tr {
-    border: 1px solid #00A6E9;
-    width: 100%;
+  border: 1px solid #00A6E9;
+  width: 100%;
 }
 
-td, th{
-    padding: 10px;
-    border: 1px solid #00A6E9;
-    height: 45px;
-    vertical-align: middle;
-    font-size: 0.9rem; 
+td,
+th {
+  padding: 10px;
+  border: 1px solid #00A6E9;
+  height: 45px;
+  vertical-align: middle;
+  font-size: 0.9rem;
 }
 
 th {
-    background-color: rgba(234, 246, 251, 0.2);
-    color: #00A6E9;
-    font-family: 'Rubik', sans-serif; 
-    font-size: 1.1rem;
+  background-color: rgba(234, 246, 251, 0.2);
+  color: #00A6E9;
+  font-family: 'Rubik', sans-serif;
+  font-size: 1.1rem;
 }
 
-tbody tr:hover{
-    background-color: #FFD56B;
-    cursor: pointer;
-    color: #333;
+tbody tr:hover {
+  background-color: #FFD56B;
+  cursor: pointer;
+  color: #333;
 }
 
-.filaSeleccionada{
-    background-color: #FFD56B;
-    color: #333;
+.filaSeleccionada {
+  background-color: #FFD56B;
+  color: #333;
 }
 
 input[type="text"],
-input[type="date"] { 
-    height: 100%;
-    width: 100%;
-    box-sizing: border-box;
-    border: none;
-    padding: 4px;
-    font-size: 0.95rem; 
-    outline: none;
-    background-color: transparent;
-    color: #00A6E9;
+input[type="date"] {
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  border: none;
+  padding: 4px;
+  font-size: 0.95rem;
+  outline: none;
+  background-color: transparent;
+  color: #00A6E9;
 }
 
 input::placeholder {
-    color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.7);
 }
 
 
 .image-upload-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
 }
 
 .image-upload-container input[type="file"] {
-    width: 0.1px; 
-    height: 0.1px;
-    opacity: 0;
-    overflow: hidden;
-    position: absolute;
-    z-index: -1;
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
 }
 
 .image-upload-label {
-    display: block;
-    cursor: pointer;
-    background-color: #EAF6FB; 
-    color: #333;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-size: 0.8rem;
-    margin-bottom: 5px;
-    text-align: center;
+  display: block;
+  cursor: pointer;
+  background-color: #EAF6FB;
+  color: #333;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  text-align: center;
 }
 
 .image-upload-label:hover {
-    background-color: #dbeaf0;
+  background-color: #dbeaf0;
 }
 
 .image-preview {
-    max-width: 80px;
-    max-height: 80px;
-    object-fit: contain; 
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    margin-top: 5px;
+  max-width: 80px;
+  max-height: 80px;
+  object-fit: contain;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  margin-top: 5px;
 }
 
 .image-preview-table {
-    max-width: 60px; 
-    max-height: 60px;
-    object-fit: contain;
-    display: block;
-    margin: 0 auto; 
+  max-width: 60px;
+  max-height: 60px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
 }
 
 .modal {
-  display: none; 
+  display: none;
   position: fixed;
   z-index: 1000;
   left: 0;
@@ -249,40 +226,47 @@ input::placeholder {
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(0,0,0,0.4);
+  background-color: rgba(0, 0, 0, 0.4);
   justify-content: center;
   align-items: center;
 }
 
 .modal-content {
   background-color: #fefefe;
-  margin: auto; 
+  margin: auto;
   padding: 20px;
   border: 1px solid #888;
   width: 80%;
-  max-width: 400px; 
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  max-width: 400px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   animation-name: animatetop;
   animation-duration: 0.4s;
   border-radius: 8px;
   text-align: center;
-  position: relative; 
-  color: #333; 
+  position: relative;
+  color: #333;
   font-family: 'Roboto', sans-serif;
 }
 
 
 @keyframes animatetop {
-  from {top: -300px; opacity: 0}
-  to {top: 0; opacity: 1}
+  from {
+    top: -300px;
+    opacity: 0
+  }
+
+  to {
+    top: 0;
+    opacity: 1
+  }
 }
 
 .close-button {
   color: #aaa;
-  float: right; 
+  float: right;
   font-size: 28px;
   font-weight: bold;
-  position: absolute; 
+  position: absolute;
   top: 10px;
   right: 15px;
 }
@@ -309,11 +293,11 @@ input::placeholder {
 .modal-buttons {
   display: flex;
   justify-content: center;
-  gap: 15px; 
+  gap: 15px;
 }
 
 .modal-btn {
-  background-color: #00A6E9; 
+  background-color: #00A6E9;
   color: white;
   padding: 10px 25px;
   border: none;
@@ -325,7 +309,7 @@ input::placeholder {
 }
 
 .modal-btn:hover {
-  background-color: #00A6E9; 
+  background-color: #00A6E9;
 }
 
 
@@ -334,20 +318,25 @@ input::placeholder {
     text-align: center;
     margin-right: 0;
   }
+
   .botonesCrud button {
     display: block;
     margin: 10px auto;
     width: 80%;
   }
+
   .btnGuardar {
     text-align: center;
     margin-right: 0;
   }
+
   table {
     width: 95%;
     font-size: 0.8rem;
   }
-  td, th {
+
+  td,
+  th {
     padding: 8px;
     font-size: 0.8rem;
   }
@@ -357,25 +346,30 @@ input::placeholder {
   nav {
     flex-direction: column;
   }
+
   nav a {
     text-align: center;
   }
+
   .registroAnuncios {
     padding: 10px;
   }
+
   header h1 {
     font-size: 2rem;
   }
-  
+
   .modal-content {
-    width: 95%; 
+    width: 95%;
   }
+
   .modal-buttons {
-    flex-direction: column; 
+    flex-direction: column;
     align-items: center;
   }
+
   .modal-btn {
     width: 80%;
-    margin: 5px 0; 
+    margin: 5px 0;
   }
 }

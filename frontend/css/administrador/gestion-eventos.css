@@ -1,91 +1,4 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Roboto', sans-serif;
-    background-color: white;
-    color: #333;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-header {
-    background-color: #00A6E9;
-    padding: 20px;
-    text-align: center;
-    color: white;
-}
-
-header h1 {
-    font-family: 'Rubik', sans-serif;
-    font-size: 2.5rem;
-}
-
-header p {
-    font-size: 1rem;
-}
-
-nav {
-    background-color: #555;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-nav a {
-    color: #EAF6FB;
-    padding: 15px 20px;
-    text-decoration: none;
-    font-family: 'Rubik', sans-serif;
-}
-
-nav a:hover {
-    background-color: #00A6E9;
-}
-
-main {
-    flex-grow: 1;
-    padding: 20px;
-}
-
-footer {
-    background-color: #00A6E9;
-    color: white;
-    text-align: center;
-    padding: 15px;
-    margin-top: auto;
-}
-
-.registroAnuncios {
-    background-color: #00A6E9;
-    margin: 20px auto;
-    padding: 30px;
-    border-radius: 10px;
-    max-width: 1000px;
-    color: white;
-}
-
-.botonesCrud,
-.btnGuardar {
-    text-align: right;
-    margin: 10px auto;
-    width: 95%;
-}
-
-.btnCrud {
-    background-color: #EAF6FB;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 15px;
-    margin: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    font-family: 'Rubik', sans-serif;
-}a* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -114,6 +27,92 @@ header h1 {
 
 header p {
   font-size: 1rem;
+}
+
+nav {
+  background-color: #555;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: #EAF6FB;
+  padding: 15px 20px;
+  text-decoration: none;
+  font-family: 'Rubik', sans-serif;
+}
+
+nav a:hover {
+  background-color: #00A6E9;
+}
+
+main {
+  flex-grow: 1;
+  padding: 20px;
+}
+
+footer {
+  background-color: #00A6E9;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  margin-top: auto;
+}
+
+.registroAnuncios {
+  background-color: #00A6E9;
+  margin: 20px auto;
+  padding: 30px;
+  border-radius: 10px;
+  max-width: 1000px;
+  color: white;
+}
+
+.botonesCrud,
+.btnGuardar {
+  text-align: right;
+  margin: 10px auto;
+  width: 95%;
+}
+
+.btnCrud {
+  background-color: #EAF6FB;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  margin: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  font-family: 'Rubik', sans-serif;
+}
+
+a* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: white;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.header-logo {
+  width: 200px;
+  height: 200px;
+  margin-bottom: 10px;
+}
+
+header {
+  background-color: #00A6E9;
+  color: white;
+  padding: 20px;
+  text-align: center;
 }
 
 nav {
@@ -205,30 +204,30 @@ tr:hover {
 
 
 .btnCrud:hover {
-    background-color: #dbeaf0;
+  background-color: #dbeaf0;
 }
 
 table {
-    width: 95%;
-    margin: 0 auto;
-    border-collapse: collapse;
-    background-color: #EAF6FB;
-    color: #333;
+  width: 95%;
+  margin: 0 auto;
+  border-collapse: collapse;
+  background-color: #EAF6FB;
+  color: #333;
 }
 
 th,
 td {
-    padding: 12px;
-    border: 1px solid #00A6E9;
-    text-align: center;
+  padding: 12px;
+  border: 1px solid #00A6E9;
+  text-align: center;
 }
 
 th {
-    background-color: rgba(234, 246, 251, 0.4);
-    font-family: 'Rubik', sans-serif;
+  background-color: rgba(234, 246, 251, 0.4);
+  font-family: 'Rubik', sans-serif;
 }
 
 tr:hover {
-    background-color: #FFD56B;
-    color: #333;
+  background-color: #FFD56B;
+  color: #333;
 }
