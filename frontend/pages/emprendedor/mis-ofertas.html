@@ -1,6 +1,6 @@
-<!-- //Andres Gonzalez Chavarria -->
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <title>Mis Ofertas</title>
 </head>
+
 <body>
   <header>
     <h1>Comunidad Conectada</h1>
@@ -23,61 +24,51 @@
   </nav>
 
   <main>
-    <!-- Aquí iría el contenido de cada pantalla -->
-
-     <div class="SeccionPrincipal">
-      <!--BANNERS-->
-
-        <!--Banner para avisar que se vaa eliminar una fila-->
-        <div id="eliminarBanner" class="banner warning">
-          <span><i class="fas fa-triangle-exclamation"></i> ¿Está seguro que desea eliminar esta fila?</span>
-          <button id="confirmEliminarBtn" class="btnCrud">Sí</button>
-          <button id="cancelEliminarBtn" class="btnCrud">No</button>
+    <div class="SeccionPrincipal">
+      <div id="eliminarBanner" class="banner warning">
+        <span><i class="fas fa-triangle-exclamation"></i> ¿Está seguro que desea eliminar esta fila?</span>
+        <button id="confirmEliminarBtn" class="btnCrud">Sí</button>
+        <button id="cancelEliminarBtn" class="btnCrud">No</button>
+      </div>
+      <div id="registroExitosoBanner" class="bannerSuccess">
+        <span><i class="fas fa-circle-check"></i> ¡Oferta Registrada!</span>
+      </div>
+      <div id="errorRegistroBanner" class="bannerError">
+        <i class="fas fa-circle-exclamation"></i>
+        <p id="mensaje"></p>
+      </div>
+      <div class="registroOfertas">
+        <div class="botonesCrud">
+          <button id="btnRegistrar" class="btnCrud">Nuevo Registro</button>
+          <button id="btnEditar" class="btnCrud">Editar</button>
+          <button id="btnEliminar" class="btnCrud">Eliminar</button>
         </div>
-        <!--Banner para avisar el registro exitoso de la/s fila/s-->
-        <div id="registroExitosoBanner" class="bannerSuccess">
-          <span><i class="fas fa-circle-check"></i> ¡Oferta Registrada!</span>
-        </div>
-        <!--Banner para avisar que no se puede registrar la fila porque la misma contiene campos vacios-->
-        <div id="errorRegistroBanner" class="bannerError">
-          <i class="fas fa-circle-exclamation"></i>
-          <p id="mensaje"></p>
-        </div>
-      
-      <!--CLASE ASOCIADA A LOS BOTONES CRUD-->
-        <div class="registroOfertas">
-          <div class="botonesCrud">
-            <button id="btnRegistrar" class="btnCrud">Nuevo Registro</button>
-            <button id="btnEditar" class="btnCrud">Editar</button>
-            <button id="btnEliminar" class="btnCrud">Eliminar</button>
-        </div>
-
-        <!--TABLA Ofertas-->
-    <table id="tablaOfertas" class="tabla">
-        <thead>
+        <table id="tablaOfertas" class="tabla">
+          <thead>
             <tr>
-                <th>Nombre</th>
-                <th>Emprendimiento Asociado</th>
-                <th>Vigencia</th>
-                <th>Estado</th>
-                <th>Imagen/Logo del Producto</th>
+              <th>Nombre</th>
+              <th>Emprendimiento Asociado</th>
+              <th>Vigencia</th>
+              <th>Estado</th>
+              <th>Imagen/Logo del Producto</th>
             </tr>
-        </thead>
-        <tbody>
+          </thead>
+          <tbody>
             <tr>
             </tr>
-        </tbody>
-    </table>
-    <div class="btnGuardar">
-        <button id="btnEnviarCambios" class="btnCrud">Enviar cambios</button>    
-    </div>  
+          </tbody>
+        </table>
+        <div class="btnGuardar">
+          <button id="btnEnviarCambios" class="btnCrud">Enviar cambios</button>
+        </div>
+      </div>
     </div>
-  </div>
-</main>
+  </main>
   <script src="../../js/mis-ofertas.js"></script>
   <footer>
     <p>&copy; 2025 Comunidad Conectada - Todos los derechos reservados</p>
   </footer>
 
 </body>
+
 </html>

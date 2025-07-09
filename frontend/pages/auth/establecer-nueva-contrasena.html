@@ -1,24 +1,27 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Recuperar Contraseña</title>
-  <link rel="stylesheet" href="../css/recover.css" />
+  <title>Restablecer Contraseña</title>
+  <link rel="stylesheet" href="../../css/auth/restablecer-contrasena.css" />
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&family=Roboto&display=swap" rel="stylesheet">
 </head>
+
 <body>
-  <div class="form-container">
-    <h2>Recuperar Contraseña</h2>
-    <form>
-      <label for="newPassword">Nueva contraseña</label>
-      <input type="password" id="newPassword" name="newPassword" required />
+  <div class="contenedor-formulario">
+    <h2>Restablecer Contraseña</h2>
+    <form class="formulario">
+      <label for="nuevaContrasena" class="etiqueta">Nueva contraseña</label>
+      <input type="password" id="nuevaContrasena" name="nuevaContrasena" class="campo-entrada" required />
 
-      <label for="confirmPassword">Reingrese la contraseña</label>
-      <input type="password" id="confirmPassword" name="confirmPassword" required />
+      <label for="confirmarContrasena" class="etiqueta">Confirmar contraseña</label>
+      <input type="password" id="confirmarContrasena" name="confirmarContrasena" class="campo-entrada" required />
 
-      <button type="submit">Enviar</button>
+      <button type="submit" class="boton-envio">Enviar</button>
     </form>
   </div>
 </body>
+
 </html>
