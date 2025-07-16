@@ -2,13 +2,43 @@ body {
   margin: 0;
   font-family: 'Roboto', sans-serif;
   background-color: #EAF6FB;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  min-height: 100vh; 
+  display: flex; 
+  flex-direction: column; 
   color: #2C2C2C;
 }
 
+header {
+  background-color: #00A6E9;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  position: sticky; 
+  top: 0; 
+  width: 100%;
+  z-index: 1000; 
+}
+
+.header-content {
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+}
+
+.header-logo {
+  width: 100px; 
+  height: 100px; 
+  margin: 0; 
+}
+
+
+.contenedor-principal {
+  flex-grow: 1; 
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  padding: 20px; 
+}
 .contenedor-inicio-sesion {
   background-color: #FFFFFF;
   padding: 2.5rem;
@@ -62,6 +92,20 @@ h2 {
 
 .boton-envio:hover {
   background-color: #007BB3;
+}
+
+footer {
+  background-color: #00A6E9;
+  color: white;
+  padding: 15px; 
+  text-align: center;
+  position: sticky; 
+  bottom: 0; 
+  width: 100%;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  font-weight: bold;
+  z-index: 1000; 
 }
 
 .enlaces-inicio {
