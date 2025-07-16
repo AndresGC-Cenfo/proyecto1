@@ -2,48 +2,58 @@
 <html lang="es">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Registro</title>
-  <link rel="stylesheet" href="../../css/auth/registro.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&family=Roboto&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registro</title>
+    <link rel="stylesheet" href="../../css/auth/registro.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&family=Roboto&display=swap" rel="stylesheet">
 </head>
 
 <body>
-  <div class="envoltorio-registro">
-    <div class="contenedor-registro">
-      <h2>Registro</h2>
-      <form class="formulario-registro">
-        <label for="correo" class="etiqueta">Correo electrónico</label>
-        <input type="email" id="correo" name="correo" required />
-
-        <label for="contrasena" class="etiqueta">Contraseña</label>
-        <input type="password" id="contrasena" name="contrasena" required />
-
-        <label for="cedula" class="etiqueta">Número de cédula</label>
-        <input type="text" id="cedula" name="cedula" required />
-
-        <div class="grupo-subida">
-          <div>
-            <label for="foto" class="etiqueta">Foto</label>
-            <input type="file" id="foto" name="foto" accept="image/*" />
-          </div>
-
-          <div>
-            <label for="tipoUsuario" class="etiqueta">Tipo de usuario</label>
-            <select id="tipoUsuario" name="tipoUsuario" required>
-              <option value="ciudadano">Ciudadano</option>
-              <option value="emprendedor">Emprendedor</option>
-            </select>
-          </div>
+    <header>
+        <div class="header-content"> <img src="../../assets/images/logo.png" alt="logo header higuito" class="header-logo">
         </div>
+    </header>
 
-        <button type="submit" class="boton-envio">Enviar</button>
-      </form>
+    <div class="contenedor-principal"> <div class="envoltorio-registro">
+            <div class="contenedor-registro">
+                <h2>Registro</h2>
+                <form class="formulario-registro">
+                    <label for="correo" class="etiqueta">Correo electrónico</label>
+                    <input type="email" id="correo" name="correo" required />
+
+                    <label for="contrasena" class="etiqueta">Contraseña</label>
+                    <input type="password" id="contrasena" name="contrasena" required />
+
+                    <label for="cedula" class="etiqueta">Número de cédula</label>
+                    <input type="text" id="cedula" name="cedula" required />
+
+                    <div class="grupo-subida">
+                        <div>
+                            <label for="foto" class="etiqueta">Foto</label>
+                            <input type="file" id="foto" name="foto" accept="image/*" />
+                        </div>
+
+                        <div>
+                            <label for="tipoUsuario" class="etiqueta">Tipo de usuario</label>
+                            <select id="tipoUsuario" name="tipoUsuario" required>
+                                <option value="ciudadano">Ciudadano</option>
+                                <option value="emprendedor">Emprendedor</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="boton-envio">Enviar</button>
+                </form>
+            </div>
+
+            <div class="imagen-registro"></div>
+        </div>
     </div>
 
-    <div class="imagen-registro"></div>
-  </div>
+    <footer>
+        <p>&copy; 2025 Comunidad Conectada - Todos los derechos reservados</p>
+    </footer>
 </body>
 
 </html>
