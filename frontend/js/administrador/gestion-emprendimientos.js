@@ -1,3 +1,4 @@
+
 let filaSeleccionada=null;
 /* FUNCIONALIDAD PARA BOTON REGISTRAR*/
 // Funcion para desplegar cajas de input en la primera fila de la tabla
@@ -12,20 +13,24 @@ function desplegarCajasInput(){
     const cuerpo = document.getElementsByTagName("tbody")[0];
     const primeraFila = cuerpo.insertRow(0);
 
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 5; i++) {
         primeraFila.insertCell(i);
     }
 
-    primeraFila.cells[0].innerHTML = '<input id="nombreUsuario" type="text" placeholder="Ingresar Usuario">';
-    primeraFila.cells[1].innerHTML = '<input id="contenido" type="text" placeholder="Ingresar Contenido">';
-    primeraFila.cells[2].innerHTML = `<select id="estadoAnuncio">
+    primeraFila.cells[0].innerHTML = '<input id="nombreEmprendimiento" type="text" placeholder="Ingresar Nombre">';
+    primeraFila.cells[1].innerHTML = '<input id="descripcionEmprendimiento" type="text" placeholder="Ingresar Descripción">';
+    primeraFila.cells[2].innerHTML = '<input id="categoriaEmprendimiento" type="text" placeholder="Ingresar Categoría">';
+    primeraFila.cells[3].innerHTML = `<select id="estadoEmprendimiento">
                                         <option value="" disabled selected>Seleccione un estado</option>
                                         <option value="Activo">Activo</option>
                                         <option value="Inactivo">Inactivo</option>
                                         </select>`;
-    primeraFila.cells[3].innerHTML = '<input id="" type="datetime" placeholder="Ingresar Fecha Y Hora">';
-
-
+    primeraFila.cells[4].innerHTML = `<div class="upload-wrapper">
+                                        <label for="imagenEmprendimiento" class="custom-file-upload">
+                                            <i class="fas fa-upload"></i>
+                                        </label>
+                                        <input id="imagenEmprendimiento" type="file" accept="image/*" style="display: none;">
+                                      </div>`;
     asignarEventosFilas();
 }
 

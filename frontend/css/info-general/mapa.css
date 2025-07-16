@@ -4,7 +4,11 @@
   box-sizing: border-box;
 }
 
+
 body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   font-family: 'Rubik', sans-serif;
   line-height: 1.6;
   background-color: white;
@@ -46,13 +50,22 @@ nav a:hover {
 
 footer {
   background-color: #00A6E9;
+  height: 100px;
   color: white;
   text-align: center;
   padding: 15px;
   width: 100%;
-  margin-top: auto;
   font-family: 'Roboto', sans-serif;
-  font-size: 0.9rem;
+}
+
+footer p{
+  color: white;
+  font-weight: bold;
+}
+
+main {
+  flex: 1;
+  padding: 20px;
 }
 
 
@@ -70,20 +83,17 @@ footer {
 
   }
 
-  main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
+main {
+  padding: 20px;
+  display: block;
+  flex: 1;
+}
   .encabezado {
-    margin-top: 20px;
     padding: 0 10px;
   }
 
   .encabezado h1 {
-    font-size: 1.5rem;
+    font-size: 1rem;
     padding: 10px 0;
   }
 
@@ -91,16 +101,13 @@ footer {
 
 /*PROPIEDADES DEL MAPA INTERACTIVO*/
 .mapa-interactivo {
-  padding: 40px;
-  margin-top: 80px;
+  padding: 20px;
   border: solid #333;
-  width: 100%;
   max-width: 1200px;
   margin-inline: auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  gap: 20px;
 }
 
 .labels-lugares {
@@ -126,7 +133,7 @@ iframe {
 .encabezado {
   width: 100%;
   max-width: 1200px;
-  margin: 40px auto 20px auto;
+  margin: 10px auto 20px auto;
   text-align: center;
   padding: 0 20px;
 }

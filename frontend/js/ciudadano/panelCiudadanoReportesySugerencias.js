@@ -1,237 +1,185 @@
-let filaSeleccionada = null;
 
-const confirmModal = document.getElementById('confirmModal');
-const closeButton = document.querySelector('.close-button');
-const confirmYesButton = document.getElementById('confirmYes');
-const confirmNoButton = document.getElementById('confirmNo');
+let filaSeleccionada=null;
+/* FUNCIONALIDAD PARA BOTON REGISTRAR*/
+// Funcion para desplegar cajas de input en la primera fila de la tabla
+function desplegarCajasInput(){
+    // Verifica si ya existe una fila con inputs
+    const existenInputs = document.querySelector("#tablaEmprendimientos tbody tr input");
+    // No inserta otra fila si ya hay inputs
+    if (existenInputs) {
+        mostrarBannerError("Debe completar el registro actual antes de ingresar un nuevo registro. "); 
+        return;
+    }
+    const cuerpo = document.getElementsByTagName("tbody")[0];
+    const primeraFila = cuerpo.insertRow(0);
 
-function desplegarCajasInputReporte() {
-    let tabla = document.querySelector("#tablaReportes");
-    let cuerpo = document.getElementsByTagName("tbody")[0];
-    let primeraFila = cuerpo.insertRow(0);
-
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 5; i++) {
         primeraFila.insertCell(i);
     }
 
-    primeraFila.cells[0].innerHTML = '<input id="nombreUsuarioReporte" type="text" placeholder="Ingresar Usuario">';
-    
-    // Columna 2: Tipo de Contenido (Índice 1) - Dropdown para Tipo
-    primeraFila.cells[1].innerHTML = `
-        <select id="tipoReporte">
-            <option value="" disabled selected>Seleccione</option> <option value="Reporte">Reporte</option>
-            <option value="Sugerencia">Sugerencia</option>
-        </select>
-    `;
-    
-    primeraFila.cells[2].innerHTML = '<input id="contenidoReporte" type="text" placeholder="Ingresar Contenido">';
-    
-    primeraFila.cells[3].innerHTML = '<input id="fechaReporte" type="date">';
-    
-
-    primeraFila.cells[4].innerHTML = `
-        <div class="image-upload-container">
-            <input type="file" id="imageUploadReporte" accept="image/jpeg, image/png, image/gif" onchange="previewImageReporte(event)">
-            <label for="imageUploadReporte" class="image-upload-label">Subir Imagen</label>
-            <img id="imagePreviewReporte" class="image-preview" src="#" alt="Vista previa" style="display: none;">
-        </div>
-    `;
-    
-    primeraFila.cells[5].innerHTML = `
-        <select id="estadoReporte">
-            <option value="Pendiente" selected>Pendiente</option>
-            <option value="Aprobado">Aprobado</option>
-            <option value="Rechazado">Rechazado</option>
-        </select>
-    `;
-}
-
-function previewImageReporte(event) {
-    const reader = new FileReader();
-    reader.onload = function() {
-        const output = document.getElementById('imagePreviewReporte');
-        output.src = reader.result;
-        output.style.display = 'block';
-    };
-    reader.readAsDataURL(event.target.files[0]);
+    primeraFila.cells[0].innerHTML = '<input id="nombreUsuario" type="text" placeholder="Ingresar Nombre">';
+    primeraFila.cells[1].innerHTML = '<input id="contenido" type="text" placeholder="Ingresar Contenido">';
+    primeraFila.cells[2].innerHTML = `<select id="estadoReporte">
+                                        <option value="" disabled selected>Seleccione un estado</option>
+                                        <option value="Activo">Activo</option>
+                                        <option value="Inactivo">Inactivo</option>
+                                        </select>`;                                
+    primeraFila.cells[3].innerHTML = `<div class="upload-wrapper">
+                                        <label for="imagenReporte" class="custom-file-upload">
+                                            <i class="fas fa-upload"></i>
+                                        </label>
+                                        <input id="imagenEmprendimiento" type="file" accept="image/*" style="display: none;">
+                                      </div>`;
+    primeraFila.cells[4].innerHTML = '<input id="fechayHora" type="datetime-local" placeholder="Ingresar fecha y hora">';    
+    asignarEventosFilas();
 }
 
 
-function previewEditImageReporte(event) {
-    const reader = new FileReader();
-    reader.onload = function() {
-        const output = document.getElementById('editImagePreviewReporte');
-        output.src = reader.result;
-        output.style.display = 'block';
-    };
-    reader.readAsDataURL(event.target.files[0]);
-}
+//Convertir las filas de inputs a tds (simula el registro de las filas) para ingresarlos a la tabla y simular el request post
+function ingresarRegistrosTabla() {
+    const fila = document.querySelector("#tablaEmprendimientos tbody tr"); // Solo la primera fila (con inputs)
+    const tr = document.createElement("tr");
+    const inputs = fila.querySelectorAll("input, select");
 
+    for (let input of inputs) {
+        const td = document.createElement("td");
 
-function ingresarRegistrosTablaReporte() {
-    let inputsAndSelects = document.querySelectorAll("#tablaReportes tbody tr:first-child input, #tablaReportes tbody tr:first-child select");
-    let nuevaFila = document.createElement("tr");
-
-    inputsAndSelects.forEach(input => {
-        let td = document.createElement("td");
         if (input.type === "file") {
-            const imgPreview = document.getElementById('imagePreviewReporte');
-            if (imgPreview && imgPreview.src && imgPreview.src !== '#' && imgPreview.style.display !== 'none') {
-                const img = document.createElement('img');
-                img.src = imgPreview.src;
-                img.classList.add('image-preview-table');
-                td.appendChild(img);
-            } else {
-                td.textContent = 'No imagen';
+            const file = input.files[0];
+            if (!file) {
+                mostrarBannerError("Debe subir una imagen.");
+                return;
             }
+            td.textContent = file.name;
+        } else if (input.tagName === "SELECT" || input.type === "select-one") {
+            td.textContent = input.options[input.selectedIndex].text;
         } else {
-
-            if (input.tagName === 'SELECT' && input.value === '') {
-                 td.textContent = 'N/A';
-            } else {
-                 td.textContent = input.value;
+            if (input.value.trim() === "") {
+                mostrarBannerError("Debe completar todos los campos.");
+                return;
             }
+            td.textContent = input.value;
         }
-        nuevaFila.appendChild(td);
-    });
 
-    let cuerpo = document.getElementsByTagName("tbody")[0];
-    if (cuerpo) {
-        cuerpo.appendChild(nuevaFila);
+        tr.appendChild(td);
     }
 
-    let primeraFilaInputs = document.querySelector("#tablaReportes tbody tr:first-child");
-    if (primeraFilaInputs) {
-        primeraFilaInputs.remove();
-    }
-    filaSeleccionada = null;
-    asignarEventosFilasReporte();
+    // Reemplaza solo la fila de inputs
+    fila.replaceWith(tr);
+
+    mostrarBannerExito();
+    asignarEventosFilas();
 }
 
-function editarFilaReporte() {
-    if (!filaSeleccionada) {
-        alert("Seleccione una fila para editar.");
-        return;
-    }
+/*FUNCIONALIDAD PARA LA SELECCION DE FILAS EN LA TABLA*/
+function asignarEventosFilas() {
+    let filasRegistradas = document.querySelectorAll("#tablaEmprendimientos tbody tr");
 
-    let cuerpo = document.getElementsByTagName("tbody")[0];
-    let nuevaFila = document.createElement("tr");
-
-    let filasCampos = filaSeleccionada.querySelectorAll("td");
-
-    const camposHTML = [
-        '<input id="editUsuarioReporte" type="text" placeholder="Ingresar Usuario">', 
-        `<select id="editTipoReporte">
-            <option value="" disabled>Seleccionar Tipo</option>
-            <option value="Reporte">Reporte</option>
-            <option value="Sugerencia">Sugerencia</option>
-        </select>`,
-        '<input id="editContenidoReporte" type="text" placeholder="Ingresar Contenido">', 
-        '<input id="editFechaReporte" type="date">', 
-        `
-        <div class="image-upload-container">
-            <input type="file" id="editImageUploadReporte" accept="image/jpeg, image/png, image/gif" onchange="previewEditImageReporte(event)">
-            <label for="editImageUploadReporte" class="image-upload-label">Cambiar Imagen</label>
-            <img id="editImagePreviewReporte" class="image-preview" src="#" alt="Vista previa" style="display: none;">
-        </div>
-        `,
-        '<input id="editEstadoReporte" type="text" readonly>'
-    ];
-
-    filasCampos.forEach((campo, index) => {
-        let nuevaCelda = document.createElement("td");
-        nuevaCelda.innerHTML = camposHTML[index]; 
-        const inputElement = nuevaCelda.querySelector('input, select');
-        if (inputElement) {
-            if (inputElement.type === "file") {
-                const existingImage = campo.querySelector('img');
-                if (existingImage) {
-                    const previewImg = nuevaCelda.querySelector('#editImagePreviewReporte');
-                    previewImg.src = existingImage.src;
-                    previewImg.style.display = 'block';
-                }
+    filasRegistradas.forEach(fila => {
+        fila.addEventListener("click", () => {
+            if (fila == filaSeleccionada) {
+                // Deseleccionar si es la misma fila
+                fila.classList.remove("filaSeleccionada");
+                filaSeleccionada = null;
             } else {
-               
-                if (inputElement.tagName === 'SELECT') {
-                    inputElement.value = campo.textContent.trim();
-                    if (inputElement.value === '') {
-                        inputElement.querySelector('option[value=""]').selected = true;
-                    }
-                } else {
-                    inputElement.value = campo.textContent.trim();
+                // Quitar selección anterior si es que habia
+                if (filaSeleccionada) {
+                    filaSeleccionada.classList.remove("filaSeleccionada");
                 }
-            }
-        }
-        nuevaFila.appendChild(nuevaCelda);
-    });
 
-    cuerpo.insertBefore(nuevaFila, filaSeleccionada.nextSibling);
+                // Seleccionar nueva fila
+                filaSeleccionada = fila;
+                filaSeleccionada.classList.add("filaSeleccionada");
+            }
+        });
+    });
+}
+
+/*FUNCIONALIDAD PARA BOTON EDITAR*/
+function editarFila(){
+    let cuerpo = document.getElementsByTagName("tbody")[0]
+    let nuevaFila = document.createElement("tr")
+
+    filasCampos = filaSeleccionada.querySelectorAll("td")
+
+    filasCampos.forEach(campo=>{
+    let nuevoInput =document.createElement("input")
+    let nuevaCelda=document.createElement("td")
+
+    nuevoInput.value=campo.textContent
+    nuevaCelda.appendChild(nuevoInput)
+    nuevaFila.appendChild(nuevaCelda)
+    })
+
+    cuerpo.insertBefore(nuevaFila,cuerpo.firstChild)
+
     filaSeleccionada.remove();
-    filaSeleccionada = nuevaFila;
-    asignarEventosFilasReporte();
+    
+    asignarEventosFilas()
 }
 
 
-function asignarEventosFilasReporte() {
-    let filas = document.querySelectorAll("#tablaReportes tbody tr");
-    filas.forEach(fila => {
-        fila.removeEventListener("click", seleccionarFilaReporte);
-        fila.addEventListener("click", seleccionarFilaReporte);
-    });
+/*FUNCIONALIDAD PARA ELIMINAR ANUNCIOS*/
+function eliminarAnuncio(){
+    filaSeleccionada.classList.remove("filaSeleccionada");
+    filaSeleccionada.remove()
+
 }
 
-function seleccionarFilaReporte(event) {
-    if (event.target.tagName === 'INPUT' || event.target.tagName === 'SELECT' || event.target.tagName === 'LABEL') {
-        return;
-    }
 
+/*EVENT LISTENERS PARA LOS BOTONES*/
+btnRegistrar = document.querySelector("#btnRegistrar");
+btnEnviarCambios=document.querySelector("#btnEnviarCambios")
+btnEditar =  document.querySelector("#btnEditar")
+btnEliminar = document.querySelector("#btnEliminar")
+btnRegistrar.addEventListener("click",desplegarCajasInput)
+btnEnviarCambios.addEventListener("click",ingresarRegistrosTabla)
+btnEditar.addEventListener("click", () => {
     if (filaSeleccionada) {
-        filaSeleccionada.classList.remove("filaSeleccionada");
+        editarFila();
+        
     }
-    filaSeleccionada = event.currentTarget;
-    filaSeleccionada.classList.add("filaSeleccionada");
-}
+});
 
-function eliminarReporte() {
-    if (filaSeleccionada) {
-        confirmModal.style.display = 'flex';
-    } else {
-        alert("Seleccione una fila para eliminar.");
-    }
-}
+btnEliminar.addEventListener("click", () => {
+  if (filaSeleccionada) {
+    document.getElementById("eliminarBanner").style.display = "flex";
+  } else {
+    alert("Seleccione una fila para eliminar.");
+  }
+});
 
-confirmYesButton.addEventListener('click', () => {
+document.getElementById("confirmEliminarBtn").addEventListener("click", () => {
     if (filaSeleccionada) {
-        filaSeleccionada.classList.remove("filaSeleccionada");
-        filaSeleccionada.remove();
+        eliminarAnuncio();
         filaSeleccionada = null;
     }
-    confirmModal.style.display = 'none';
+    document.getElementById("eliminarBanner").style.display = "none";
 });
 
-confirmNoButton.addEventListener('click', () => {
-    confirmModal.style.display = 'none';
+document.getElementById("cancelEliminarBtn").addEventListener("click", () => {
+    document.getElementById("eliminarBanner").style.display = "none";
 });
 
-closeButton.addEventListener('click', () => {
-    confirmModal.style.display = 'none';
-});
-
-window.addEventListener('click', (event) => {
-    if (event.target == confirmModal) {
-        confirmModal.style.display = 'none';
-    }
-});
+ //Llamar funcion al cargar pagina
+asignarEventosFilas();
 
 
-const btnRegistrarReporte = document.querySelector("#btnRegistrarReporte");
-const btnEnviarCambiosReporte = document.querySelector("#btnEnviarCambiosReporte");
-const btnEditarReporte = document.querySelector("#btnEditarReporte");
-const btnEliminarReporte = document.querySelector("#btnEliminarReporte");
+//Funciones asociadas a banners
+function mostrarBannerExito() {
+  const banner = document.getElementById("registroExitosoBanner");
+  banner.style.display = "flex";
+  setTimeout(() => {
+    banner.style.display = "none";
+  }, 2500);
+}
 
-if (btnRegistrarReporte) btnRegistrarReporte.addEventListener("click", desplegarCajasInputReporte);
-if (btnEnviarCambiosReporte) btnEnviarCambiosReporte.addEventListener("click", ingresarRegistrosTablaReporte);
-if (btnEditarReporte) btnEditarReporte.addEventListener("click", editarFilaReporte);
-if (btnEliminarReporte) btnEliminarReporte.addEventListener("click", eliminarReporte);
-
-document.addEventListener("DOMContentLoaded", asignarEventosFilasReporte);
+function mostrarBannerError(mensajeMostrar){
+    const banner = document.getElementById("errorRegistroBanner")
+    banner.style.display = "block";
+    let texto = document.getElementById("mensaje")
+    texto.textContent=mensajeMostrar
+  setTimeout(() => {
+    banner.style.display = "none";
+  }, 2500);
+}

@@ -1,3 +1,4 @@
+
 let filaSeleccionada=null;
 /* FUNCIONALIDAD PARA BOTON REGISTRAR*/
 // Funcion para desplegar cajas de input en la primera fila de la tabla
@@ -12,20 +13,16 @@ function desplegarCajasInput(){
     const cuerpo = document.getElementsByTagName("tbody")[0];
     const primeraFila = cuerpo.insertRow(0);
 
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 6; i++) {
         primeraFila.insertCell(i);
     }
 
-    primeraFila.cells[0].innerHTML = '<input id="nombreUsuario" type="text" placeholder="Ingresar Usuario">';
-    primeraFila.cells[1].innerHTML = '<input id="contenido" type="text" placeholder="Ingresar Contenido">';
-    primeraFila.cells[2].innerHTML = `<select id="estadoAnuncio">
-                                        <option value="" disabled selected>Seleccione un estado</option>
-                                        <option value="Activo">Activo</option>
-                                        <option value="Inactivo">Inactivo</option>
-                                        </select>`;
-    primeraFila.cells[3].innerHTML = '<input id="" type="datetime" placeholder="Ingresar Fecha Y Hora">';
-
-
+    primeraFila.cells[0].innerHTML = '<input id="idEvento" type="text" placeholder="Ingresar Id" > ';
+    primeraFila.cells[1].innerHTML = '<input id="nombreEvento" type="text" placeholder="Ingresar nombre">';
+    primeraFila.cells[2].innerHTML = '<input id="descripcionEvento" type="text" placeholder="Ingresar Descripcion">';
+    primeraFila.cells[3].innerHTML = '<input id="fechaEvento" type="date" placeholder="Ingresar fecha">'
+    primeraFila.cells[4].innerHTML = '<input id="ubicacionEvento" type="text" placeholder="Ingresar ubicacion">'
+    primeraFila.cells[5].innerHTML = '<input id="idOrganizadorEvento" type="text" placeholder="Ingresar Id">'
     asignarEventosFilas();
 }
 

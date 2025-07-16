@@ -2,11 +2,11 @@
 <html lang="es">
 
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Panel Administrador - Gestión de Ofertas</title>
-  <link rel="stylesheet" href="../../css/administrador/gestion-ofertas.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Rubik&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../css/administrador/gestion-ofertas.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <title>Gestion de Ofertas</title>
 </head>
 
 <body>
@@ -25,37 +25,51 @@
   </nav>
 
   <main>
-    <div class="seccion-registro">
-      <div class="grupo-botones">
-        <button class="boton-crud" id="btnAgregarOferta">Añadir Oferta</button>
-        <button class="boton-crud" id="btnEditarOferta">Editar Oferta</button>
-        <button class="boton-crud" id="btnEliminarOferta">Eliminar Oferta</button>
+    <div class="SeccionPrincipal">
+      <div id="eliminarBanner" class="banner warning">
+        <span><i class="fas fa-triangle-exclamation"></i> ¿Está seguro que desea eliminar esta fila?</span>
+        <button id="confirmEliminarBtn" class="btnCrud">Sí</button>
+        <button id="cancelEliminarBtn" class="btnCrud">No</button>
       </div>
-      <table id="tablaEmprendimientos">
-        <thead>
-          <tr>
-            <th>Publicado por</th>
-            <th>Oferta</th>
-            <th>Válido Hasta</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="boton-guardar">
-        <button class="boton-crud" id="btnEnviarCambios">Guardar Cambios</button>
+      <div id="registroExitosoBanner" class="bannerSuccess">
+        <span><i class="fas fa-circle-check"></i> ¡Oferta Registrada!</span>
+      </div>
+      <div id="errorRegistroBanner" class="bannerError">
+        <i class="fas fa-circle-exclamation"></i>
+        <p id="mensaje"></p>
+      </div>
+      <div class="registroEmprendimientos">
+        <div class="botonesCrud">
+          <button id="btnRegistrar" class="btnCrud">Nuevo Registro</button>
+          <button id="btnEditar" class="btnCrud">Editar</button>
+          <button id="btnEliminar" class="btnCrud">Eliminar</button>
+        </div>
+        <table id="tablaEmprendimientos" class="tabla">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Emprendimiento Asociado</th>
+              <th>Vigencia</th>
+              <th>Estado</th>
+              <th>Imagen/Logo del Producto</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+            </tr>
+          </tbody>
+        </table>
+        <div class="btnGuardar">
+          <button id="btnEnviarCambios" class="btnCrud">Enviar cambios</button>
+        </div>
       </div>
     </div>
   </main>
-
+  <script src="../../js/administrador/gestion-ofertas.js"></script>
   <footer>
-    © 2025 Comunidad Conectada - Todos los derechos reservados
+    <p>&copy; 2025 Comunidad Conectada - Todos los derechos reservados</p>
   </footer>
+
 </body>
 
 </html>

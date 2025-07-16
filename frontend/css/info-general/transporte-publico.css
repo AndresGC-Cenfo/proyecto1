@@ -5,6 +5,9 @@
 }
 
 body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   font-family: 'Rubik', sans-serif;
   line-height: 1.6;
   background-color: white;
@@ -46,19 +49,23 @@ nav a:hover {
 
 footer {
   background-color: #00A6E9;
+  height: 100px;
   color: white;
   text-align: center;
   padding: 15px;
   width: 100%;
-  margin-top: auto;
   font-family: 'Roboto', sans-serif;
-  font-size: 0.9rem;
 }
 
+footer p{
+  color: white;
+  font-weight: bold;
+}
 main {
   width: 100%;
   display: flex;
   flex-direction: column;
+  flex: 1;
   align-items: center;
   margin-bottom: 40px;
 }
@@ -80,9 +87,9 @@ main {
 }
 
 /* CONTENEDOR DEL MAPA Y ETIQUETAS */
-.mapa-interactivo {
+.transporte-publico {
   padding: 40px;
-  margin-top: 20px;
+  margin-top: 10px;
   border: solid #333;
   width: 100%;
   max-width: 1200px;

@@ -5,10 +5,13 @@
 }
 
 body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   font-family: 'Rubik', sans-serif;
   line-height: 1.6;
   background-color: white;
-  color: #ffffff
+  color: #333;
 }
 
 .header-logo {
@@ -44,44 +47,57 @@ nav a:hover {
   background-color: #00A6E9;
 }
 
-main {
-  flex-grow: 1;
-  padding: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-}
-
 footer {
   background-color: #00A6E9;
+  height: 100px;
   color: white;
   text-align: center;
   padding: 15px;
   width: 100%;
-  margin-top: auto;
   font-family: 'Roboto', sans-serif;
-  font-size: 0.9rem;
 }
 
-.registroReporte {
+footer p{
+  color: white;
+  font-weight: bold;
+}
+
+main {
+  padding: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+
+
+}
+
+
+/*CSS de seccion principal*/
+.SeccionPrincipal {
+  background-color: white;
+  color: white;
+  display: flex;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.registroEmprendimientos {
   width: 100%;
   max-width: 1000px;
-  padding: 30px;
-  margin: 20px;
+  padding: 20px;
   background-color: #00A6E9;
   color: white;
-  font-family: 'Roboto', sans-serif;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
 }
 
 .botonesCrud {
   text-align: right;
-  width: 90%;
-  margin: 0 auto 15px auto;
-  font-family: 'Rubik', sans-serif;
-  font-size: 1.5rem;
+  margin-right: 10%;
+  margin-bottom: 1%;
 }
+
 
 .btnCrud {
   margin-left: 10px;
@@ -95,321 +111,243 @@ footer {
   font-weight: bold;
   transition: background-color 0.3s ease;
   font-family: 'Rubik', sans-serif;
-  font-size: 1rem;
+  font-size: 0.8rem;
 }
 
-.btnCrud:hover {
-  background-color: #dbeaf0;
-}
 
 .btnGuardar {
   text-align: right;
-  width: 90%;
-  margin: 20px auto 0 auto;
+  margin-right: 10%;
+  margin-top: 1%;
+  
 }
+
+
 
 table {
-  margin: 20px auto;
-  border: 1px solid #EAF6FB;
-  width: 90%;
+  margin: auto;
+  border: 1px solid;
+  width: 80%;
   border-collapse: collapse;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Rubik';
   background-color: #EAF6FB;
+  color: #333;
+
 }
 
+
 table tr {
-  border: 1px solid #00A6E9;
+  border: 1px solid;
   width: 100%;
+  height: 100%;
 }
 
 td,
 th {
-  padding: 10px;
+  padding: 0;
+  border: 1px solid #EAF6Fb;
+  height: 40px;
+  width: 60px;
   border: 1px solid #00A6E9;
-  height: 45px;
-  vertical-align: middle;
-  font-size: 0.9rem;
-  color: #00A6E9;
 }
 
-th {
-  background-color: rgba(234, 246, 251, 0.2);
-  color: #00A6E9;
-  font-family: 'Rubik', sans-serif;
-  font-size: 1.1rem;
+td{
+  font-size: 0.80rem;
 }
+
+th{
+  font-size: 0.97rem;
+}
+
+
 
 tbody tr:hover {
   background-color: #FFD56B;
   cursor: pointer;
-  color: #333;
 }
 
 .filaSeleccionada {
   background-color: #FFD56B;
-  color: #333;
 }
 
-input[type="text"],
-input[type="date"] {
+.imagenEmprendimiento {
+  padding: 0;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.upload-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+
+input {
   height: 100%;
   width: 100%;
   box-sizing: border-box;
   border: none;
   padding: 4px;
-  font-size: 0.95rem;
+  font-size: 14px;
   outline: none;
   background-color: transparent;
-  color: #00A6E9;
-}
-
-
-input[readonly] {
-  background-color: transparent !important;
-  color: #00A6E9 !important;
-}
-
-
-.filaSeleccionada input[readonly],
-tbody tr:hover input[readonly] {
-  background-color: #FFD56B !important;
-  color: #333 !important;
-}
-
-input::placeholder {
-  color: #00A6E9;
+  color: white;
 }
 
 select {
   height: 100%;
   width: 100%;
+  min-width: 100px;
   box-sizing: border-box;
   border: none;
   padding: 4px;
-  font-size: 0.95rem;
+  font-size: 14px;
   outline: none;
   background-color: transparent;
-  color: #00A6E9;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007acc%22%20d%3D%22M287%2C114.7L154.5%2C247.1c-2.4%2C2.4-5.6%2C3.8-9.1%2C3.8c-3.5%2C0-6.7-1.4-9.1-3.8L5.4%2C114.7c-4.8-4.8-4.8-12.5%2C0-17.3c4.8-4.8%2C12.5-4.8%2C17.3%2C0l123.6%2C123.7L269.7%2C97.4c4.8-4.8%2C12.5-4.8%2C17.3%2C0C291.8%2C102.1%2C291.8%2C109.9%2C287%2C114.7z%22%2F%3E%3C%2Fsvg%3E');
-  background-repeat: no-repeat;
-  background-position: right 8px center;
-  background-size: 10px;
-  padding-right: 25px;
-}
-
-select option {
-  background-color: #00A6E9;
-  color: white;
-}
-
-.image-upload-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  width: 100%;
-}
-
-.image-upload-container input[type="file"] {
-  width: 0.1px;
-  height: 0.1px;
-  opacity: 0;
-  overflow: hidden;
-  position: absolute;
-  z-index: -1;
-}
-
-.image-upload-label {
-  display: block;
-  cursor: pointer;
-  background-color: #EAF6FB;
   color: #333;
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-size: 0.8rem;
-  margin-bottom: 5px;
-  text-align: center;
+  outline: none;
 }
 
-.image-upload-label:hover {
-  background-color: #dbeaf0;
-}
-
-.image-preview {
-  max-width: 80px;
-  max-height: 80px;
-  object-fit: contain;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  margin-top: 5px;
-}
-
-.image-preview-table {
-  max-width: 60px;
-  max-height: 60px;
-  object-fit: contain;
-  display: block;
-  margin: 0 auto;
+option {
+  background-color: #0e4d92;
+  color: white
 }
 
 
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.4);
-  justify-content: center;
-  align-items: center;
-}
-
-.modal-content {
-  background-color: #fefefe;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
-  max-width: 400px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  animation-name: animatetop;
-  animation-duration: 0.4s;
-  border-radius: 8px;
-  text-align: center;
-  position: relative;
-  color: #333;
-  font-family: 'Roboto', sans-serif;
-}
-
-
-@keyframes animatetop {
-  from {
-    top: -300px;
-    opacity: 0
-  }
-
-  to {
-    top: 0;
-    opacity: 1
-  }
-}
-
-.close-button {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-  position: absolute;
-  top: 10px;
-  right: 15px;
-}
-
-.close-button:hover,
-.close-button:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.modal-content h2 {
-  margin-top: 0;
-  margin-bottom: 15px;
-  font-family: 'Rubik', sans-serif;
-  color: #00A6E9;
-}
-
-.modal-content p {
-  margin-bottom: 20px;
-  font-size: 1rem;
-}
-
-.modal-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-}
-
-.modal-btn {
-  background-color: #00A6E9;
-  color: white;
-  padding: 10px 25px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1rem;
-  font-family: 'Rubik', sans-serif;
-  transition: background-color 0.3s ease;
-}
-
-.modal-btn:hover {
-  background-color: #00A6E9;
-}
-
-@media (max-width: 768px) {
-  .botonesCrud {
-    text-align: center;
-    width: 95%;
-    margin: 0 auto 15px auto;
-  }
-
-  .botonesCrud button {
-    display: block;
-    margin: 10px auto;
-    width: 80%;
-  }
-
-  .btnGuardar {
-    text-align: center;
-    width: 95%;
-    margin: 20px auto 0 auto;
-  }
-
-  table {
-    width: 95%;
-    font-size: 0.8rem;
-  }
-
-  td,
-  th {
-    padding: 8px;
-    font-size: 0.8rem;
-  }
-}
-
+/*PARTE RESPONSIVE*/
 @media (max-width: 600px) {
   nav {
-    flex-direction: column;
-  }
-
-  nav a {
-    text-align: center;
-  }
-
-  .registroReporte {
-    padding: 10px;
-  }
-
-  header h1 {
-    font-size: 2rem;
-  }
-
-  .modal-content {
-    width: 95%;
-  }
-
-  .modal-buttons {
     flex-direction: column;
     align-items: center;
   }
 
-  .modal-btn {
-    width: 80%;
-    margin: 5px 0;
+  .botonesCrud {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin: 20px auto;
+    padding: 0;
   }
+
+  .btnCrud {
+    width: 90%;
+    font-size: 0.85rem;
+    padding: 8px;
+    text-align: center;
+  }
+
+  .btnGuardar {
+    text-align: center;
+    margin: 20px auto 0 auto;
+  }
+
+  table {
+    width: 100%;
+    font-size: 0.7rem;
+    table-layout: fixed;
+  }
+
+  th,
+  td {
+    padding: 4px;
+    font-size: 0.7rem;
+    word-wrap: break-word;
+  }
+
+  th {
+    font-weight: bold;
+  }
+}
+
+
+/* BANNERS*/
+#eliminarBanner {
+  display: none;
+  position: fixed;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.banner {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  border-radius: 6px;
+  margin: 15px auto;
+  width: 50%;
+  max-width: 800px;
+  font-weight: 600;
+  font-size: 0.8rem;
+  gap: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.warning {
+  background-color: #00A6E9;
+  color: white;
+  border: 1px solid #ffeeba;
+}
+
+.banner .btnCrud {
+  height: auto;
+  padding: 6px 12px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+#registroExitosoBanner {
+  display: none;
+  position: fixed;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.bannerSuccess {
+  background-color: white;
+  color: #00A6E9;
+  border: 1px solid white;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+/*Banner para alertar que hay un error*/
+#errorRegistroBanner {
+  display: none;
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  max-width: 80%;
+}
+
+.bannerError {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: white;
+  color: #00A6E9;
+  font-weight: bold;
+  padding: 16px 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  font-family: "Rubik", sans-serif;
+}
+
+.bannerError i {
+  font-size: 20px;
+  margin-right: 12px;
+  display: inline;
+}
+
+.bannerError p {
+  margin: 0;
+  font-weight: 600;
+  font-size: 16px;
+  display: inline;
 }

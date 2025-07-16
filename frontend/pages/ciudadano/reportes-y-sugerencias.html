@@ -1,82 +1,75 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Comunidad Conectada - Reportes / Sugerencia</title>
-  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../../css/ciudadano/reportes-y-sugerencias.css" />
+  <link rel="stylesheet" href="../../css/ciudadano/reportes-y-sugerencias.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <title>Reportes y Sugerencias</title>
 </head>
-<body>
 
+<body>
   <header>
     <img src="../../assets/images/logo.png" alt="logo header higuito" class="header-logo">
   </header>
-  
+
   <nav>
-    <a href="../info-general/acerca-de.html">A Cerca</a>
-    <a href="anuncios.html">Anuncios</a>
-    <a href="panelCiudadanoReportesySugerencias.html">Reportes y Sugerencias</a>
-    <a href="../info-general/mapa.html">Mapa</a>
-    <a href="calendario.html">Calendario</a>
-    <a href="../info-general/transporte-publico.html">Transporte</a>
-    <a href="ofertas.html">Ofertas y Descuentos</a>
+    <a href="gestion-anuncios.html">Gestión de Anuncios</a>
+    <a href="gestion-transporte.html">Gestión de Transporte</a>
+    <a href="gestion-eventos.html">Gestión de Eventos</a>
+    <a href="gestion-emprendimientos.html">Gestión de Emprendimientos</a>
+    <a href="gestion-ofertas.html">Gestión de Ofertas</a>
+    <a href="gestion-reportes.html">Gestión de Reportes</a>
     <a href="../index.html">Cerrar Sesión</a>
   </nav>
-
   <main>
-    <div class="registroReporte">
+    <div class="SeccionPrincipal">
+      <div id="eliminarBanner" class="banner warning">
+        <span><i class="fas fa-triangle-exclamation"></i> ¿Está seguro que desea eliminar esta fila?</span>
+        <button id="confirmEliminarBtn" class="btnCrud">Sí</button>
+        <button id="cancelEliminarBtn" class="btnCrud">No</button>
+      </div>
+      <div id="registroExitosoBanner" class="bannerSuccess">
+        <span><i class="fas fa-circle-check"></i> ¡Emprendimientos Registrados!</span>
+      </div>
+      <div id="errorRegistroBanner" class="bannerError">
+        <i class="fas fa-circle-exclamation"></i>
+        <p id="mensaje"></p>
+      </div>
+      <div class="registroEmprendimientos">
         <div class="botonesCrud">
-            <button id="btnRegistrarReporte" class="btnCrud">Registrar Reporte/Sugerencia</button>
-            <button id="btnEditarReporte" class="btnCrud">Editar Reporte/Sugerencia</button>
-            <button id="btnEliminarReporte" class="btnCrud">Eliminar Reporte/Sugerencia</button>
-        </div>
+          <button id="btnRegistrar" class="btnCrud">Registrar Reporte</button>
+          <button id="btnEditar" class="btnCrud">Actualizar Reporte</button>
+	        <button id="btnEliminar" class="btnCrud">Eliminar Reporte</button>
 
-        <table id="tablaReportes" class="tabla">
-            <thead>
-                <tr>
-                    <th>Usuario</th>
-                    <th>Tipo Contenido</th>
-                    <th>Contenido</th>
-                    <th>Fecha y Hora</th>
-                    <th>Imagen</th> 
-                    <th>Estado</th>
-                </tr>
-            </thead>
-            <tbody>
-              <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </tbody>
+        </div>
+        <table id="tablaEmprendimientos" class="tabla">
+          <thead>
+            <tr>
+              <th>Usuario</th>
+              <th>Contenido</th>
+              <th>Estado</th>
+              <th>Imagen Asociada</th>
+              <th>Fecha y Hora</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+            </tr>
+          </tbody>
         </table>
         <div class="btnGuardar">
-            <button id="btnEnviarCambiosReporte" class="btnCrud">Guardar Cambios</button>
+          <button id="btnEnviarCambios" class="btnCrud">Enviar cambios</button>
         </div>
+      </div>
     </div>
   </main>
-
+  <script src="../../js/ciudadano/panelCiudadanoReportesySugerencias.js"></script>
   <footer>
     <p>&copy; 2025 Comunidad Conectada - Todos los derechos reservados</p>
   </footer>
 
-  <div id="confirmModal" class="modal">
-    <div class="modal-content">
-      <span class="close-button">&times;</span>
-      <h2>Eliminar Reporte / Sugerencia</h2>
-      <p>¿Está seguro de que desea eliminar este Reporte / Sugerencia?</p>
-      <div class="modal-buttons">
-        <button id="confirmYes" class="modal-btn">Sí</button>
-        <button id="confirmNo" class="modal-btn">No</button>
-      </div>
-    </div>
-  </div>
-
-  <script src="panelCiudadanoReportesySugerencias.js"></script>
-
 </body>
+
 </html>
