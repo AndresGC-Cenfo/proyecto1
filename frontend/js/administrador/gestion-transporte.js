@@ -4,7 +4,7 @@ let filaSeleccionada=null;
 // Funcion para desplegar cajas de input en la primera fila de la tabla
 function desplegarCajasInput(){
     // Verifica si ya existe una fila con inputs
-    const existenInputs = document.querySelector("#tablaEmprendimientos tbody tr input");
+    const existenInputs = document.querySelector("#tablaTransporte tbody tr input");
     // No inserta otra fila si ya hay inputs
     if (existenInputs) {
         mostrarBannerError("Debe completar el registro actual antes de ingresar un nuevo registro. "); 
@@ -17,19 +17,19 @@ function desplegarCajasInput(){
         primeraFila.insertCell(i);
     }
 
-    primeraFila.cells[0].innerHTML = '<input id="nombreTransportista" type="text" placeholder="Ingresar Nombre">';
-    primeraFila.cells[1].innerHTML = '<input id="nombreRuta" type="text" placeholder="Ingresar Ruta">';
-    primeraFila.cells[2].innerHTML = '<input id="horarioRuta" type="text" placeholder="Ingresar Horario">';
-    primeraFila.cells[3].innerHTML = '<input id="tarifaRuta" type="text" placeholder="Ingresar tarifa">';
-    primeraFila.cells[4].innerHTML = '<input id="tarifaRuta" type="text" placeholder="Ingresar Contacto">';
-    primeraFila.cells[5].innerHTML = '<input id="fechaUltimaActualizacion" type="date">';
+    primeraFila.cells[0].innerHTML = '<input id="nombreTransportista" type="text">';
+    primeraFila.cells[1].innerHTML = '<input id="nombreRuta" type="text" ">';
+    primeraFila.cells[2].innerHTML = '<input id="horarioRuta" type="text" ">';
+    primeraFila.cells[3].innerHTML = '<input id="tarifaRuta" type="text" >';
+    primeraFila.cells[4].innerHTML = '<input id="tarifaRuta" type="text" >';
+    primeraFila.cells[5].innerHTML = '<input id="fechaUltimaActualizacion" type="date" style="color:#333">';
     asignarEventosFilas();
 }
 
 
 //Convertir las filas de inputs a tds (simula el registro de las filas) para ingresarlos a la tabla y simular el request post
 function ingresarRegistrosTabla() {
-    const fila = document.querySelector("#tablaEmprendimientos tbody tr"); // Solo la primera fila (con inputs)
+    const fila = document.querySelector("#tablaTransporte tbody tr"); // Solo la primera fila (con inputs)
     const tr = document.createElement("tr");
     const inputs = fila.querySelectorAll("input, select");
 
@@ -65,7 +65,7 @@ function ingresarRegistrosTabla() {
 
 /*FUNCIONALIDAD PARA LA SELECCION DE FILAS EN LA TABLA*/
 function asignarEventosFilas() {
-    let filasRegistradas = document.querySelectorAll("#tablaEmprendimientos tbody tr");
+    let filasRegistradas = document.querySelectorAll("#tablaTransporte tbody tr");
 
     filasRegistradas.forEach(fila => {
         fila.addEventListener("click", () => {

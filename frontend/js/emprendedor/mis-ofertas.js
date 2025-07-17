@@ -4,7 +4,7 @@ let filaSeleccionada=null;
 // Funcion para desplegar cajas de input en la primera fila de la tabla
 function desplegarCajasInput(){
     // Verifica si ya existe una fila con inputs
-    const existenInputs = document.querySelector("#tablaOfertas tbody tr input");
+    const existenInputs = document.querySelector("#tablaEmprendimientos tbody tr input");
     // No inserta otra fila si ya hay inputs
     if (existenInputs) {
         mostrarBannerError("Debe completar el registro actual antes de ingresar un nuevo registro. "); 
@@ -17,19 +17,19 @@ function desplegarCajasInput(){
         primeraFila.insertCell(i);
     }
 
-    primeraFila.cells[0].innerHTML = '<input id="nombreOferta" type="text" placeholder="Ingresar Nombre">';
-    primeraFila.cells[1].innerHTML = '<input id="emprendimientoAsoc" type="text" placeholder="Ingresar Emprendimiento">';
-    primeraFila.cells[2].innerHTML = '<input id="vigencia" type="number">';
-    primeraFila.cells[3].innerHTML = `<select id="estadoOferta">
+    primeraFila.cells[0].innerHTML = '<input id="nombreEmprendimiento" type="text" >';
+    primeraFila.cells[1].innerHTML = '<input id="descripcionEmprendimiento" type="text">';
+    primeraFila.cells[2].innerHTML = '<input id="categoriaEmprendimiento" type="text">';
+    primeraFila.cells[3].innerHTML = `<select id="estadoEmprendimiento">
                                         <option value="" disabled selected>Seleccione un estado</option>
                                         <option value="Activo">Activo</option>
                                         <option value="Inactivo">Inactivo</option>
                                         </select>`;
     primeraFila.cells[4].innerHTML = `<div class="upload-wrapper">
-                                        <label for="imagenProducto" class="custom-file-upload">
+                                        <label for="imagenEmprendimiento" class="custom-file-upload">
                                             <i class="fas fa-upload"></i>
                                         </label>
-                                        <input id="imagenProducto" type="file" accept="image/*" style="display: none;">
+                                        <input id="imagenEmprendimiento" type="file" accept="image/*" style="display: none;">
                                       </div>`;
     asignarEventosFilas();
 }
@@ -37,7 +37,7 @@ function desplegarCajasInput(){
 
 //Convertir las filas de inputs a tds (simula el registro de las filas) para ingresarlos a la tabla y simular el request post
 function ingresarRegistrosTabla() {
-    const fila = document.querySelector("#tablaOfertas tbody tr"); 
+    const fila = document.querySelector("#tablaEmprendimientos tbody tr"); // Solo la primera fila (con inputs)
     const tr = document.createElement("tr");
     const inputs = fila.querySelectorAll("input, select");
 
@@ -73,7 +73,7 @@ function ingresarRegistrosTabla() {
 
 /*FUNCIONALIDAD PARA LA SELECCION DE FILAS EN LA TABLA*/
 function asignarEventosFilas() {
-    let filasRegistradas = document.querySelectorAll("#tablaOfertas tbody tr");
+    let filasRegistradas = document.querySelectorAll("#tablaEmprendimientos tbody tr");
 
     filasRegistradas.forEach(fila => {
         fila.addEventListener("click", () => {

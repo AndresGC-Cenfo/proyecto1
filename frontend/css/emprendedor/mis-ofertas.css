@@ -5,10 +5,13 @@
 }
 
 body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   font-family: 'Rubik', sans-serif;
   line-height: 1.6;
   background-color: white;
-  color: #333
+  color: #333;
 }
 
 .header-logo {
@@ -46,13 +49,17 @@ nav a:hover {
 
 footer {
   background-color: #00A6E9;
+  height: 100px;
   color: white;
   text-align: center;
   padding: 15px;
   width: 100%;
-  margin-top: auto;
   font-family: 'Roboto', sans-serif;
-  font-size: 0.9rem;
+}
+
+footer p{
+  color: white;
+  font-weight: bold;
 }
 
 main {
@@ -65,23 +72,24 @@ main {
 }
 
 
-
 /*CSS de seccion principal*/
 .SeccionPrincipal {
   background-color: white;
   color: white;
   display: flex;
+  border-radius: 10px;
   justify-content: center;
   align-items: center;
 
 }
 
-.registroOfertas {
+.registroEmprendimientos {
   width: 100%;
   max-width: 1000px;
   padding: 20px;
   background-color: #00A6E9;
   color: white;
+  border-radius: 10px;
 }
 
 .botonesCrud {
@@ -103,15 +111,15 @@ main {
   font-weight: bold;
   transition: background-color 0.3s ease;
   font-family: 'Rubik', sans-serif;
-  font-size: 1rem;
+  font-size: 0.8rem;
 }
-
 
 
 .btnGuardar {
   text-align: right;
   margin-right: 10%;
   margin-top: 1%;
+  
 }
 
 
@@ -122,6 +130,8 @@ table {
   width: 80%;
   border-collapse: collapse;
   font-family: 'Rubik';
+  background-color: #EAF6FB;
+  color: #333;
 
 }
 
@@ -138,9 +148,18 @@ th {
   border: 1px solid #EAF6Fb;
   height: 40px;
   width: 60px;
-  font-size: 0.87rem;
+  border: 1px solid #00A6E9;
 }
 
+td{
+  font-size: 0.80rem;
+  text-align: center;
+  padding: 12px;
+}
+
+th{
+  font-size: 0.97rem;
+}
 
 
 tbody tr:hover {
@@ -188,13 +207,28 @@ select {
   font-size: 14px;
   outline: none;
   background-color: transparent;
-  color: rgb(255, 255, 255);
+  color: #333;
   outline: none;
 }
 
 option {
-  background-color: #00A6E9;
+  background-color: #0e4d92;
   color: white
+}
+
+#btnRegistrar:hover {
+  background-color: #388E3C;
+  color: white;
+}
+
+#btnEditar:hover{
+  background-color: #1976D2;
+  color: white;
+}
+
+#btnEliminar:hover {
+  background-color: #C62828;
+  color: white; 
 }
 
 
@@ -220,6 +254,7 @@ option {
     padding: 8px;
     text-align: center;
   }
+  
 
   .btnGuardar {
     text-align: center;
@@ -244,6 +279,7 @@ option {
   }
 }
 
+
 /* BANNERS*/
 #eliminarBanner {
   display: none;
@@ -259,7 +295,7 @@ option {
   padding: 12px 16px;
   border-radius: 6px;
   margin: 15px auto;
-  width: 50%;
+  width: 40%;
   max-width: 800px;
   font-weight: 600;
   font-size: 0.8rem;
@@ -268,9 +304,9 @@ option {
 }
 
 .warning {
-  background-color: #00A6E9;
-  color: white;
-  border: 1px solid #ffeeba;
+  background-color: white;
+  color: #00A6E9;
+  border: none #e4e4e4;
 }
 
 .banner .btnCrud {

@@ -17,11 +17,11 @@ function desplegarCajasInput(){
         primeraFila.insertCell(i);
     }
 
-    primeraFila.cells[0].innerHTML = '<input id="nombreOferta" type="text" placeholder="Ingresar Nombre">';
-    primeraFila.cells[1].innerHTML = '<input id="emprendimientoAsoc" type="text" placeholder="Ingresar Emprendimiento">';
+    primeraFila.cells[0].innerHTML = '<input id="nombreOferta" type="text" >';
+    primeraFila.cells[1].innerHTML = '<input id="emprendimientoAsoc" type="text">';
     primeraFila.cells[2].innerHTML = '<input id="vigencia" type="number">';
     primeraFila.cells[3].innerHTML = `<select id="estadoOferta">
-                                        <option value="" disabled selected>Seleccione un estado</option>
+                                        <option value="" disabled selected>Estado</option>
                                         <option value="Activo">Activo</option>
                                         <option value="Inactivo">Inactivo</option>
                                         </select>`;

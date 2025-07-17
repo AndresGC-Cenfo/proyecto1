@@ -17,9 +17,9 @@ function desplegarCajasInput(){
         primeraFila.insertCell(i);
     }
 
-    primeraFila.cells[0].innerHTML = '<input id="nombreEmprendimiento" type="text" placeholder="Ingresar Nombre">';
-    primeraFila.cells[1].innerHTML = '<input id="descripcionEmprendimiento" type="text" placeholder="Ingresar Descripción">';
-    primeraFila.cells[2].innerHTML = '<input id="categoriaEmprendimiento" type="text" placeholder="Ingresar Categoría">';
+    primeraFila.cells[0].innerHTML = '<input id="nombreEmprendimiento" type="text" >';
+    primeraFila.cells[1].innerHTML = '<input id="descripcionEmprendimiento" type="text" >';
+    primeraFila.cells[2].innerHTML = '<input id="categoriaEmprendimiento" type="text">';
     primeraFila.cells[3].innerHTML = `<select id="estadoEmprendimiento">
                                         <option value="" disabled selected>Seleccione un estado</option>
                                         <option value="Activo">Activo</option>

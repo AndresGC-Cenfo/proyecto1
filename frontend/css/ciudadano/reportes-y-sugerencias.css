@@ -83,7 +83,7 @@ main {
 
 }
 
-.registroEmprendimientos {
+.registroReportes {
   width: 100%;
   max-width: 1000px;
   padding: 20px;
@@ -153,6 +153,9 @@ th {
 
 td{
   font-size: 0.80rem;
+  text-align: center;
+  padding: 12px;
+  color: #333 ;
 }
 
 th{
@@ -193,7 +196,7 @@ input {
   font-size: 14px;
   outline: none;
   background-color: transparent;
-  color: white;
+  color: #333;
 }
 
 select {
@@ -213,6 +216,26 @@ select {
 option {
   background-color: #0e4d92;
   color: white
+}
+
+#btnRegistrar:hover {
+  background-color: #388E3C;
+  color: white;
+}
+
+#btnEditar:hover{
+  background-color: #1976D2;
+  color: white;
+}
+
+#btnEliminar:hover {
+  background-color: #C62828;
+  color: white; 
+}
+
+#btnEnviarCambios:hover{
+  background-color: #388E3C;
+  color: white;
 }
 
 
@@ -238,6 +261,7 @@ option {
     padding: 8px;
     text-align: center;
   }
+  
 
   .btnGuardar {
     text-align: center;
@@ -278,7 +302,7 @@ option {
   padding: 12px 16px;
   border-radius: 6px;
   margin: 15px auto;
-  width: 50%;
+  width: 40%;
   max-width: 800px;
   font-weight: 600;
   font-size: 0.8rem;
@@ -287,9 +311,9 @@ option {
 }
 
 .warning {
-  background-color: #00A6E9;
-  color: white;
-  border: 1px solid #ffeeba;
+  background-color: white;
+  color: #00A6E9;
+  border: none #e4e4e4;
 }
 
 .banner .btnCrud {

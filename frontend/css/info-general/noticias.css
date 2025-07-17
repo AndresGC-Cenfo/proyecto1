@@ -97,7 +97,9 @@ main {
   box-sizing: border-box;
   display: flex;
   justify-content: center;
+  border-radius: 10px;
 }
+
 
 table {
   width: 100%;
@@ -105,10 +107,12 @@ table {
   border: 1px solid;
   border-collapse: collapse;
   font-family: 'Rubik', sans-serif;
+  background-color: #EAF6FB;
+  color: #333;
 }
 
 table tr {
-  border: 1px solid;
+  border: 1px solid #333;;
 
 }
 
@@ -116,7 +120,7 @@ table tr {
 td,
 th {
   padding: 10px;
-  border: 1px solid #EAF6Fb;
+  border: 1px solid #333;;
   height: 40px;
   font-size: 0.87rem;
   text-align: center;

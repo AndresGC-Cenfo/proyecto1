@@ -4,6 +4,12 @@
   box-sizing: border-box;
 }
 
+html, body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
 body {
   font-family: 'Rubik', sans-serif;
   line-height: 1.6;
@@ -46,15 +52,18 @@ nav a:hover {
 
 footer {
   background-color: #00A6E9;
+  height: 100px;
   color: white;
   text-align: center;
   padding: 15px;
   width: 100%;
-  margin-top: auto;
   font-family: 'Roboto', sans-serif;
-  font-size: 0.9rem;
 }
 
+footer p{
+  color: white;
+  font-weight: bold;
+}
 
 main {
   padding: 20px;
@@ -83,19 +92,20 @@ main {
   height: 100%;
   padding-top: 15px;
   padding-bottom: 15px;
+  border-radius: 10px;
 }
 
 
 table {
   margin: auto;
-  border: 1px solid;
+  border: 1px solid  #333;
   border-collapse: collapse;
   font-family: 'Rubik';
   width: 100%;
   max-width: 658px;
   min-width: 400px;
-  background-color: #00A6E9;
-  color: white;
+  background-color: #EAF6FB;
+  color: #333;
 
 }
 
@@ -113,16 +123,12 @@ th {
   height: 40px;
   width: 60px;
   font-size: 0.87rem;
+  border: 1px solid #00A6E9;
 }
 
-
-
-tbody tr:hover {
-  background-color: #FFD56B;
-  cursor: pointer;
+td{
+  text-align: center;
 }
-
-
 
 /*PARTE RESPONSIVE*/
 @media (max-width: 600px) {
