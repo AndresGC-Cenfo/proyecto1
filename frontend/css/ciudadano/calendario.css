@@ -100,11 +100,27 @@ main {
   font-size: 1rem;
 }
 
+.lista-fechas{
+  list-style-type: none;
+  padding-left: 20px;
+}
+
 #calendar {
   flex-grow: 1;
   min-width: 600px;
   max-width: 100%;
   color: #333;
+}
+
+.label-evento:hover{
+  cursor: pointer;
+  color: #00A6E9;
+}
+
+.fc-daygrid-event .fc-event-title {
+  white-space: normal !important;  /* Allow text to wrap */
+  overflow: visible !important;
+  text-overflow: unset !important;
 }
 
 /*PARTE RESPONSIVE*/
@@ -118,7 +134,7 @@ main {
 
   .labels-eventos {
     width: 100%;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-around;
     flex-wrap: wrap;
     text-align: center;

@@ -7,6 +7,7 @@
   <title>Restablecer Contraseña</title>
   <link rel="stylesheet" href="../../css/auth/restablecer-contrasena.css" />
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&family=Roboto&display=swap" rel="stylesheet">
+      <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
 <body>
@@ -18,17 +19,48 @@
 
   <div class="contenedor-formulario">
     <h2>Restablecer Contraseña</h2>
-    <form class="formulario">
-      <label for="nuevaContrasena" class="etiqueta">Nueva contraseña</label>
-      <input type="password" id="nuevaContrasena" name="nuevaContrasena" class="campo-entrada" required />
-
-      <label for="confirmarContrasena" class="etiqueta">Confirmar contraseña</label>
-      <input type="password" id="confirmarContrasena" name="confirmarContrasena" class="campo-entrada" required />
-
-      <button type="submit" class="boton-envio">Enviar</button>
-    </form>
+   <form class="formulario" id="formulario">
+  <!-- Grupo password -->
+  <div class="formulario__grupo" id="grupo__password">
+    <label for="password" class="etiqueta">Nueva contraseña</label>
+    <div class="formulario__grupo-input">
+      <input type="password" id="password" name="password" class="campo-entrada" required />
+      <i class='formulario__validacion-estado bx bxs-x-circle'></i>
+    </div>
+    <p class="formulario__input-error">
+      La contraseña debe ser de 4 a 12 dígitos
+    </p>
   </div>
 
+  <!-- Grupo password2 -->
+  <div class="formulario__grupo" id="grupo__password2">
+    <label for="password2" class="etiqueta">Confirmar contraseña</label>
+    <div class="formulario__grupo-input">
+      <input type="password" id="password2" name="password2" class="campo-entrada" required />
+      <i class='formulario__validacion-estado bx bxs-x-circle'></i>
+    </div>
+    <p class="formulario__input-error">
+      Ambas contraseñas deben coincidir
+    </p>
+  </div>
+
+  <div id="formulario__mensaje" class="formulario__mensaje">
+    <p><b>Error:</b> Por favor completa correctamente el formulario.</p>
+  </div>
+
+  <div id="formulario__mensaje-exito" class="formulario__mensaje-exito">
+    Formulario enviado exitosamente.
+  </div>
+
+  <button type="submit" class="boton-envio">Enviar</button>
+</form>
+
+  </div>
+
+  
+
+  
+  <script src="../../js/auth/restablecer-contrasena.js"></script>
     <footer>
         <p>&copy; 2025 Comunidad Conectada - Todos los derechos reservados</p>
     </footer>

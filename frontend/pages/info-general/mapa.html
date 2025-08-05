@@ -7,6 +7,20 @@
   <link rel="stylesheet" href="../../css/info-general/mapa.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <title>Mapa de la Comunidad</title>
+  <style>
+    /* Estilos básicos para sub-lugares */
+    .sub-lugar {
+      margin-left: 20px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      color: #0e4d92; /* Azul */
+      display: block;
+      margin-top: 4px;
+    }
+    .sub-lugar:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 
 <body>
@@ -29,15 +43,38 @@
     </div>
     <div class="mapa-interactivo">
       <div class="labels-lugares">
-        <label class="label-lugar">Lugares De Interes</label>
-        <label class="label-lugar">Lugares Historicos</label>
-        <label class="label-lugar">Lugares Recreativos</label>
-        <label class="label-lugar">Lugares Comunales</label>
-        <label class="label-lugar">Lugares Sociales</label>
+        <div>
+          <label class="label-lugar"><i class="fa-solid fa-landmark"></i> Lugares de Interés Público</label>
+          <ul class="lista-lugares">
+            <li onclick="cambiarMapa('Salón Comunal de Higuito')">Salón Comunal de Higuito</li>
+            <li onclick="cambiarMapa('Iglesia de Higuito')">Iglesia de Higuito</li>
+            <li onclick="cambiarMapa('Ebais Higuito, Desamparados')">Ebais de Higuito</li>
+            <li onclick="cambiarMapa('Escuela Dr. Rafael Angel Calderón Muñoz')">Escuela Dr. Rafael Ángel Calderón Muñoz</li>
+            <li onclick="cambiarMapa('ASADA / Acueducto Rural Higuito')">ASADA Higuito</li>
+          </ul>
+          <label class="label-lugar" for=""><i class="fa-solid fa-store"></i> Lugares Comerciales </label>
+          <ul class="lista-lugares">
+            <li onclick="cambiarMapa('Panaderia La Esquina Sabrosa')">Panaderia La Esquina Sabrosa</li>
+            <li onclick="cambiarMapa('Bici Repuestos Higuito')">Bici Repuestos Higuito</li>
+          </ul>
+        </div>
+        <label for="" class="label-lugar"><i class="fa-solid fa-person-running"></i> Lugares Recreativos</label>
+          <ul class="lista-lugares">
+            <li onclick="cambiarMapa('academia de danza BELU')">Academia de danza BELU</li>
+            <li onclick="cambiarMapa('Cancha Higuito')">Cancha de Futbol de Higuito</li>
+            <li onclick="cambiarMapa('Plaza de Higuito')">Plaza de Higuito</li>
+          </ul>
+  
       </div>
-      <iframe src="https://www.google.com/maps/embed?pb=..." allowfullscreen loading="lazy"></iframe>
+      <iframe id="mapaFrame"
+        src="https://www.google.com/maps?q=San+Jose+Costa+Rica&output=embed"
+        allowfullscreen
+        loading="lazy">
+      </iframe>
     </div>
   </main>
+
+  <script src="../../js/info-general/mapa.js"></script>
   <footer>
     <p>&copy; 2025 Comunidad Conectada - Todos los derechos reservados</p>
   </footer>

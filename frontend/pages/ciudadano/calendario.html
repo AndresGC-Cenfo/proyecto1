@@ -30,16 +30,49 @@
   <main>
     <h2 class="titulo-calendario">Calendario Interactivo</h2>
     <div class="calendario-interactivo">
-      <div class="labels-eventos">
-        <label class="label-evento">Fechas Importantes</label>
-        <label class="label-evento">Fechas Feriados</label>
-        <label class="label-evento">Fechas de Fiestas</label>
-        <label class="label-evento">Fechas Parroquiales</label>
-      </div>
+     <div class="labels-eventos">
+  <!-- Importantes -->
+  <div class="labels-eventos">
+  <!-- Importantes -->
+   <div id="fechasImportantes">
+    <label class="label-evento" onclick="mostrarEventos('importantes')">
+    Fechas Importantes
+    </label>
+    <ul class="lista-fechas" id="listaFechasImportantes"></ul>
+   </div>
+
+  <!-- Feriados -->
+   <div id="fechasFeriados">
+      <label class="label-evento" onclick="mostrarEventos('feriados')">
+    Dias Feriados
+    </label>
+    <ul class="lista-fechas" id="listaFeriados"></ul>
+   </div>
+
+     <!-- Fiestas -->
+   <div id="fechasFiestas">
+      <label class="label-evento" onclick="mostrarEventos('fiestas')">
+      Fiestas locales
+      </label>
+      <ul class="lista-fechas" id="listaFiestas"></ul>
+   </div>
+
+  <!--Eventos Parroquiales -->
+  <div id="fechasParroquiales">
+    <label class="label-evento" onclick="mostrarEventos('parroquiales')">
+    Fechas Parroquiales
+    </label>
+    <ul id="listaParroquiales" class="lista-fechas"></ul>
+  </div>
+
+</div>
+</div>
       <div id="calendar"></div>
     </div>
   </main>
+
   <script src="../../js/ciudadano/calendario.js"></script>
+
   <footer>
     <p>&copy; 2025 Comunidad Conectada - Todos los derechos reservados</p>
   </footer>
