@@ -46,20 +46,35 @@ nav a:hover {
 
 footer {
   background-color: #00A6E9;
+  height: 100px;
   color: white;
   text-align: center;
   padding: 15px;
   width: 100%;
-  margin-top: auto;
   font-family: 'Roboto', sans-serif;
-  font-size: 0.9rem;
+}
+
+footer p{
+  color: white;
+  font-weight: bold;
 }
 
 main {
   padding: 20px;
   flex: 1;
   display: block
+  
 }
+
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
 
 
 

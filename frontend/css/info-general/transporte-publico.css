@@ -70,6 +70,20 @@ main {
   margin-bottom: 40px;
 }
 
+.nombre-rutas {
+  margin-bottom: 20px; 
+}
+
+.nombre-rutas:hover {
+  cursor: pointer;
+  color: #00A6E9;
+  font-size: 1.3rem;
+}
+
+.datos-rutas{
+  margin-bottom: 10px;
+}
+
 /* ENCABEZADO DE LA PÁGINA */
 .encabezado {
   width: 100%;
@@ -84,6 +98,15 @@ main {
   font-weight: bold;
   font-size: clamp(1.5rem, 5vw, 2.8rem);
   line-height: 1.2;
+}
+
+#map {
+      height: 600px;
+      width: 60%;
+    }
+
+.leaflet-routing-container {
+  display: none !important;
 }
 
 /* CONTENEDOR DEL MAPA Y ETIQUETAS */
@@ -124,6 +147,11 @@ iframe,
 
 /* RESPONSIVE */
 @media (max-width: 600px) {
+  #map {
+      height: 600px;
+      width: 100%;
+    }
+
   nav {
     flex-direction: column;
   }

@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="../../css/info-general/transporte-publico.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css">
 
   <title>Informacion de Transporte Publico</title>
 </head>
@@ -20,6 +22,7 @@
     <a href="acerca-de.html">Acerca de</a>
     <a href="mapa.html">Mapa Interactivo</a>
     <a href="noticias.html">Noticias</a>
+    <a href="calendario.html">Calendario</a>
     <a href="transporte-publico.html">Transporte publico</a>
     <a href="../auth/inicio-sesion.html">Iniciar Sesion</a>
   </nav>
@@ -31,12 +34,21 @@
     <div class="transporte-publico">
       <div class="labels-lugares">
         <label class="label-lugar" for="">Rutas</label>
+        <div id="datosRutas" class="datos-rutas">
+        </div>
         <label class="label-lugar" for="">Tarifas</label>
-        <label class="label-lugar" for="">Terminales</label>
+        <div id="datosTarifas" class="datos-rutas"></div>
+        <label class="label-lugar" for="">Horarios</label>
+        <div id="datosHorarios" class="datos-rutas"></div>
       </div>
-      <img src="../../assets/images/imagenRutas.png" alt="">
+      <div id="map"></div>
     </div>
   </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
+  <script src="../../js/info-general/transporte-publico.js"></script>
+  <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.min.js"></script>
   <footer>
     <p>&copy; 2025 Comunidad Conectada - Todos los derechos reservados</p>
   </footer>
