@@ -3,110 +3,100 @@ const formulario = document.getElementById('formulario');
 const inputs = document.querySelectorAll('#formulario input');
 
 // Expresiones de validación
-const expresiones ={
-    usuario : /^[a-zA-Z0-9\_\-]{4,16}$/,//SOLO ADMITE LETRAS MAYUSCULAS MINUSCULAS, GUIO Y GUION BAJO, NUMEROS Y DEBE SER MINIMO 4 CARECTERS Y MAXIMO 16
-    nombre : /^[a-zA-ZÀ-ÿ\s]{3,45}$/ ,//SOLO ADMITE LETRAS MAYUSCULAS MINUSCULAS ACEPTA EL ACENTO, ESPACIO MINIMO 3 Y 45
-    password:/^.{4,12}$/,//ACEPTA TODO PERO DE 4 A 12 CARACTERES
-    correo : /^[a-zA-Z0-9\_]+@[a-zA-Z]+\.[a-zA-Z]+$/,//dato1@dato2.com  DATO1 = ADMITE MAYUSCULAS MINUSCULAS NUMEROS GUION BAJO  DATO2 = ADMITE SOLO LETRAS DATO3 = SOLO LETRAS
-    cedula :/^\d{9}$/ //debe ser de 10 digitos
-}
-
+const expresiones = {
+  usuario: /^[a-zA-Z0-9\_\-]{4,16}$/,
+  nombre: /^[a-zA-ZÀ-ÿ\s]{3,45}$/,
+  password: /^.{4,12}$/,
+  correo: /^[a-zA-Z0-9\_]+@[a-zA-Z]+\.[a-zA-Z]+$/,
+  cedula: /^\d{9}$/
+};
 
 // Estado de los campos
-const campos={
-    usuario: false,
-    nombre: false,
-    password: false,
-    correo: false,
-    cedula:false
-}
-;
+const campos = {
+  usuario: false,
+  nombre: false,
+  password: false,
+  correo: false,
+  cedula: false
+};
 
 // Validar formulario según input
 const validarFormulario = (e) => {
-    switch (e.target.name) {
-        case "correo":
-            validarCampo(expresiones.correo, e.target, "correo");
-        break;
-        case "password":
-            //funcion
-            validarCampo(expresiones.password,e.target,"password");
-            validarPassword2();
-        break;
-        case "password2":
-            //funciones
-            validarPassword2();
-        break;
-        case "cedula":
-            //funcion
-            validarCampo(expresiones.cedula,e.target,"cedula");
-        break;
-
-    }
+  switch (e.target.name) {
+    case "correo":
+      validarCampo(expresiones.correo, e.target, "correo");
+      break;
+    case "password":
+      validarCampo(expresiones.password, e.target, "password");
+      break;
+    case "cedula":
+      validarCampo(expresiones.cedula, e.target, "cedula");
+      break;
+  }
 };
 
 // Validar campo genérico
 const validarCampo = (expresion, input, campo) => {
-    if (expresion.test(input.value)) {
-        document.getElementById(`grupo__${campo}`).classList.add("formulario__grupo-correcto");
-        document.getElementById(`grupo__${campo}`).classList.remove("formulario__grupo-incorrecto");
-        document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.remove("formulario__input-error-activo");
-        document.querySelector(`#grupo__${campo} i`).classList.remove("bxs-x-circle");
-        document.querySelector(`#grupo__${campo} i`).classList.add("bxs-check-circle");
-        campos[campo] = true;
-    } else {
-        document.getElementById(`grupo__${campo}`).classList.add("formulario__grupo-incorrecto");
-        document.getElementById(`grupo__${campo}`).classList.remove("formulario__grupo-correcto");
-        document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.add("formulario__input-error-activo");
-        document.querySelector(`#grupo__${campo} i`).classList.add("bxs-x-circle");
-        document.querySelector(`#grupo__${campo} i`).classList.remove("bxs-check-circle");
-        campos[campo] = false;
-    }
+  if (expresion.test(input.value)) {
+    campos[campo] = true;
+  } else {
+    campos[campo] = false;
+  }
 };
-
-const validarPassword2 = ()=>{
-    let inputPassword1= document.getElementById("password");
-    let inputPassword2= document.getElementById("password2");
-
-    if(inputPassword1.value !== inputPassword2.value){
-        document.getElementById(`grupo__password2`).classList.add("formulario__grupo-incorrecto");
-        document.getElementById(`grupo__password2`).classList.remove("formulario__grupo-correcto");
-        document.querySelector(`#grupo__password2 .formulario__input-error`).classList.add("formulario__input-error-activo");
-        document.querySelector(`#grupo__password2 i`).classList.add("bxs-x-circle");
-        document.querySelector(`#grupo__password2 i`).classList.remove("bxs-check-circle");
-        campos[password]=false;
-    }else{
-        document.getElementById(`grupo__password2`).classList.remove("formulario__grupo-incorrecto");
-        document.getElementById(`grupo__password2`).classList.add("formulario__grupo-correcto");
-        document.querySelector(`#grupo__password2 .formulario__input-error`).classList.remove("formulario__input-error-activo");
-        document.querySelector(`#grupo__password2 i`).classList.remove("bxs-x-circle");
-        document.querySelector(`#grupo__password2 i`).classList.add("bxs-check-circle");
-        campos[password]=true;
-    }
-}
 
 // Escuchar eventos de los inputs
 inputs.forEach((input) => {
-    input.addEventListener("keyup", validarFormulario);
-    input.addEventListener("blur", validarFormulario);
+  input.addEventListener("keyup", validarFormulario);
+  input.addEventListener("blur", validarFormulario);
 });
 
-// Envío del formulario
-formulario.addEventListener("submit", (e) => {
-    e.preventDefault();
+// Envío del formulario y conexión al backend
+formulario.addEventListener("submit", async (e) => {
+  e.preventDefault();
 
-    if (campos.correo) {
-        document.getElementById("formulario__mensaje").classList.remove("formulario__mensaje-activo");
-        document.getElementById("formulario__mensaje-exito").classList.add("formulario__mensaje-exito-activo");
+  const correo = document.getElementById("correo").value;
+  const contrasena = document.getElementById("contrasena").value;
 
-        setTimeout(() => {
-            formulario.reset();
-            document.getElementById("formulario__mensaje-exito").classList.remove("formulario__mensaje-exito-activo");
-            document.getElementById(`grupo__correo`).classList.remove("formulario__grupo-correcto");
-        }, 3000);
-    } 
-    
-    else {
-        document.getElementById("formulario__mensaje").classList.add("formulario__mensaje-activo");
+  if (!campos.correo) {
+    alert("Por favor ingrese un correo válido.");
+    return;
+  }
+
+  try {
+    const respuesta = await fetch("http://localhost:5000/api/usuarios/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ correo, contrasena }),
+    });
+
+    const data = await respuesta.json();
+
+    if (!respuesta.ok) {
+      alert(data.mensaje || "Credenciales incorrectas");
+      return;
     }
+
+    // Guardar token y redirigir por rol
+    localStorage.setItem("token", data.token);
+    localStorage.setItem("usuario", JSON.stringify(data.usuario));
+
+    switch (data.usuario.rol) {
+      case "administrador":
+        window.location.href = "../administrador/gestion-anuncios.html";
+        break;
+      case "emprendedor":
+        window.location.href = "../emprendedor/mis-emprendimientos.html";
+        break;
+      case "ciudadano":
+        window.location.href = "../ciudadano/ofertas.html";
+        break;
+      default:
+        alert("Rol no reconocido");
+    }
+  } catch (error) {
+    console.error("Error de conexión:", error);
+    alert("Error de red o servidor.");
+  }
 });

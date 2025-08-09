@@ -12,7 +12,8 @@ const UserSchema = new mongoose.Schema({
     type: String,
     enum: ['ciudadano', 'emprendedor', 'administrador'],
     default: 'ciudadano'
-  }
+  },
+  cedula: { type: String, unique: true, sparse: true }, // opcional, pero único si se proporciona
 }, { timestamps: true });
 
 // Hashear contraseña antes de guardar

@@ -2,118 +2,115 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Registro</title>
-    <link rel="stylesheet" href="../../css/auth/registro.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&family=Roboto&display=swap" rel="stylesheet">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registro</title>
+  <link rel="stylesheet" href="../../css/auth/registro.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&family=Roboto&display=swap" rel="stylesheet">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
 <body>
-    <header>
-        <div class="header-content">
-            <img src="../../assets/images/logo.png" alt="logo header higuito" class="header-logo">
-        </div>
-    </header>
-
-    <div class="contenedor-principal">
-        <div class="envoltorio-registro">
-            <div class="contenedor-registro">
-                <h2>Registro</h2>
-                <form class="formulario-registro" id="formulario">
-
-                    
-                    <!--GRUPO NUMERO CEDULA-->
-                    <div class="formulario__grupo" id="grupo__cedula">
-                        <label class="formulario__label">Numero de Cedula</label>
-                        <div class="formulario__grupo-input">
-                            <input type="text" class="formulario__input" name="cedula" id="cedula">
-                            <i class='formulario__validacion-estado bx bxs-x-circle'></i>
-                        </div>
-                        <p class="formulario__input-error">
-                            Debe ingresar un numero de cedula valido
-                        </p>
-                    </div>
-
-                    <!-- GRUPO CORREO -->
-                    <div class="formulario__grupo" id="grupo__correo">
-                        <label class="formulario__label">Correo electrónico</label>
-                        <div class="formulario__grupo-input">
-                            <input type="email" class="formulario__input" name="correo" id="correo" placeholder="correo@correo.com">
-                            <i class='formulario__validacion-estado bx bxs-x-circle'></i>
-                        </div>
-                        <p class="formulario__input-error">
-                            Debe agregar un correo con la estructura: dato1@dato2.com  
-                            (dato1 admite letras, números, guión bajo; dato2 solo letras)
-                        </p>
-                    </div>
-
-                    <!-- GRUPO CONTRASEÑA-->
-                    <div class="formulario__grupo " id="grupo__password">
-                        <label class="formulario__label">Contraseña</label>
-                        <div class="formulario__grupo-input">
-                            <input type="password" class="formulario__input" name="password" id="password">
-                            <i class='formulario__validacion-estado bx bxs-x-circle'></i>
-                        </div>
-                        <p class="formulario__input-error">
-                            La contraseña debe ser de 4 a 12 digitos
-                        </p>
-                    </div>
-
-                    <!-- GRUPO CONTRASEÑA2-->
-                    <div class="formulario__grupo" id="grupo__password2">
-                        <label class="formulario__label">Repetir contraseña</label>
-                        <div class="formulario__grupo-input">
-                            <input type="password" class="formulario__input" name="password2" id="password2">
-                            <i class='formulario__validacion-estado bx bxs-x-circle'></i>
-                        </div>
-                        <p class="formulario__input-error">
-                            Las contraseñas no coinciden
-                        </p>
-                    </div>
-
-                    
-                    <div class="grupo-subida">
-                        <div>
-                            <label for="foto" class="etiqueta">Foto</label>
-                            <input type="file" id="foto" name="foto" accept="image/*" />
-                        </div>
-
-                        <div>
-                            <label for="tipoUsuario" class="etiqueta">Tipo de usuario</label>
-                            <select id="tipoUsuario" name="tipoUsuario" required>
-                                <option value="ciudadano">Ciudadano</option>
-                                <option value="emprendedor">Emprendedor</option>
-                            </select>
-                        </div>
-                    </div>
-
-
-
-
-
-                    <!-- Mensajes -->
-                    <div id="formulario__mensaje" class="formulario__mensaje">
-                        <p><b>Error:</b> Por favor completa correctamente el formulario.</p>
-                    </div>
-
-                    <div id="formulario__mensaje-exito" class="formulario__mensaje-exito">
-                        Formulario enviado exitosamente.
-                    </div>
-
-                    <button type="submit" class="boton-envio">Enviar</button>
-                </form>
-            </div>
-            <div class="imagen-registro"></div>
-        </div>
+  <header>
+    <div class="header-content">
+      <img src="../../assets/images/logo.png" alt="logo header higuito" class="header-logo">
     </div>
+  </header>
 
-    <script src="../../js/auth/registro.js"></script>
+  <div class="contenedor-principal">
+    <div class="envoltorio-registro">
+      <div class="contenedor-registro">
+        <h2>Registro</h2>
 
-    <footer>
-        <p>&copy; 2025 Comunidad Conectada - Todos los derechos reservados</p>
-    </footer>
+        <form class="formulario-registro" id="formulario">
+
+          <!-- GRUPO NOMBRE (NECESARIO PARA BACKEND) -->
+          <div class="formulario__grupo" id="grupo__nombre">
+            <label class="formulario__label">Nombre completo</label>
+            <div class="formulario__grupo-input">
+              <input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="Nombre y apellidos">
+              <i class='formulario__validacion-estado bx bxs-x-circle'></i>
+            </div>
+            <p class="formulario__input-error">Debe ingresar un nombre válido (3 a 45 caracteres).</p>
+          </div>
+
+          <!-- GRUPO NUMERO CEDULA (NO SE ENVÍA AL BACKEND, SOLO VALIDACIÓN VISUAL) -->
+          <div class="formulario__grupo" id="grupo__cedula">
+            <label class="formulario__label">Número de cédula</label>
+            <div class="formulario__grupo-input">
+              <input type="text" class="formulario__input" name="cedula" id="cedula">
+              <i class='formulario__validacion-estado bx bxs-x-circle'></i>
+            </div>
+            <p class="formulario__input-error">Debe ingresar un número de cédula válido.</p>
+          </div>
+
+          <!-- GRUPO CORREO -->
+          <div class="formulario__grupo" id="grupo__correo">
+            <label class="formulario__label">Correo electrónico</label>
+            <div class="formulario__grupo-input">
+              <input type="email" class="formulario__input" name="correo" id="correo" placeholder="correo@correo.com">
+              <i class='formulario__validacion-estado bx bxs-x-circle'></i>
+            </div>
+            <p class="formulario__input-error">
+              Debe agregar un correo con la estructura: dato1@dato2.com
+            </p>
+          </div>
+
+          <!-- GRUPO CONTRASEÑA -->
+          <div class="formulario__grupo" id="grupo__password">
+            <label class="formulario__label">Contraseña</label>
+            <div class="formulario__grupo-input">
+              <input type="password" class="formulario__input" name="password" id="password">
+              <i class='formulario__validacion-estado bx bxs-x-circle'></i>
+            </div>
+            <p class="formulario__input-error">La contraseña debe ser de 4 a 12 dígitos.</p>
+          </div>
+
+          <!-- GRUPO REPETIR CONTRASEÑA -->
+          <div class="formulario__grupo" id="grupo__password2">
+            <label class="formulario__label">Repetir contraseña</label>
+            <div class="formulario__grupo-input">
+              <input type="password" class="formulario__input" name="password2" id="password2">
+              <i class='formulario__validacion-estado bx bxs-x-circle'></i>
+            </div>
+            <p class="formulario__input-error">Las contraseñas no coinciden.</p>
+          </div>
+
+          <div class="grupo-subida">
+            <div>
+              <label for="foto" class="etiqueta">Foto</label>
+              <input type="file" id="foto" name="foto" accept="image/*" />
+            </div>
+
+            <div>
+              <label for="tipoUsuario" class="etiqueta">Tipo de usuario</label>
+              <select id="tipoUsuario" name="tipoUsuario" required>
+                <option value="ciudadano">Ciudadano</option>
+                <option value="emprendedor">Emprendedor</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Mensajes -->
+          <div id="formulario__mensaje" class="formulario__mensaje">
+            <p><b>Error:</b> Por favor completa correctamente el formulario.</p>
+          </div>
+
+          <div id="formulario__mensaje-exito" class="formulario__mensaje-exito">
+            Registro exitoso.
+          </div>
+
+          <button type="submit" class="boton-envio">Enviar</button>
+        </form>
+      </div>
+
+      <div class="imagen-registro"></div>
+    </div>
+  </div>
+  <footer>
+    <p>&copy; 2025 Comunidad Conectada - Todos los derechos reservados</p>
+  </footer>
+  <script src="../../js/auth/registro.js"></script>
 </body>
 
 </html>

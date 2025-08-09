@@ -2,7 +2,7 @@ const User = require('../models/User');
 
 // Registrar nuevo usuario
 const registrarUsuario = async (req, res) => {
-  const { nombre, correo, contrasena, telefono, fechaNacimiento, foto, rol } = req.body;
+  const { nombre, correo, contrasena, telefono, fechaNacimiento, foto, rol, cedula } = req.body;
 
   try {
     // Verificar si ya existe
@@ -19,7 +19,8 @@ const registrarUsuario = async (req, res) => {
       telefono,
       fechaNacimiento,
       foto,
-      rol
+      rol,
+      cedula
     });
 
     await nuevoUsuario.save();
