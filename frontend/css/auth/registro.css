@@ -66,6 +66,9 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
+    background-image: url('../../assets/images/Ciudad.jpg');
+    background-size: cover; /* Ajusta la imagen para cubrir el área */
+    background-position: center;
 }
 
 

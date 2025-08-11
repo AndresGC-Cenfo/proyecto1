@@ -1,4 +1,7 @@
+const crypto = require('crypto');
 const User = require('../models/User');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 // Registrar nuevo usuario
 const registrarUsuario = async (req, res) => {
@@ -29,8 +32,6 @@ const registrarUsuario = async (req, res) => {
     res.status(500).json({ mensaje: 'Error del servidor', error });
   }
 };
-
-const bcrypt = require('bcrypt');
 
 const loginUsuario = async (req, res) => {
   const { correo, contrasena } = req.body;
@@ -71,7 +72,66 @@ const loginUsuario = async (req, res) => {
   }
 };
 
+// 1) Solicitar restablecimiento
+const solicitarRestablecimiento = async (req, res) => {
+  const { correo } = req.body;
+  try {
+    const usuario = await User.findOne({ correo });
+    if (!usuario) {
+      // No revelar si el correo existe: responder 200 igual
+      return res.status(200).json({ mensaje: 'Si el correo existe, se enviará un enlace para restablecer.' });
+    }
+
+    // Generar token "crudo" y almacenar solo el hash
+    const tokenPlano = crypto.randomBytes(32).toString('hex');
+    const tokenHash = crypto.createHash('sha256').update(tokenPlano).digest('hex');
+
+    usuario.resetPasswordToken = tokenHash;
+    usuario.resetPasswordExpires = Date.now() + 60 * 60 * 1000; // 1 hora
+    await usuario.save();
+
+    // Como no usamos email aquí, devolvemos la URL para que el frontend redirija
+    const base = process.env.FRONTEND_BASE_URL || 'http://localhost:5000';
+    const resetUrl = `${base}/pages/auth/establecer-nueva-contrasena.html?token=${tokenPlano}&email=${encodeURIComponent(correo)}`;
+
+    return res.status(200).json({
+      mensaje: 'Si el correo existe, se enviará un enlace para restablecer.',
+      resetUrl
+    });
+  } catch (error) {
+    return res.status(500).json({ mensaje: 'Error al solicitar restablecimiento', error });
+  }
+};
+
+// 2) Establecer nueva contraseña
+const restablecerContrasena = async (req, res) => {
+  const { token, password } = req.body;
+  try {
+    const tokenHash = crypto.createHash('sha256').update(token).digest('hex');
+
+    const usuario = await User.findOne({
+      resetPasswordToken: tokenHash,
+      resetPasswordExpires: { $gt: Date.now() }
+    });
+
+    if (!usuario) {
+      return res.status(400).json({ mensaje: 'Token inválido o expirado' });
+    }
+
+    usuario.contrasena = password; // se hashea en el pre('save')
+    usuario.resetPasswordToken = undefined;
+    usuario.resetPasswordExpires = undefined;
+    await usuario.save();
+
+    return res.status(200).json({ mensaje: 'Contraseña restablecida correctamente' });
+  } catch (error) {
+    return res.status(500).json({ mensaje: 'Error al restablecer contraseña', error });
+  }
+};
+
 module.exports = {
   registrarUsuario,
-  loginUsuario
+  loginUsuario,
+  solicitarRestablecimiento,
+  restablecerContrasena
 };

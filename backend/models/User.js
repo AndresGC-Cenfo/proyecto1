@@ -13,10 +13,13 @@ const UserSchema = new mongoose.Schema({
     enum: ['ciudadano', 'emprendedor', 'administrador'],
     default: 'ciudadano'
   },
-  cedula: { type: String, unique: true, sparse: true }, // opcional, pero único si se proporciona
+  cedula: { type: String, unique: true, sparse: true },
+
+  // NUEVO:
+  resetPasswordToken: { type: String, index: true },
+  resetPasswordExpires: Date,
 }, { timestamps: true });
 
-// Hashear contraseña antes de guardar
 UserSchema.pre('save', async function (next) {
   if (!this.isModified('contrasena')) return next();
   const salt = await bcrypt.genSalt(10);
