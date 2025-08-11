@@ -18,12 +18,21 @@ function desplegarCajasInput(){
     }
 
     primeraFila.cells[0].innerHTML = '<input id="nombreTransportista" type="text">';
-    primeraFila.cells[1].innerHTML = '<input id="nombreRuta" type="text" ">';
-    primeraFila.cells[2].innerHTML = '<input id="horarioRuta" type="text" ">';
-    primeraFila.cells[3].innerHTML = '<input id="tarifaRuta" type="text" >';
-    primeraFila.cells[4].innerHTML = '<input id="tarifaRuta" type="text" >';
-    primeraFila.cells[5].innerHTML = '<input id="fechaUltimaActualizacion" type="date" style="color:#333">';
-    asignarEventosFilas();
+    primeraFila.cells[1].innerHTML = '<select id="codigoRuta">' +
+                                   '<option value="">Codigo Ruta</option>' +
+                                   '<option value="HI-HER">HI-HER</option>' +
+                                   '<option value="HI-CTG">HI-CTG</option>' +
+                                   '<option value="HI-ALT">HI-ALT</option>' +
+                                   '<option value="HI-ESC">HI-ESC</option>' +
+                                   '<option value="HI-ALA">HI-ALA</option>' +
+                                   '</select>';
+
+primeraFila.cells[2].innerHTML = '<input id="horarioRuta" type="text">';
+primeraFila.cells[3].innerHTML = '<input id="tarifaRuta" type="text">';
+primeraFila.cells[4].innerHTML = '<input id="tarifaRuta2" type="text">';  // Changed ID to avoid duplication
+primeraFila.cells[5].innerHTML = '<input id="fechaUltimaActualizacion" type="date" style="color:#333">';
+
+asignarEventosFilas();
 }
 
 

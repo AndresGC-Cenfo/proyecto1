@@ -212,10 +212,6 @@ select {
   outline: none;
 }
 
-option {
-  background-color: #0e4d92;
-  color: white
-}
 
 #btnRegistrar:hover {
   background-color: #388E3C;
@@ -237,7 +233,14 @@ option {
   color: white;
 }
 
+select option{
+  background-color: #FFD56B;
+  color: black;
+}
 
+input {
+  color: black;
+}
 /*PARTE RESPONSIVE*/
 @media (max-width: 600px) {
   nav {

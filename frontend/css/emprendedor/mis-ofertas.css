@@ -71,6 +71,15 @@ main {
 
 }
 
+select option{
+  background-color: #FFD56B;
+  color: black;
+}
+
+input {
+  color: black;
+}
+
 
 /*CSS de seccion principal*/
 .SeccionPrincipal {
@@ -194,7 +203,7 @@ input {
   font-size: 14px;
   outline: none;
   background-color: transparent;
-  color: white;
+  color: rgb(0, 0, 0);
 }
 
 select {

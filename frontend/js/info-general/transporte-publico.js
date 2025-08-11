@@ -63,10 +63,10 @@ Array.from(ps).forEach((p) => {
                 codigoRuta="HI-ESC";
                 break;
             case "rutaAlajuela":
-                codigoRuta=""
+                codigoRuta="HI-ALA"
                 break;
             default:
-                codigoRuta = "HI-ALA";
+                codigoRuta = "";
                 break;
         }
 

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../../css/ciudadano/calendario.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+  <title>Calendario de Eventos</title>
+</head>
+
+<body>
+  <header>
+    <img src="../../assets/images/logo.png" alt="logo header higuito" class="header-logo">
+  </header>
+  
+  <nav>
+    <a href="../info-general/acerca-de.html">A Cerca</a>
+    <a href="anuncios.html">Anuncios</a>
+    <a href="panelCiudadanoReportesySugerencias.html">Reportes y Sugerencias</a>
+    <a href="../info-general/mapa.html">Mapa</a>
+    <a href="calendario.html">Calendario</a>
+    <a href="../info-general/transporte-publico.html">Transporte</a>
+    <a href="ofertas.html">Ofertas y Descuentos</a>
+    <a href="../index.html">Cerrar Sesión</a>
+  </nav>
+
+  <main>
+    <h2 class="titulo-calendario">Calendario Interactivo</h2>
+    <div class="calendario-interactivo">
+     <div class="labels-eventos">
+  <!-- Importantes -->
+  <div class="labels-eventos">
+  <!-- Importantes -->
+   <div id="fechasImportantes">
+    <label class="label-evento" onclick="mostrarEventos('importantes')">
+    Fechas Importantes
+    </label>
+    <ul class="lista-fechas" id="listaFechasImportantes"></ul>
+   </div>
+
+  <!-- Feriados -->
+   <div id="fechasFeriados">
+      <label class="label-evento" onclick="mostrarEventos('feriados')">
+    Dias Feriados
+    </label>
+    <ul class="lista-fechas" id="listaFeriados"></ul>
+   </div>
+
+     <!-- Fiestas -->
+   <div id="fechasFiestas">
+      <label class="label-evento" onclick="mostrarEventos('fiestas')">
+      Fiestas locales
+      </label>
+      <ul class="lista-fechas" id="listaFiestas"></ul>
+   </div>
+
+  <!--Eventos Parroquiales -->
+  <div id="fechasParroquiales">
+    <label class="label-evento" onclick="mostrarEventos('parroquiales')">
+    Fechas Parroquiales
+    </label>
+    <ul id="listaParroquiales" class="lista-fechas"></ul>
+  </div>
+
+</div>
+</div>
+      <div id="calendar"></div>
+    </div>
+  </main>
+
+  <script src="../../js/ciudadano/calendario.js"></script>
+
+  <footer>
+    <p>&copy; 2025 Comunidad Conectada - Todos los derechos reservados</p>
+  </footer>
+</body>
+
+</html>

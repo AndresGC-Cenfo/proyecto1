@@ -71,11 +71,19 @@ main {
 
 }
 
+select option{
+  background-color: #FFD56B;
+  color: black;
+}
+
+input {
+  color: black;
+}
 
 /*CSS de seccion principal*/
 .SeccionPrincipal {
   background-color: white;
-  color: white;
+  color: rgb(0, 0, 0);
   display: flex;
   border-radius: 10px;
   justify-content: center;
@@ -88,7 +96,7 @@ main {
   max-width: 1000px;
   padding: 20px;
   background-color: #00A6E9;
-  color: white;
+  color: rgb(0, 0, 0);
   border-radius: 10px;
 }
 
@@ -195,7 +203,7 @@ input {
   font-size: 14px;
   outline: none;
   background-color: transparent;
-  color: white;
+  color: rgb(0, 0, 0);
 }
 
 select {

@@ -71,6 +71,14 @@ main {
 
 }
 
+select option{
+  background-color: #FFD56B;
+  color: black;
+}
+
+input {
+  color: black;
+}
 
 /*CSS de seccion principal*/
 .SeccionPrincipal {
