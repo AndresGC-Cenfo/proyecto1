@@ -8,6 +8,7 @@ const ReporteSchema = new mongoose.Schema({
     enum: ['pendiente', 'en proceso', 'resuelto'],
     default: 'pendiente'
   },
+  imagenUrl: { type: String }, // opcional para enlazar evidencia
   idCiudadano: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
@@ -17,6 +18,6 @@ const ReporteSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   }
-});
+}, { timestamps: true }); // habilita createdAt/updatedAt
 
 module.exports = mongoose.model('Reporte', ReporteSchema);

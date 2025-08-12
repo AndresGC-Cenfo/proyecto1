@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mi cuenta</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/ciudadano/usuario-info.css" />
+</head>
+<body>
+  <header>
+    <img src="../../assets/images/logo.png" alt="logo header higuito" class="header-logo">
+  </header>
+
+  <nav>
+    <a href="mis-emprendimientos.html">Mis Emprendimientos</a>
+    <a href="mis-ofertas.html">Mis Ofertas</a>
+    <a href="mis-metricas.html">Metricas</a>
+    <a href="usuario-info.html">Perfil</a>
+    <a href="../index.html">Cerrar Sesión</a>
+  </nav>
+
+  <main class="container">
+    <section class="card profile-card" aria-labelledby="perfil-title">
+      <h2 id="perfil-title">Información de la cuenta</h2>
+
+      <form id="formCuenta" class="grid">
+        <!-- Avatar / Foto -->
+        <div class="avatar-col">
+          <div class="avatar">
+            <!-- La imagen se puede reemplazar por JS con la URL del usuario -->
+            <img id="fotoPreview" src="../../assets/img/avatar-placeholder.png" alt="Foto de perfil" />
+          </div>
+
+          <div class="field">
+            <label for="foto">Foto (URL)</label>
+            <input id="foto" name="foto" type="url" placeholder="https://..." />
+            <p class="hint">Puedes pegar un enlace a tu foto (ej. desde tu almacenamiento o CDN).</p>
+          </div>
+
+          <a class="btn-secondary w-100" href="../auth/restablecer-contrasena.html">Cambiar contraseña</a>
+        </div>
+
+        <!-- Datos -->
+        <div class="fields-col">
+          <div class="field">
+            <label for="nombre">Nombre completo</label>
+            <input id="nombre" name="nombre" type="text" autocomplete="name" placeholder="Tu nombre" required />
+          </div>
+
+          <div class="field">
+            <label for="correo">Correo electrónico</label>
+            <input id="correo" name="correo" type="email" autocomplete="email" placeholder="tucorreo@ejemplo.com" required />
+            <p class="hint">Si cambias el correo, es posible que se te pida volver a iniciar sesión.</p>
+          </div>
+
+          <div class="field">
+            <label for="telefono">Teléfono</label>
+            <input id="telefono" name="telefono" type="tel" autocomplete="tel" placeholder="+506 8888-8888" />
+          </div>
+
+          <div class="field">
+            <label for="fechaNacimiento">Fecha de nacimiento</label>
+            <input id="fechaNacimiento" name="fechaNacimiento" type="date" />
+          </div>
+
+          <div class="field two">
+            <div>
+              <label for="cedula">Cédula</label>
+              <input id="cedula" name="cedula" type="text" placeholder="1-2345-6789" />
+            </div>
+            <div>
+              <label for="rol">Rol</label>
+              <input id="rol" name="rol" type="text" value="ciudadano" readonly aria-readonly="true" />
+              <p class="hint">El rol lo gestiona un administrador.</p>
+            </div>
+          </div>
+
+          <div class="buttons">
+            <button type="reset" class="btn-outlined">Deshacer cambios</button>
+            <button type="submit" class="btn-primary">Guardar cambios</button>
+          </div>
+
+          <div id="mensaje" class="alert" role="alert" aria-live="polite" hidden></div>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Comunidad Conectada - Todos los derechos reservados</p>
+  </footer>
+
+  <script src="../../js/ciudadano/usuario-info.js"></script>
+</body>
+</html>

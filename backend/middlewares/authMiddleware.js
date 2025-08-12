@@ -8,6 +8,7 @@ const verificarToken = async (req, res, next) => {
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    // Trae el usuario y lo deja en req.usuario (con rol e _id)
     req.usuario = await User.findById(decoded.id).select('-contrasena');
     next();
   } catch (error) {

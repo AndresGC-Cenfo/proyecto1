@@ -1,185 +1,264 @@
+// ===== Config =====
+const API_BASE = ''; // mismo host
+const TOKEN_KEY = 'token';
 
-let filaSeleccionada=null;
-/* FUNCIONALIDAD PARA BOTON REGISTRAR*/
-// Funcion para desplegar cajas de input en la primera fila de la tabla
-function desplegarCajasInput(){
-    // Verifica si ya existe una fila con inputs
-    const existenInputs = document.querySelector("#tablaReportes tbody tr input");
-    // No inserta otra fila si ya hay inputs
-    if (existenInputs) {
-        mostrarBannerError("Debe completar el registro actual antes de ingresar un nuevo registro. "); 
-        return;
-    }
-    const cuerpo = document.getElementsByTagName("tbody")[0];
-    const primeraFila = cuerpo.insertRow(0);
+// ===== Utilidades de UI =====
+const $bannerOk = document.getElementById('registroExitosoBanner');
+const $bannerErr = document.getElementById('errorRegistroBanner');
+const $errTxt    = document.getElementById('mensaje');
 
-    for (let i = 0; i < 5; i++) {
-        primeraFila.insertCell(i);
-    }
-
-    primeraFila.cells[0].innerHTML = '<input id="nombreUsuario" type="text" >';
-    primeraFila.cells[1].innerHTML = '<input id="contenido" type="text" >';
-    primeraFila.cells[2].innerHTML = `<select id="estadoReporte">
-                                        <option value="" disabled selected>Estado</option>
-                                        <option value="Activo">Activo</option>
-                                        <option value="Inactivo">Inactivo</option>
-                                        </select>`;                                
-    primeraFila.cells[3].innerHTML = `<div class="upload-wrapper">
-                                        <label for="imagenReporte" class="custom-file-upload">
-                                            <i class="fas fa-upload"></i>
-                                        </label>
-                                        <input id="imagenEmprendimiento" type="file" accept="image/*" style="display: none;">
-                                      </div>`;
-    primeraFila.cells[4].innerHTML = '<input id="fechayHora" type="datetime-local" style="color: #333">';    
-    asignarEventosFilas();
+function ok(msg = 'Cambios guardados') {
+  if ($bannerOk) {
+    $bannerOk.querySelector('span')?.lastChild?.nodeValue && ($bannerOk.querySelector('span').lastChild.nodeValue = ' ' + msg);
+    $bannerOk.style.display = 'flex';
+    setTimeout(() => { $bannerOk.style.display = 'none'; }, 2000);
+  }
+}
+function errorUI(msg = 'Ocurrió un error') {
+  if ($bannerErr && $errTxt) {
+    $errTxt.textContent = msg;
+    $bannerErr.style.display = 'block';
+    setTimeout(() => { $bannerErr.style.display = 'none'; }, 2500);
+  }
 }
 
-
-//Convertir las filas de inputs a tds (simula el registro de las filas) para ingresarlos a la tabla y simular el request post
-function ingresarRegistrosTabla() {
-    const fila = document.querySelector("#tablaReportes tbody tr"); // Solo la primera fila (con inputs)
-    const tr = document.createElement("tr");
-    const inputs = fila.querySelectorAll("input, select");
-
-    for (let input of inputs) {
-        const td = document.createElement("td");
-
-        if (input.type === "file") {
-            const file = input.files[0];
-            if (!file) {
-                mostrarBannerError("Debe subir una imagen.");
-                return;
-            }
-            td.textContent = file.name;
-        } else if (input.tagName === "SELECT" || input.type === "select-one") {
-            td.textContent = input.options[input.selectedIndex].text;
-        } else {
-            if (input.value.trim() === "") {
-                mostrarBannerError("Debe completar todos los campos.");
-                return;
-            }
-            td.textContent = input.value;
-        }
-
-        tr.appendChild(td);
-    }
-
-    // Reemplaza solo la fila de inputs
-    fila.replaceWith(tr);
-
-    mostrarBannerExito();
-    asignarEventosFilas();
+// ===== Helpers =====
+function authHeaders(extra = {}) {
+  const h = { ...extra };
+  const t = localStorage.getItem(TOKEN_KEY);
+  if (t) h['Authorization'] = `Bearer ${t}`;
+  return h;
+}
+function escapeHTML(s) {
+  return String(s ?? '').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'", '&#039;');
+}
+function fmtFecha(dt) {
+  if (!dt) return '—';
+  const d = new Date(dt);
+  return `${d.toLocaleDateString()} ${d.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'})}`;
 }
 
-/*FUNCIONALIDAD PARA LA SELECCION DE FILAS EN LA TABLA*/
-function asignarEventosFilas() {
-    let filasRegistradas = document.querySelectorAll("#tablaReportes tbody tr");
+// ===== DOM refs =====
+const $tabla   = document.getElementById('tablaReportes');
+const $tbody   = $tabla?.querySelector('tbody');
+const $btnReg  = document.getElementById('btnRegistrar');
+const $btnEdit = document.getElementById('btnEditar');
+const $btnDel  = document.getElementById('btnEliminar');
+const $btnSend = document.getElementById('btnEnviarCambios');
 
-    filasRegistradas.forEach(fila => {
-        fila.addEventListener("click", () => {
-            if (fila == filaSeleccionada) {
-                // Deseleccionar si es la misma fila
-                fila.classList.remove("filaSeleccionada");
-                filaSeleccionada = null;
-            } else {
-                // Quitar selección anterior si es que habia
-                if (filaSeleccionada) {
-                    filaSeleccionada.classList.remove("filaSeleccionada");
-                }
+const $confirmBanner = document.getElementById('eliminarBanner');
+const $btnConfirmDel = document.getElementById('confirmEliminarBtn');
+const $btnCancelDel  = document.getElementById('cancelEliminarBtn');
 
-                // Seleccionar nueva fila
-                filaSeleccionada = fila;
-                filaSeleccionada.classList.add("filaSeleccionada");
-            }
-        });
+let filaSeleccionada = null;
+let editBuffer = null; // { mode: 'create'|'edit', id?, refs: {...} }
+
+// ===== Carga inicial =====
+init();
+async function init() {
+  try {
+    pintarCargando();
+    const items = await apiListar();
+    renderRows(items);
+    wireRowSelection();
+  } catch (e) {
+    renderRows([]);
+    errorUI(e.message || 'No se pudieron cargar los reportes');
+  }
+}
+
+// ===== API =====
+async function apiListar() {
+  const resp = await fetch(`${API_BASE}/api/reportes`, { headers: authHeaders() });
+  const data = await resp.json().catch(() => ({}));
+  if (!resp.ok) throw new Error(data.mensaje || 'Error al obtener reportes');
+
+  // Espera { reportes: [...] }
+  const arr = data.reportes || [];
+  // orden por fecha desc (createdAt o fechaEnvio)
+  arr.sort((a,b) => new Date(b.createdAt || b.fechaEnvio || 0) - new Date(a.createdAt || a.fechaEnvio || 0));
+  return arr;
+}
+
+async function apiCrear(payload) {
+  const resp = await fetch(`${API_BASE}/api/reportes`, {
+    method: 'POST',
+    headers: authHeaders({'Content-Type':'application/json'}),
+    body: JSON.stringify(payload)
+  });
+  const data = await resp.json().catch(()=> ({}));
+  if (!resp.ok) throw new Error(data.mensaje || 'No se pudo crear el reporte');
+  return data.reporte || data;
+}
+
+async function apiActualizar(id, payload) {
+  const resp = await fetch(`${API_BASE}/api/reportes/${id}`, {
+    method: 'PUT',
+    headers: authHeaders({'Content-Type':'application/json'}),
+    body: JSON.stringify(payload)
+  });
+  const data = await resp.json().catch(()=> ({}));
+  if (!resp.ok) throw new Error(data.mensaje || 'No se pudo actualizar el reporte');
+  return data.reporte || data;
+}
+
+async function apiEliminar(id) {
+  // (Si decides permitir a ciudadanos borrar los suyos, crea un DELETE en el backend.
+  // Por ahora asumimos que sólo admin puede eliminar, así que podría devolver 403.)
+  const resp = await fetch(`${API_BASE}/api/reportes/${id}`, {
+    method: 'DELETE',
+    headers: authHeaders()
+  });
+  const data = await resp.json().catch(()=> ({}));
+  if (!resp.ok) throw new Error(data.mensaje || 'No se pudo eliminar el reporte');
+  return true;
+}
+
+// ===== Render =====
+function pintarCargando() {
+  if ($tbody) {
+    $tbody.innerHTML = `<tr><td colspan="5" style="text-align:center;opacity:.8;">Cargando...</td></tr>`;
+  }
+}
+
+function renderRows(items) {
+  if (!$tbody) return;
+  if (!items?.length) {
+    $tbody.innerHTML = `<tr><td colspan="5" style="text-align:center;opacity:.8;">No hay reportes todavía.</td></tr>`;
+    return;
+  }
+  $tbody.innerHTML = items.map(it => {
+    const usuario = it.idCiudadano?.nombre || it.idCiudadano?.correo || '—';
+    const contenido = it.descripcion || '—';
+    const estado = it.estado || 'pendiente';
+    const imagen = it.imagenUrl ? `<a href="${escapeHTML(it.imagenUrl)}" target="_blank" rel="noopener">Ver</a>` : '—';
+    const fecha = fmtFecha(it.createdAt || it.fechaEnvio);
+    return `
+      <tr data-id="${escapeHTML(it._id || it.id || '')}">
+        <td>${escapeHTML(usuario)}</td>
+        <td>${escapeHTML(contenido)}</td>
+        <td>${escapeHTML(estado)}</td>
+        <td>${imagen}</td>
+        <td>${fecha}</td>
+      </tr>`;
+  }).join('');
+}
+
+function wireRowSelection() {
+  $tbody?.querySelectorAll('tr').forEach(tr => {
+    tr.addEventListener('click', () => {
+      if (filaSeleccionada) filaSeleccionada.classList.remove('filaSeleccionada');
+      filaSeleccionada = tr;
+      tr.classList.add('filaSeleccionada');
     });
+  });
 }
 
-/*FUNCIONALIDAD PARA BOTON EDITAR*/
-function editarFila(){
-    let cuerpo = document.getElementsByTagName("tbody")[0]
-    let nuevaFila = document.createElement("tr")
+// ===== Fila de edición/creación (inputs) =====
+function addInputRow(prefill = {}) {
+  // Evitar duplicado
+  if ($tbody.querySelector('tr[data-editing="1"]')) {
+    errorUI('Completa o cancela la edición actual.');
+    return null;
+  }
 
-    filasCampos = filaSeleccionada.querySelectorAll("td")
-
-    filasCampos.forEach(campo=>{
-    let nuevoInput =document.createElement("input")
-    let nuevaCelda=document.createElement("td")
-
-    nuevoInput.value=campo.textContent
-    nuevaCelda.appendChild(nuevoInput)
-    nuevaFila.appendChild(nuevaCelda)
-    })
-
-    cuerpo.insertBefore(nuevaFila,cuerpo.firstChild)
-
-    filaSeleccionada.remove();
-    
-    asignarEventosFilas()
+  const tr = document.createElement('tr');
+  tr.setAttribute('data-editing','1');
+  tr.innerHTML = `
+    <td><input id="nombreUsuario" type="text" value="${escapeHTML(prefill.usuario || '')}" placeholder="Tu nombre" /></td>
+    <td><input id="descripcion" type="text" value="${escapeHTML(prefill.descripcion || '')}" placeholder="Describe tu reporte o sugerencia" /></td>
+    <td>
+      <span id="estadoFijo">Pendiente</span>
+      <input id="estadoReporte" type="hidden" value="pendiente">
+    </td>
+    <td>
+      <input id="imagenUrl" type="url" placeholder="https://enlace-a-imagen (opcional)" value="${escapeHTML(prefill.imagenUrl || '')}">
+    </td>
+    <td><input id="fechayHora" type="datetime-local" style="color:#333" value="${prefill.fechaLocal || ''}" disabled></td>
+  `;
+  $tbody.insertBefore(tr, $tbody.firstChild);
+  return tr;
 }
 
+function collectInputRow(tr) {
+  const descripcion = tr.querySelector('#descripcion')?.value.trim();
+  const imagenUrl = tr.querySelector('#imagenUrl')?.value.trim();
 
-/*FUNCIONALIDAD PARA ELIMINAR ANUNCIOS*/
-function eliminarAnuncio(){
-    filaSeleccionada.classList.remove("filaSeleccionada");
-    filaSeleccionada.remove()
+  if (!descripcion) {
+    throw new Error('Completa la descripción.');
+  }
 
+  // Payload para backend (no enviamos estado; lo fija el servidor)
+  const payload = {
+    tipo: 'reporte',  // o 'sugerencia' si luego das opción en UI
+    descripcion,
+    imagenUrl: imagenUrl || undefined
+  };
+  return { payload };
 }
 
-
-/*EVENT LISTENERS PARA LOS BOTONES*/
-btnRegistrar = document.querySelector("#btnRegistrar");
-btnEnviarCambios=document.querySelector("#btnEnviarCambios")
-btnEditar =  document.querySelector("#btnEditar")
-btnEliminar = document.querySelector("#btnEliminar")
-btnRegistrar.addEventListener("click",desplegarCajasInput)
-btnEnviarCambios.addEventListener("click",ingresarRegistrosTabla)
-btnEditar.addEventListener("click", () => {
-    if (filaSeleccionada) {
-        editarFila();
-        
-    }
+// ===== Botones =====
+$btnReg?.addEventListener('click', () => {
+  const tr = addInputRow({ });
+  if (tr) editBuffer = { mode: 'create', refs: { tr } };
 });
 
-btnEliminar.addEventListener("click", () => {
-  if (filaSeleccionada) {
-    document.getElementById("eliminarBanner").style.display = "flex";
-  } else {
-    alert("Seleccione una fila para eliminar.");
+$btnEdit?.addEventListener('click', () => {
+  if (!filaSeleccionada) return alert('Selecciona una fila para editar.');
+  const c = filaSeleccionada.querySelectorAll('td');
+  const prefill = {
+    usuario: c[0]?.textContent.trim(),
+    descripcion: c[1]?.textContent.trim()
+    // imagenUrl no lo podemos inferir del link "Ver" fácilmente
+  };
+  const tr = addInputRow(prefill);
+  if (tr) {
+    editBuffer = { mode: 'edit', id: filaSeleccionada.getAttribute('data-id'), refs: { tr } };
+    filaSeleccionada.classList.remove('filaSeleccionada');
+    filaSeleccionada = null;
   }
 });
 
-document.getElementById("confirmEliminarBtn").addEventListener("click", () => {
-    if (filaSeleccionada) {
-        eliminarAnuncio();
-        filaSeleccionada = null;
+$btnDel?.addEventListener('click', () => {
+  if (!filaSeleccionada) return alert('Selecciona una fila para eliminar.');
+  $confirmBanner.style.display = 'flex';
+});
+
+$btnConfirmDel?.addEventListener('click', async () => {
+  try {
+    const id = filaSeleccionada?.getAttribute('data-id');
+    if (!id) throw new Error('Fila sin id');
+    await apiEliminar(id);
+    filaSeleccionada.remove();
+    filaSeleccionada = null;
+    ok('Reporte eliminado');
+  } catch (e) {
+    errorUI(e.message);
+  } finally {
+    $confirmBanner.style.display = 'none';
+  }
+});
+$btnCancelDel?.addEventListener('click', () => { $confirmBanner.style.display = 'none'; });
+
+$btnSend?.addEventListener('click', async () => {
+  if (!editBuffer?.refs?.tr) return errorUI('No hay cambios por enviar.');
+  try {
+    const { payload } = collectInputRow(editBuffer.refs.tr);
+
+    if (editBuffer.mode === 'create') {
+      await apiCrear(payload);
+      ok('Reporte creado');
+    } else {
+      await apiActualizar(editBuffer.id, { descripcion: payload.descripcion, imagenUrl: payload.imagenUrl });
+      ok('Reporte actualizado');
     }
-    document.getElementById("eliminarBanner").style.display = "none";
+
+    // Recarga lista
+    const items = await apiListar();
+    renderRows(items);
+    wireRowSelection();
+    editBuffer = null;
+  } catch (e) {
+    errorUI(e.message);
+  }
 });
-
-document.getElementById("cancelEliminarBtn").addEventListener("click", () => {
-    document.getElementById("eliminarBanner").style.display = "none";
-});
-
- //Llamar funcion al cargar pagina
-asignarEventosFilas();
-
-
-//Funciones asociadas a banners
-function mostrarBannerExito() {
-  const banner = document.getElementById("registroExitosoBanner");
-  banner.style.display = "flex";
-  setTimeout(() => {
-    banner.style.display = "none";
-  }, 2500);
-}
-
-function mostrarBannerError(mensajeMostrar){
-    const banner = document.getElementById("errorRegistroBanner")
-    banner.style.display = "block";
-    let texto = document.getElementById("mensaje")
-    texto.textContent=mensajeMostrar
-  setTimeout(() => {
-    banner.style.display = "none";
-  }, 2500);
-}
