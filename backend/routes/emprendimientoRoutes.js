@@ -4,7 +4,8 @@ const {
   crearEmprendimiento,
   obtenerMisEmprendimientos,
   eliminarEmprendimiento,
-  actualizarEstado
+  actualizarEstado,
+  actualizarEmprendimiento           
 } = require('../controllers/emprendimientoController');
 
 const { verificarToken, verificarRol } = require('../middlewares/authMiddleware');
@@ -13,6 +14,7 @@ const { verificarToken, verificarRol } = require('../middlewares/authMiddleware'
 router.post('/', verificarToken, verificarRol('emprendedor'), crearEmprendimiento);
 router.get('/', verificarToken, verificarRol('emprendedor'), obtenerMisEmprendimientos);
 router.delete('/:id', verificarToken, verificarRol('emprendedor'), eliminarEmprendimiento);
+router.put('/:id', verificarToken, verificarRol('emprendedor'), actualizarEmprendimiento);
 
 // Ruta para admin
 router.patch('/:id/estado', verificarToken, verificarRol('administrador'), actualizarEstado);

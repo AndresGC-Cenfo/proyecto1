@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const {
-  obtenerOfertas,
+  obtenerOfertas,       // público (vigentes)
+  obtenerMisOfertas,    // emprendedor/admin
   crearOferta,
   editarOferta,
   eliminarOferta
@@ -9,10 +10,11 @@ const {
 
 const { verificarToken, verificarRol } = require('../middlewares/authMiddleware');
 
-// Ciudadano
+// Ciudadano (sin token): ofertas vigentes hoy
 router.get('/', obtenerOfertas);
 
-// Emprendedor y Admin
+// Emprendedor/Admin (token)
+router.get('/mias', verificarToken, verificarRol('emprendedor', 'administrador'), obtenerMisOfertas);
 router.post('/', verificarToken, verificarRol('emprendedor', 'administrador'), crearOferta);
 router.put('/:id', verificarToken, verificarRol('emprendedor', 'administrador'), editarOferta);
 router.delete('/:id', verificarToken, verificarRol('emprendedor', 'administrador'), eliminarOferta);

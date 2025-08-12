@@ -67,9 +67,37 @@ const actualizarEstado = async (req, res) => {
   }
 };
 
+const actualizarEmprendimiento = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const body = (({ nombreNegocio, descripcion, categoria, contacto, ubicacion, imagenUrl }) =>
+      ({ nombreNegocio, descripcion, categoria, contacto, ubicacion, imagenUrl }))(req.body);
+
+    const doc = await Emprendimiento.findById(id);
+    if (!doc) return res.status(404).json({ mensaje: 'No encontrado' });
+
+    // Solo dueño (o cambia tu regla si admin también)
+    if (String(doc.idEmprendedor) !== String(req.usuario._id)) {
+      return res.status(403).json({ mensaje: 'No autorizado' });
+    }
+
+    // OJO: el estado no se modifica aquí (eso es del admin via PATCH /:id/estado)
+    Object.entries(body).forEach(([k, v]) => {
+      if (typeof v !== 'undefined') doc[k] = v;
+    });
+
+    await doc.save();
+    res.json({ mensaje: 'Actualizado', emprendimiento: doc });
+  } catch (error) {
+    res.status(500).json({ mensaje: 'Error al actualizar', error });
+  }
+};
+
+// exportar también:
 module.exports = {
   crearEmprendimiento,
   obtenerMisEmprendimientos,
   eliminarEmprendimiento,
-  actualizarEstado
+  actualizarEstado,
+  actualizarEmprendimiento
 };
