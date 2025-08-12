@@ -23,14 +23,15 @@ const obtenerAnuncioPorId = async (req, res) => {
   }
 };
 
-// Admin: crear anuncio
+// Admin: crear
 const crearAnuncio = async (req, res) => {
-  const { titulo, descripcion } = req.body;
+  const { titulo, descripcion, fechaPublicacion } = req.body;
   try {
     const nuevo = new Anuncio({
       titulo,
       descripcion,
-      autorId: req.usuario._id
+      autorId: req.usuario._id,
+      ...(fechaPublicacion ? { fechaPublicacion } : {})
     });
     await nuevo.save();
     res.status(201).json({ mensaje: 'Anuncio creado', anuncio: nuevo });
@@ -39,7 +40,40 @@ const crearAnuncio = async (req, res) => {
   }
 };
 
-// Admin: actualizar estado (aprobar/rechazar)
+// Listado ADMIN
+const obtenerAnunciosAdmin = async (req, res) => {
+  try {
+    const filtro = {};
+    if (req.query.estado) filtro.estado = req.query.estado;
+    const anuncios = await Anuncio.find(filtro)
+      .sort({ fechaPublicacion: -1 })
+      .populate('autorId', 'nombre email');
+    res.json(anuncios);
+  } catch (error) {
+    res.status(500).json({ mensaje: 'Error al obtener anuncios (admin)', error });
+  }
+};
+
+// Editar contenido/fecha (ADMIN)
+const actualizarAnuncio = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { titulo, descripcion, fechaPublicacion } = req.body;
+
+    const update = {};
+    if (typeof titulo !== 'undefined') update.titulo = titulo;
+    if (typeof descripcion !== 'undefined') update.descripcion = descripcion;
+    if (typeof fechaPublicacion !== 'undefined') update.fechaPublicacion = fechaPublicacion;
+
+    const anuncio = await Anuncio.findByIdAndUpdate(id, update, { new: true });
+    if (!anuncio) return res.status(404).json({ mensaje: 'No encontrado' });
+    res.json({ mensaje: 'Anuncio actualizado', anuncio });
+  } catch (error) {
+    res.status(500).json({ mensaje: 'Error al actualizar anuncio', error });
+  }
+};
+
+// Admin: actualizar estado
 const actualizarEstado = async (req, res) => {
   const { estado } = req.body;
   try {
@@ -69,5 +103,7 @@ module.exports = {
   obtenerAnuncioPorId,
   crearAnuncio,
   actualizarEstado,
-  eliminarAnuncio
+  eliminarAnuncio,
+  obtenerAnunciosAdmin,
+  actualizarAnuncio
 };

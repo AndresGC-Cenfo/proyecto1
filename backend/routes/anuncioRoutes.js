@@ -5,16 +5,24 @@ const {
   obtenerAnuncioPorId,
   crearAnuncio,
   actualizarEstado,
-  eliminarAnuncio
+  eliminarAnuncio,
+  obtenerAnunciosAdmin,
+  actualizarAnuncio
 } = require('../controllers/anuncioController');
 
 const { verificarToken, verificarRol } = require('../middlewares/authMiddleware');
 
 // Rutas públicas (usuarios ciudadanos)
 router.get('/', obtenerAnuncios);
+
+// Get anuncios Admin
+router.get('/admin', verificarToken, verificarRol('administrador'), obtenerAnunciosAdmin);
+
+// Detalle público (solo aprobados)
 router.get('/:id', obtenerAnuncioPorId);
 
-// Rutas protegidas (admin)
+// Admin
+router.put('/:id', verificarToken, verificarRol('administrador'), actualizarAnuncio);
 router.post('/', verificarToken, verificarRol('administrador'), crearAnuncio);
 router.patch('/:id/estado', verificarToken, verificarRol('administrador'), actualizarEstado);
 router.delete('/:id', verificarToken, verificarRol('administrador'), eliminarAnuncio);
