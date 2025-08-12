@@ -129,9 +129,29 @@ const restablecerContrasena = async (req, res) => {
   }
 };
 
+// controllers/userController.js
+const actualizarPerfil = async (req, res) => {
+  try {
+    const userId = req.usuario.id; // seteado por verificarToken
+    const camposPermitidos = ['nombre','correo','telefono','fechaNacimiento','cedula','foto'];
+    const update = {};
+    for (const k of camposPermitidos) {
+      if (k in req.body) update[k] = req.body[k];
+    }
+    // Opcional: sanitizar/validar aquí
+    const usuario = await User.findByIdAndUpdate(userId, update, { new: true });
+    if (!usuario) return res.status(404).json({ mensaje: 'Usuario no encontrado' });
+    res.json({ mensaje: 'Perfil actualizado', usuario });
+  } catch (e) {
+    res.status(500).json({ mensaje: 'Error al actualizar perfil', error: e.message });
+  }
+};
+
+
 module.exports = {
   registrarUsuario,
   loginUsuario,
   solicitarRestablecimiento,
-  restablecerContrasena
+  restablecerContrasena,
+  actualizarPerfil
 };
