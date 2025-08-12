@@ -51,12 +51,13 @@ const fotoInput = document.getElementById('foto');
 const fotoPreview = document.getElementById('fotoPreview');
 if (fotoInput && fotoPreview) {
   fotoInput.addEventListener('input', () => {
-    const url = fotoInput.value.trim();
-    if (!url) return;
+    const raw = fotoInput.value.trim();
+    if (!raw) { fotoPreview.removeAttribute('src'); return; }
+    const url = toDropboxDirect(raw);
+    fotoInput.value = url;
     fotoPreview.src = url;
   });
 }
-
 // --- Cargar perfil al entrar ---
 async function cargarPerfil() {
   try {
@@ -83,8 +84,9 @@ async function cargarPerfil() {
     document.getElementById('cedula').value = u.cedula ?? '';
     document.getElementById('rol').value = u.rol ?? 'ciudadano';
     if (u.foto) {
-      document.getElementById('foto').value = u.foto;
-      if (fotoPreview) fotoPreview.src = u.foto;
+    const direct = toDropboxDirect(u.foto);
+    document.getElementById('foto').value = direct;
+    if (fotoPreview) fotoPreview.src = direct;
     }
 
     setMensaje('Información cargada.', 'ok');
@@ -107,8 +109,7 @@ if (form) {
       telefono: document.getElementById('telefono').value.trim(),
       fechaNacimiento: document.getElementById('fechaNacimiento').value, // ISO (yyyy-mm-dd)
       cedula: document.getElementById('cedula').value.trim(),
-      foto: document.getElementById('foto').value.trim(),
-      // rol se mantiene sólo lectura y no se envía
+      foto: toDropboxDirect(document.getElementById('foto').value.trim())
     };
 
     // Validar cliente
@@ -173,3 +174,34 @@ cargarPerfil().then(() => {
   const correoInput = document.getElementById('correo');
   if (correoInput && form) form.dataset.correoActual = correoInput.value.trim();
 });
+
+
+// Convierte enlace de Dropbox a enlace directo (raw)
+function toDropboxDirect(url) {
+  try {
+    const u = new URL(url);
+
+  
+    if (u.hostname === 'dl.dropboxusercontent.com') {
+      const rlkey = u.searchParams.get('rlkey');
+      u.search = rlkey ? `?rlkey=${rlkey}` : '';
+      return u.toString();
+    }
+
+    // Enlaces de dropbox.com a dropboxusercontent
+    if (u.hostname === 'www.dropbox.com' || u.hostname === 'dropbox.com') {
+      u.hostname = 'dl.dropboxusercontent.com';
+
+      const rlkey = u.searchParams.get('rlkey');
+      u.search = rlkey ? `?rlkey=${rlkey}` : '';
+
+
+      return u.toString();
+    }
+
+    // Otros hosts: devuelve tal cual
+    return url;
+  } catch {
+    return url; 
+  }
+}
