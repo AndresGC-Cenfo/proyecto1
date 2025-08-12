@@ -21,9 +21,31 @@ const campos = {
 };
 
 // Validar campo genérico (solo toggle de estado para no tocar estilos)
-const validarCampo = (expresion, input, campo) => {
-  campos[campo] = expresion.test(input.value);
-};
+// const validarCampo = (expresion, input, campo) => {
+//   campos[campo] = expresion.test(input.value);
+// };
+
+const validarCampo =(expresion,input,campo)=>{
+    //expresion -- valor
+    //test() -- /^[a-zA-Z0-9\_\-]{4,16}$/.test("")--> true o false
+    if(expresion.test(input.value)){
+        document.getElementById(`grupo__${campo}`).classList.remove("formulario__grupo-incorrecto");
+        document.getElementById(`grupo__${campo}`).classList.add("formulario__grupo-correcto");
+        document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.remove("formulario__input-error-activo");
+        document.querySelector(`#grupo__${campo} i`).classList.remove("bxs-x-circle");
+        document.querySelector(`#grupo__${campo} i`).classList.add("bxs-check-circle");
+        campos[campo]=true;
+    }else{
+        //                       grupo__telefono
+        document.getElementById(`grupo__${campo}`).classList.add("formulario__grupo-incorrecto");
+        document.getElementById(`grupo__${campo}`).classList.remove("formulario__grupo-correcto");
+        document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.add("formulario__input-error-activo");
+        document.querySelector(`#grupo__${campo} i`).classList.add("bxs-x-circle");
+        document.querySelector(`#grupo__${campo} i`).classList.remove("bxs-check-circle");
+        campos[campo]=false;
+    }
+}
+
 
 // Validaciones por input
 const validarFormulario = (e) => {
@@ -46,6 +68,8 @@ const validarFormulario = (e) => {
       break;
   }
 };
+
+
 
 // Validar coincidencia de contraseñas (corrige bug: usar 'password' como string)
 const validarPassword2 = () => {

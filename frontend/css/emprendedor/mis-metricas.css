@@ -197,3 +197,35 @@ td{
   font-weight: bold;
   color: #FFD56B;
 }
+
+footer a {
+  text-decoration: none;
+  color: white;
+}
+
+.brand-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 1px;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+
+.brand-link img {
+  height: 30px;  
+  width: auto;    
+  display: block; 
+}
+
+.landing-page{
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  color: white;
+}
+
+.landing-page:hover a {
+  color: #FFD56B;
+}
