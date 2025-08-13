@@ -1,5 +1,3 @@
-// js/auth/restablecer-contrasena.js
-
 // Utilidad: obtener params de la URL
 function getQueryParam(name) {
   return new URLSearchParams(window.location.search).get(name);

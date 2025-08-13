@@ -1,6 +1,8 @@
+// /frontend/js/administrador/gestion-transporte.js
+
 // ==== CONFIG ====
-const API_TRANSPORTE = '/api/transporte'; // backend montado en /api/transporte
-const TOKEN = localStorage.getItem('token'); // requerido para POST/PUT/DELETE (admin)
+const API_TRANSPORTE = '/api/transporte';
+const TOKEN = localStorage.getItem('token');
 
 const headers = (json = false) => {
   const h = {};
@@ -8,6 +10,19 @@ const headers = (json = false) => {
   if (json) h['Content-Type'] = 'application/json';
   return h;
 };
+
+// Catálogo de rutas canónicas
+const RUTAS = [
+  { code: 'HI-CTG', label: 'Cartago' },
+  { code: 'HI-ESC', label: 'Escazú' },
+  { code: 'HI-ALT', label: 'Alajuelita' },
+  { code: 'HI-ALA', label: 'Alajuela' },
+  { code: 'HI-HER', label: 'Heredia' },
+];
+const selectRutaHTML = (selected) =>
+  `<select id="iRuta">
+    ${RUTAS.map(r => `<option value="${r.code}" ${r.code===selected?'selected':''}>${r.label} (${r.code})</option>`).join('')}
+   </select>`;
 
 // ==== STATE/UI ====
 let filaSeleccionada = null;
@@ -54,6 +69,7 @@ function toggleSeleccion(tr) {
     tr.classList.add('filaSeleccionada');
   }
 }
+const nl2br = (s='') => String(s).replace(/\n/g, '<br>');
 
 // ==== RENDER ====
 function renderLista(lista) {
@@ -71,8 +87,8 @@ function renderLista(lista) {
     tr.innerHTML = `
       <td>${doc.transportista || ''}</td>
       <td>${doc.ruta || ''}</td>
-      <td>${doc.horario || ''}</td>
-      <td>${doc.tarifa || ''}</td>
+      <td style="white-space:pre-wrap">${nl2br(doc.horario || '')}</td>
+      <td style="white-space:pre-wrap">${nl2br(doc.tarifa || '')}</td>
       <td>${doc.contacto || '—'}</td>
       <td>${toHuman(doc.fechaActualizacion)}</td>
     `;
@@ -83,7 +99,6 @@ function renderLista(lista) {
 
 // ==== API ====
 async function cargarRutas() {
-  // Público (no requiere token)
   const r = await fetch(API_TRANSPORTE, { headers: headers() });
   if (!r.ok) {
     let msg = `No se pudieron cargar (HTTP ${r.status})`;
@@ -125,9 +140,13 @@ function plantillaInputs(val = {}) {
   tr.classList.add('fila-edicion');
   tr.innerHTML = `
     <td><input id="iTransportista" type="text" placeholder="Transportista" value="${val.transportista || ''}"></td>
-    <td><input id="iRuta" type="text" placeholder="Ruta (p. ej. HI-HER)" value="${val.ruta || ''}"></td>
-    <td><input id="iHorario" type="text" placeholder="Horario" value="${val.horario || ''}"></td>
-    <td><input id="iTarifa" type="text" placeholder="Tarifa" value="${val.tarifa || ''}"></td>
+    <td>${selectRutaHTML(val.ruta)}</td>
+    <td>
+      <textarea id="iHorario" rows="3" placeholder="Un horario por línea (Enter para saltos)">${val.horario || ''}</textarea>
+    </td>
+    <td>
+      <textarea id="iTarifa" rows="3" placeholder="Ej.: Lumaca — 1600 CRC&#10;Chilsaca — 500 CRC">${val.tarifa || ''}</textarea>
+    </td>
     <td><input id="iContacto" type="text" placeholder="Contacto (opcional)" value="${val.contacto || ''}"></td>
     <td style="opacity:.6">${val.fechaActualizacion ? toHuman(val.fechaActualizacion) : 'Se asigna al guardar'}</td>
   `;
@@ -135,9 +154,7 @@ function plantillaInputs(val = {}) {
 }
 
 function nuevoRegistro() {
-  if (tbody.querySelector('tr input, tr select')) {
-    return mostrarBannerError('Debe completar el registro/edición actual.');
-  }
+  if (tbody.querySelector('tr input, tr select, tr textarea')) return mostrarBannerError('Debe completar el registro/edición actual.');
   editId = null;
   filaEditando = plantillaInputs();
   tbody.prepend(filaEditando);
@@ -146,9 +163,7 @@ function nuevoRegistro() {
 
 function editarRegistro() {
   if (!filaSeleccionada) return mostrarBannerError('Seleccione una fila para editar.');
-  if (tbody.querySelector('tr input, tr select')) {
-    return mostrarBannerError('Ya hay una fila en edición/registro.');
-  }
+  if (tbody.querySelector('tr input, tr select, tr textarea')) return mostrarBannerError('Ya hay una fila en edición/registro.');
   const id = filaSeleccionada.dataset.id;
   const src = cache.find(x => String(x._id) === String(id)) || {};
   editId = id;
@@ -183,9 +198,9 @@ async function enviarCambios() {
   if (!fila) return mostrarBannerError('No hay cambios por enviar.');
 
   const transportista = fila.querySelector('#iTransportista').value.trim();
-  const ruta          = fila.querySelector('#iRuta').value.trim();
-  const horario       = fila.querySelector('#iHorario').value.trim();
-  const tarifa        = fila.querySelector('#iTarifa').value.trim();
+  const ruta          = fila.querySelector('#iRuta').value;
+  const horario       = fila.querySelector('#iHorario').value.trim(); // mantiene saltos internos
+  const tarifa        = fila.querySelector('#iTarifa').value.trim();  // mantiene saltos internos
   const contacto      = fila.querySelector('#iContacto').value.trim();
 
   if (!transportista || !ruta || !horario || !tarifa) {
@@ -195,11 +210,9 @@ async function enviarCambios() {
   const payload = { transportista, ruta, horario, tarifa, contacto };
 
   try {
-    if (editId) {
-      await editarRuta(editId, payload);
-    } else {
-      await crearRuta(payload);
-    }
+    if (editId) await editarRuta(editId, payload);
+    else await crearRuta(payload);
+
     filaEditando = null;
     editId = null;
     await cargarRutas();
@@ -219,6 +232,5 @@ btnEnviar.addEventListener('click', enviarCambios);
 
 // ==== Init ====
 window.addEventListener('DOMContentLoaded', async () => {
-  try { await cargarRutas(); }
-  catch (e) { mostrarBannerError(e.message); }
+  try { await cargarRutas(); } catch (e) { mostrarBannerError(e.message); }
 });

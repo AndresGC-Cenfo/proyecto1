@@ -1,55 +1,68 @@
 const Transporte = require('../models/Transporte');
+const { normalizarRuta, CODIGOS_RUTA } = require('../config/rutasTransporte');
 
-// Obtener todas las rutas (ciudadano)
-const obtenerRutas = async (req, res) => {
+// GET público: lista todas las rutas publicadas
+const obtenerTransportes = async (req, res) => {
   try {
-    const rutas = await Transporte.find().sort({ transportista: 1 });
-    res.json(rutas);
-  } catch (error) {
-    res.status(500).json({ mensaje: 'Error al obtener rutas', error });
+    const lista = await Transporte.find().sort({ transportista: 1 });
+    res.json(lista);
+  } catch (e) {
+    res.status(500).json({ mensaje: 'Error al obtener transporte', error: e.message });
   }
 };
 
-// Crear ruta (admin)
-const crearRuta = async (req, res) => {
-  const { transportista, ruta, horario, tarifa, contacto } = req.body;
-
+// POST (admin): crear registro normalizando ruta
+const crearTransporte = async (req, res) => {
   try {
-    const nueva = new Transporte({ transportista, ruta, horario, tarifa, contacto });
-    await nueva.save();
-    res.status(201).json({ mensaje: 'Ruta creada', ruta: nueva });
-  } catch (error) {
-    res.status(500).json({ mensaje: 'Error al crear ruta', error });
+    const payload = {
+      transportista: req.body.transportista,
+      ruta: normalizarRuta(req.body.ruta),
+      horario: req.body.horario,
+      tarifa: req.body.tarifa,
+      contacto: req.body.contacto || ''
+    };
+    if (!CODIGOS_RUTA.includes(payload.ruta)) {
+      return res.status(400).json({ mensaje: `Ruta inválida. Use: ${CODIGOS_RUTA.join(', ')}` });
+    }
+    const doc = await Transporte.create(payload);
+    res.status(201).json(doc);
+  } catch (e) {
+    res.status(500).json({ mensaje: 'Error al crear ruta', error: e.message });
   }
 };
 
-// Editar ruta (admin)
-const editarRuta = async (req, res) => {
+// PUT (admin): editar y normalizar ruta si viene
+const editarTransporte = async (req, res) => {
   try {
-    const actualizada = await Transporte.findByIdAndUpdate(
-      req.params.id,
-      { ...req.body, fechaActualizacion: Date.now() },
-      { new: true }
-    );
-    res.json(actualizada);
-  } catch (error) {
-    res.status(500).json({ mensaje: 'Error al editar ruta', error });
+    const updates = { ...req.body, fechaActualizacion: new Date() };
+    if (typeof updates.ruta !== 'undefined' && updates.ruta !== null) {
+      updates.ruta = normalizarRuta(updates.ruta);
+      if (!CODIGOS_RUTA.includes(updates.ruta)) {
+        return res.status(400).json({ mensaje: `Ruta inválida. Use: ${CODIGOS_RUTA.join(', ')}` });
+      }
+    }
+    const doc = await Transporte.findByIdAndUpdate(req.params.id, updates, { new: true });
+    if (!doc) return res.status(404).json({ mensaje: 'No encontrado' });
+    res.json(doc);
+  } catch (e) {
+    res.status(500).json({ mensaje: 'Error al editar ruta', error: e.message });
   }
 };
 
-// Eliminar ruta (admin)
-const eliminarRuta = async (req, res) => {
+// DELETE (admin)
+const eliminarTransporte = async (req, res) => {
   try {
-    await Transporte.findByIdAndDelete(req.params.id);
-    res.json({ mensaje: 'Ruta eliminada' });
-  } catch (error) {
-    res.status(500).json({ mensaje: 'Error al eliminar ruta', error });
+    const doc = await Transporte.findByIdAndDelete(req.params.id);
+    if (!doc) return res.status(404).json({ mensaje: 'No encontrado' });
+    res.json({ mensaje: 'Eliminado correctamente' });
+  } catch (e) {
+    res.status(500).json({ mensaje: 'Error al eliminar ruta', error: e.message });
   }
 };
 
 module.exports = {
-  obtenerRutas,
-  crearRuta,
-  editarRuta,
-  eliminarRuta
+  obtenerTransportes,
+  crearTransporte,
+  editarTransporte,
+  eliminarTransporte
 };

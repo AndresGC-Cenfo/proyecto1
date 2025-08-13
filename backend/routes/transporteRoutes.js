@@ -1,20 +1,21 @@
 const express = require('express');
 const router = express.Router();
+
 const {
-  obtenerRutas,
-  crearRuta,
-  editarRuta,
-  eliminarRuta
+  obtenerTransportes,
+  crearTransporte,
+  editarTransporte,
+  eliminarTransporte
 } = require('../controllers/transporteController');
 
 const { verificarToken, verificarRol } = require('../middlewares/authMiddleware');
 
-// Rutas públicas (ciudadanos)
-router.get('/', obtenerRutas);
+// Público
+router.get('/', obtenerTransportes);
 
 // Admin
-router.post('/', verificarToken, verificarRol('administrador'), crearRuta);
-router.put('/:id', verificarToken, verificarRol('administrador'), editarRuta);
-router.delete('/:id', verificarToken, verificarRol('administrador'), eliminarRuta);
+router.post('/', verificarToken, verificarRol('administrador'), crearTransporte);
+router.put('/:id', verificarToken, verificarRol('administrador'), editarTransporte);
+router.delete('/:id', verificarToken, verificarRol('administrador'), eliminarTransporte);
 
 module.exports = router;

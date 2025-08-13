@@ -1,5 +1,3 @@
-// /frontend/js/info-general/noticias.js (REEMPLAZO COMPLETO)
-
 // === CONFIG ===
 const API_ANUNCIOS = '/api/anuncios';
 const tbody = document.getElementById('tablaCuerpoNoticias');
