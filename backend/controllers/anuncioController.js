@@ -3,7 +3,10 @@ const Anuncio = require('../models/Anuncio');
 // Ciudadano: ver anuncios aprobados
 const obtenerAnuncios = async (req, res) => {
   try {
-    const anuncios = await Anuncio.find({ estado: 'aprobado' }).sort({ fechaPublicacion: -1 });
+    const anuncios = await Anuncio
+      .find({ estado: 'aprobado' })
+      .sort({ fechaPublicacion: -1 })
+      .populate('autorId', 'nombre email');
     res.json(anuncios);
   } catch (error) {
     res.status(500).json({ mensaje: 'Error al obtener anuncios', error });
