@@ -114,10 +114,27 @@ const eliminarOferta = async (req, res) => {
   }
 };
 
+// Listado ADMIN: ver todas las ofertas (opcional: ?emprendimiento=<id>)
+const obtenerOfertasAdmin = async (req, res) => {
+  try {
+    const filtro = {};
+    if (req.query.emprendimiento) filtro.idEmprendimiento = req.query.emprendimiento;
+
+    const ofertas = await Oferta.find(filtro)
+      .sort({ fechaInicio: -1 })
+      .populate('idEmprendimiento', 'nombreNegocio');
+
+    res.json(ofertas);
+  } catch (error) {
+    res.status(500).json({ mensaje: 'Error al obtener ofertas (admin)', error });
+  }
+};
+
 module.exports = {
   obtenerOfertas,      // público (ciudadano) - vigentes
   obtenerMisOfertas,   // autenticado (emprendedor/admin)
   crearOferta,
   editarOferta,
-  eliminarOferta
+  eliminarOferta,
+  obtenerOfertasAdmin
 };

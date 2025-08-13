@@ -187,12 +187,26 @@ async function enviarCambios() {
     return mostrarBannerError('Completa nombre, descripción y categoría.');
   }
 
+  const original = cache.find(a => String(a._id) === String(editId));
+  const payload  = { nombreNegocio, descripcion, categoria, imagenUrl };
+
   try {
-    const original = cache.find(a => String(a._id) === String(editId));
-    await actualizarEmprendimiento(editId, { nombreNegocio, descripcion, categoria, imagenUrl });
+    // 1) Cambiar ESTADO primero (admin)
     if (estadoNuevo && original && original.estado !== estadoNuevo) {
-      await cambiarEstado(editId, estadoNuevo);
+      await cambiarEstado(editId, estadoNuevo); // PATCH /:id/estado
     }
+
+    // 2) Intentar editar campos (si eres admin y no dueño puede dar 403; lo toleramos)
+    try {
+      await actualizarEmprendimiento(editId, payload); // PUT /:id
+    } catch (e) {
+      const msg = String(e.message || '').toLowerCase();
+      if (!(msg.includes('403') || msg.includes('no autorizado'))) {
+        throw e; // otros errores sí bloquean
+      }
+      // Si es 403, no eres dueño: está bien, ya cambiamos el estado arriba.
+    }
+
     filaEditando = null;
     editId = null;
     await cargarEmprendimientos();
